@@ -5,10 +5,8 @@ import { useEffect } from 'react';
 export default function Login(){
     const navigate = useNavigate(); //in app navigation only;
     
-    const serverSideURL= ''; //TODO:
-    const baseURL = `https://${serverSideURL}.com/api`
-    const clientSideURL= ''; //TODO:
-    const clientURL = `https://${clientSideURL}.com/api`    
+    const baseURL = `http://localhost:3001`    //server side url
+    const clientURL = `http://localhost:5173/people`    // client side url
     
     // const [token, setToken] = useToken(); TODO: create a useToken hook. 
     const [params, setParams] = useSearchParams();
@@ -23,8 +21,8 @@ export default function Login(){
     }, []);
 
     function initiateLogin(){
-        //TODO: navigate to the auth login url in our API (URL: baseURL+ /auth/google)                 
-        let url = baseURL + `/auth/google?url_redirect=${clientURL}` 
+        let url = baseURL + `/auth/google?redirect_url=${clientURL}` 
+        console.log(url);
         location.href = url;
     }
 

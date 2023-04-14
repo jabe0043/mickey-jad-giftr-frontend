@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
-// import People from './pages/people/People'
-// import PersonForm from './pages/people/PersonForm'
+import People from './pages/people/People'
+import PersonForm from './pages/people/PersonForm'
 // import Gifts from './pages/gifts/Gifts'
 // import GiftForm from './pages/gifts/GiftForm'
 
@@ -17,15 +17,13 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Login />}/>
 
-        {/* <Route path='/people' element={<People />} />
+        <Route path='/people' element={<People />} />
         <Route path='/people/edit' element={<PersonForm />} />
         <Route path='/people/add' element={<PersonForm />} />
         
-        <Route path='/gift' element={<Gifts />} />
+        {/* <Route path='/gift' element={<Gifts />} />
         <Route path='/gift/edit' element={<GiftForm />} />
         <Route path='/gift/add' element={<GiftForm />} />  */}
-
-        {/*TODO: ADD Other Paths*/}
       
       </Routes>
     </div>
