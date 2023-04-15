@@ -14,7 +14,7 @@ export default function ListCard(props){
     return(
         <li className='person__card'>
             <div className='person__avatar'>
-                <img src={person.avatar}></img>
+                <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>
             </div>
             <p className='person__fullname'>{ person.fullName} </p>
             <p className='person__dob'>{ person.dob }</p>
