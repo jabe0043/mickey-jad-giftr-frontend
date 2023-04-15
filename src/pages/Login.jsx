@@ -6,7 +6,7 @@ import { useUser } from '../context/userContext';  //
 export default function Login(){
     const navigate = useNavigate(); //in app navigation only;
     
-    const baseURL = `http://localhost:3001`    //server side url
+    const baseURL = `https://gift-backend.onrender.com`    //server side url
     const clientURL = `http://localhost:5173`    // client side url
 
     
