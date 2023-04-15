@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../../context/userContext';  //
 import giftImg from '../../assets/pixeltrue-giveaway.png'
 import ListCard from '../ListCard';
+import {useTheme} from 'styled-components';
+import {Title} from '../../styled/components'
+
 
 
 export default function People(){
 
     const [people, setPeople] = useState([]);
     const [authenticatedUser, setAuthenticatedUser] = useUser();
+    const theme = useTheme();
 
     useEffect(()=>{
         const url = `http://localhost:3001/api/people/`
@@ -46,7 +50,7 @@ console.log(people);
     return(
         <main>
             <div className='page-banner'>
-                <h1>Welcome</h1>
+                <Title>Welcome</Title>
                 <div>
                     <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
                 </div>
