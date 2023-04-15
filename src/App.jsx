@@ -3,17 +3,17 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import People from './pages/people/People'
 import PersonForm from './pages/people/PersonForm'
+import Header from './pages/Header';
 // import Gifts from './pages/gifts/Gifts'
 // import GiftForm from './pages/gifts/GiftForm'
 
 export default function App() {
-  // const [count, setCount] = useState(0)
 
   return (
     <div className="App">
-      <header>
-        <h1> GIFT'R</h1>
-      </header>
+      <Header></Header>
+
+      
       <Routes>
         <Route path='/' element={<Login />}/>
 
