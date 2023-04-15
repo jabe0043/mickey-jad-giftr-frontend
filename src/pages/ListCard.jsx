@@ -7,25 +7,7 @@ import { useState, useEffect } from 'react';
 export default function ListCard(props){
 
     const person =  props.person;
-    let gender = 'male'; //default for now - we will need to add giftee's gender to the person obj.
-    let url = `https://avatars.dicebear.com/api/croodles/random.svg?options[gender]=${gender}&options[top][]=black&options[hairColor][]=000000&seed=${person.fullName}`
-    console.log(url);
-
-    useEffect(()=>{
-        fetchAvatar(url)
-    }, []);
-
-
-    function fetchAvatar(){    
-        fetch(url)
-        .then((res) =>{
-            if (!res.ok) throw new Error (res.statusText);
-            return res.blob();
-        })
-        .then((data) =>{
-            person.avatar = data.url;
-        })
-    }
+    console.log(person);
 
 
 

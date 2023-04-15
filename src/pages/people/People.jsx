@@ -29,9 +29,10 @@ export default function People(){
             console.log(peopleArr);
             setPeople(
                 peopleArr.map((person) => (
-                    {       // will need to add ownerID for matching with logged in user..
+                    {       
+                    ownerID: person.ownerID,
                     _id: person._id,
-                    // avatar: fetchAvatar(),
+                    avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${person._id}&topColor=000000`,
                     fullName: person.fullName,
                     dob: person.dob
                 }))
@@ -52,14 +53,8 @@ console.log(people);
                 <h2>Here's your list of giftees</h2>
             </div>
                 <ul className='people'>
-                {people.map((person) => <ListCard key={person._id} person={person}/>)}
+                    {people.map((person) => <ListCard key={person._id} person={person}/>)}
                 </ul>
-            
-
         </main>
     )
 }
-
-
-
-// function 
