@@ -18,7 +18,7 @@ export function useSessionStorage(key, initialState) {
         sessionStorage.setItem(key, JSON.stringify(state));
     }, [state]);
 
-    //each time useLocalStorageState is called it will return a reference
+    //each time useSessionStorageState is called it will return a reference
     // to the state variable and the function to update the value
     return [state, setState];
 }

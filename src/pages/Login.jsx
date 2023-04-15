@@ -1,5 +1,6 @@
 import {useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react'; 
+import { useUser } from '../context/userContext';  //
 
 
 export default function Login(){
@@ -10,14 +11,12 @@ export default function Login(){
 
     
     const [params, setParams] = useSearchParams();
-
+    const [authenticatedUser, setAuthenticatedUser] = useUser();
 
     useEffect(() =>{
         let token = params.get('token');
-        console.log(token);
         if (token){
-            //TODO:setToken(token) -- from context, save token string in session storage
-            sessionStorage.setItem('UserToken', token);
+            setAuthenticatedUser(token);
             navigate('/people');       
         }
     }, []);
