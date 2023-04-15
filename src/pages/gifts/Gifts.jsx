@@ -65,6 +65,8 @@ const Gifts = () => {
     ],
   };
 
+  const StyledGift
+
   return (
     <main id="giftsList">
       <div className="profile">
