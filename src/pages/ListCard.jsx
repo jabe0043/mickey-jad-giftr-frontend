@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import {useTheme} from 'styled-components';
+import {Card, CardAvatar, CardInfo, CardTitle} from '../styled/components'
 
 
 // will need to create a context provider or state
@@ -7,18 +9,20 @@ import { useState, useEffect } from 'react';
 export default function ListCard(props){
 
     const person =  props.person;
-    console.log(person);
+    const theme = useTheme();
 
 
 
     return(
-        <li className='person__card'>
-            <div className='person__avatar'>
+        <Card className='person__card'> 
+            <CardAvatar className='person__avatar'>
                 <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>
-            </div>
-            <p className='person__fullname'>{ person.fullName} </p>
-            <p className='person__dob'>{ person.dob }</p>
-        </li>
+            </CardAvatar>
+            <CardInfo>
+                <CardTitle className='person__fullname'>{ person.fullName } </CardTitle>
+                <p className='person__dob'>{ person.dob }</p>
+            </CardInfo>
+        </Card>
     )
 }
 

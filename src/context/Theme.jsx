@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 const theme = {
   default: {
     colors: {
+      pureWhite: "#FFFFFF",
       text: "#1E1E1E",
       textSecondary: "#999999",
       background: "#F4EDE7",

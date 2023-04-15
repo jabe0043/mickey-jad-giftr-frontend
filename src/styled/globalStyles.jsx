@@ -49,7 +49,6 @@ h3,
 h4,
 h5,
 h6,
-p,
 figure,
 blockquote,
 ul,
@@ -57,6 +56,17 @@ ol,
 dl,
 dd {
     margin: 0 0 1.5rem;
+}
+
+p{
+    margin:0;
+}
+
+.container {
+    width: min(65em, 100%);
+    margin: 0 auto;
+    padding-left: .75rem;
+    padding-right: .75rem;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
