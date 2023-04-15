@@ -4,18 +4,18 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-  font-family: ${({theme}) => theme.default.fonts[1]};
-  line-height: 1.5;
-  font-weight: ${({theme}) => theme.default.fontWeights.regular};
+    font-family: ${({theme}) => theme.default.fonts[1]};
+    line-height: 1.5;
+    font-weight: ${({theme}) => theme.default.fontWeights.regular};
 
-  color:${({ theme }) => theme.default.colors.text};
-  background-color: ${({ theme }) => theme.default.colors.background};
+    color:${({ theme }) => theme.default.colors.text};
+    background-color: ${({ theme }) => theme.default.colors.background};
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 }
 
 /* Box sizing rules */
