@@ -4,7 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/userContext";
 import Theme from "./context/Theme";
-import { GlobalStyle } from "./styled/globalStyles";
+import { GlobalStyle } from "./styles/globalStyles";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <UserProvider>
