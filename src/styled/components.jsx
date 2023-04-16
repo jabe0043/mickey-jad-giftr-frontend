@@ -119,20 +119,20 @@ export const GiftCard = styled.div`
   padding: 1rem;
 `;
 
-export const GiftName = styled.div`
+export const GiftName = styled.h3`
   font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
 `;
 
-export const GiftStore = styled.div`
+export const GiftStore = styled.p`
   font-size: ${({ theme }) => theme.default.fontSizes.ls};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
 
-export const GiftUrl = styled.div`
+export const GiftUrl = styled.a`
   font-size: ${({ theme }) => theme.default.fontSizes.ls};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
-`;
+`; 
 
 export const GiftCloseButton = styled.div`
   width: ${({ theme }) => theme.default.fontSizes.m};

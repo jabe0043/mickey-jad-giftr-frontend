@@ -2,6 +2,7 @@ import React from "react";
 import GiftCard from "./GiftCard";
 import { useEffect, useState } from "react";
 import * as Styled from "../../styled/components";
+import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../context/userContext";
 
@@ -66,6 +67,8 @@ const Gifts = () => {
     ],
   };
 
+  const navigate = useNavigate();
+
   return (
     <main className="container">
       <Styled.GiftsBanner>
@@ -79,7 +82,11 @@ const Gifts = () => {
         <Styled.GiftsBannerDob>
           {new Date(dummyPerson.dob).toString().slice(4, 10)}
         </Styled.GiftsBannerDob>
-        <Styled.GiftsBannerEditButton>
+        <Styled.GiftsBannerEditButton
+          onClick={() => {
+            navigate("./edit");
+          }}
+        >
           <svg
             viewBox="0 0 74 77"
             fill="none"
