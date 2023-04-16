@@ -54,4 +54,16 @@ const CardTitle = styled.p`
 `
 
 
-export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle};
+
+// used in Header component
+const AppHeader = styled.div`
+    display: flex;
+    min-width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+`
+
+
+
+
+export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader};
