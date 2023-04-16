@@ -13,10 +13,12 @@ const theme = {
     },
     fonts: ["Playfair Display", "serif"],
     fontSizes: {
-      sm: "0.9rem",
-      md: "1.2rem",
-      ls: "2rem",
-      xl: "5rem",
+      xs: "0.6rem",
+      s: "0.66rem",
+      m: "1rem",
+      l: "1.3rem",
+      xl: "1.55rem",
+      xxl: "1.77rem",
     },
     fontWeights: {
       regular: "400",
