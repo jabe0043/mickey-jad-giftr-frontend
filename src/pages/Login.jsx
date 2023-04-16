@@ -1,40 +1,45 @@
-import {useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react'; 
-import { useUser } from '../context/userContext';  
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useUser } from "../context/userContext";
 
+export default function Login() {
+  const navigate = useNavigate(); //in app navigation only;
 
-export default function Login(){
-    const navigate = useNavigate(); //in app navigation only;
-    
-    const baseURL = `http://localhost:3001`    //server side url
-    // const baseURL = `https://gift-backend.onrender.com`    //server side url
-    const clientURL = `http://localhost:5173`    // client side url
+  //Local Server URL
+  const baseURL = `http://localhost:3001`;
 
-    
-    const [params, setParams] = useSearchParams();
-    const [authenticatedUser, setAuthenticatedUser] = useUser();
+  //Remote Server URL
+  // const baseURL = `https://gift-backend.onrender.com`
 
-    useEffect(() =>{
-        let token = params.get('token');
-        if (token){
-            setAuthenticatedUser(token);
-            navigate('/people');       
-        }
-    }, []);
+  //Client localhost URL
+  const clientURL = `http://localhost:5173`;
 
-    function initiateLogin(){
-        // let url = baseURL + `/auth/google?redirect_url=${clientURL}` 
-        let url = baseURL + `/auth/google?redirect_url=${clientURL}` 
-        console.log(url);
-        location.href = url;
+  //Client Netlify URL
+  // const clientURL = `netlify.app`;
+
+  const [params, setParams] = useSearchParams();
+  const [authenticatedUser, setAuthenticatedUser] = useUser();
+
+  useEffect(() => {
+    let token = params.get("token");
+    if (token) {
+      setAuthenticatedUser(token);
+      navigate("/people");
     }
+  }, []);
 
-    return (
-        <main>
-            <p>
-                <button onClick={(initiateLogin)}>Login</button>
-            </p>
-        </main>
-    )
+  function initiateLogin() {
+    // let url = baseURL + `/auth/google?redirect_url=${clientURL}`
+    let url = baseURL + `/auth/google?redirect_url=${clientURL}`;
+    console.log(url);
+    location.href = url;
+  }
+
+  return (
+    <main>
+      <p>
+        <button onClick={initiateLogin}>Login</button>
+      </p>
+    </main>
+  );
 }
-

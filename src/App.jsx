@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import People from './pages/people/People'
 import PersonForm from './pages/people/PersonForm'
 import Header from './pages/Header';
-// import Gifts from './pages/gifts/Gifts'
-// import GiftForm from './pages/gifts/GiftForm'
+import Gifts from './pages/gifts/Gifts'
+import GiftForm from './pages/gifts/GiftForm'
+
 
 export default function App() {
 
@@ -21,14 +21,17 @@ export default function App() {
         <Route path='/people/edit' element={<PersonForm />} />
         <Route path='/people/add' element={<PersonForm />} />
         
-        {/* <Route path='/gift' element={<Gifts />} />
+        <Route path='/gift' element={<Gifts />} />
         <Route path='/gift/edit' element={<GiftForm />} />
-        <Route path='/gift/add' element={<GiftForm />} />  */}
+        <Route path='/gift/add' element={<GiftForm />} /> 
       
       </Routes>
     </div>
   )
 }
+
+
+
 
 
 /* ROUTE PLANNING (Use context variables for ids or put them in the url?) 
