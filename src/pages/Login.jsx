@@ -29,7 +29,6 @@ export default function Login() {
   }, []);
 
   function initiateLogin() {
-    // let url = baseURL + `/auth/google?redirect_url=${clientURL}`
     let url = baseURL + `/auth/google?redirect_url=${clientURL}`;
     console.log(url);
     location.href = url;

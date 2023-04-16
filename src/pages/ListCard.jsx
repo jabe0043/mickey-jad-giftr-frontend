@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {useTheme} from 'styled-components';
 import {Card, CardAvatar, CardInfo, CardTitle} from '../styled/components'
 
@@ -14,7 +13,7 @@ export default function ListCard(props){
 
 
     return(
-        <Card className='person__card'> 
+        <Card className='person__card' onClick={props.onClick}> {/*adding the handleCardClick function that was passed down as prop from People comp. */}
             <CardAvatar className='person__avatar'>
                 <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>
             </CardAvatar>
