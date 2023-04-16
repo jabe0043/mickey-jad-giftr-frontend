@@ -1,5 +1,29 @@
 import styled from "styled-components";
 
+
+
+/*****************************
+** LAYOUT - HEADER
+******************************/
+
+const AppHeader = styled.div`
+    display: flex;
+    min-width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const Logo = styled.a`
+  font-size: ${({ theme }) => theme.default.fontSizes.xl};
+  font-weight: ${({ theme }) => theme.default.fontWeights.regular};
+`;
+
+
+
+/*****************************
+** PAGE 1 - HOME(PEOPLE) PAGE 
+******************************/
+
 const PageBanner = styled.div`
   display: flex;
   flex-direction: column;
@@ -53,7 +77,11 @@ const CardTitle = styled.p`
 `;
 
 
-// ------ Gifts page
+
+/*****************************
+** PAGE 2 - GIFT PAGE 
+******************************/
+
 export const GiftsBanner = styled.div`
   background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
   border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
@@ -102,7 +130,12 @@ export const GiftTitleName = styled.span`
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
 `;
 
-// Gift card
+
+
+/*****************************
+** COMPONENT - GIFT CARD
+******************************/
+
 export const GiftCardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -144,16 +177,4 @@ export const GiftCloseButton = styled.div`
 `;
 
 
-
-// used in Header component
-const AppHeader = styled.div`
-    display: flex;
-    min-width: 100vw;
-    justify-content: space-between;
-    align-items: center;
-`
-
-
-
-
-export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader};
+export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader, Logo};
