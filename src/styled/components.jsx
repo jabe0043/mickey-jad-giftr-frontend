@@ -151,9 +151,36 @@ const AppHeader = styled.div`
     min-width: 100vw;
     justify-content: space-between;
     align-items: center;
-`
+`;
+
+
+//FORM STYLING
+// Form styling (used across pages)
+const FormField = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+`;
+
+const TextInput = styled.input`
+  padding: .5rem;
+  border: solid 0.125rem ${({ theme }) => theme.default.colors.text};
+  border-radius: .35rem;
+`;
+
+const ButtonsDiv = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: .5rem;
+  border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
+  border-radius: .35rem;
+`;
 
 
 
-
-export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader};
+export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader, FormField, TextInput, ButtonsDiv, Button};

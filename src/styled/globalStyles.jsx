@@ -147,5 +147,13 @@ p{
     font-size: 2rem;
     font-weight: 600;
 }
+
+.save{
+    background-color: ${({theme}) => theme.default.colors.button};
+}
+
+.delete{
+    background-color: ${({theme}) => theme.default.colors.buttonSecondary};
+}
 `
 ;

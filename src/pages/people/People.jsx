@@ -7,6 +7,7 @@ import { useTheme } from "styled-components";
 import { PageBanner, Title, CardsList } from "../../styled/components";
 import CheckAuth from "../../utils/CheckAuth";
 
+
 export default function People() {
   const [people, setPeople] = useState([]);
   const [authenticatedUser, setAuthenticatedUser] = useUser();
@@ -45,9 +46,14 @@ export default function People() {
 
   console.log(people);
 
+  // const handleCardClick = (personId) => {
+  //   console.log('test');
+  //   navigate(`/people/edit/${personId}`);
+  // };
+
   const handleCardClick = (personId) => {
     console.log('test');
-    navigate(`/people/edit/${personId}`);
+    navigate(`/gift/${personId}`);
   };
 
 
