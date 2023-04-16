@@ -178,14 +178,6 @@ export const GiftCloseButton = styled.div`
 
 
 
-// used in Header component
-const AppHeader = styled.div`
-    display: flex;
-    min-width: 100vw;
-    justify-content: space-between;
-    align-items: center;
-`;
-
 
 //FORM STYLING
 // Form styling (used across pages)
@@ -216,4 +208,4 @@ const Button = styled.button`
 
 
 
-export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader, FormField, TextInput, ButtonsDiv, Button};
+export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader, Logo, FormField, TextInput, ButtonsDiv, Button};
