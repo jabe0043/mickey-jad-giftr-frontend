@@ -58,17 +58,6 @@ dd {
     margin: 0 0 1.5rem;
 }
 
-p{
-    margin:0;
-}
-
-.container {
-    width: min(65em, 100%);
-    margin: 0 auto;
-    padding-left: .75rem;
-    padding-right: .75rem;
-}
-
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],
 ol[role='list'] {
@@ -111,6 +100,11 @@ select {
     font: inherit;
 }
 
+header{
+    width:100vw;
+    display: flex;
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
     html:focus-within {
@@ -126,4 +120,32 @@ select {
         scroll-behavior: auto !important;
     }
 }
-`;
+
+// TODO: added by jad
+h1{
+    margin:0;
+}
+
+p{
+    margin:0;
+}
+
+.container {
+    width: min(65em, 100%);
+    margin: 0 auto;
+    padding-left: .75rem;
+    padding-right: .75rem;
+}
+
+.bi{
+    font-size: 1.5rem;
+    color: ${({theme}) => theme.default.colors.text};
+}
+
+// + icon in header
+.bi-plus{
+    font-size: 2rem;
+    font-weight: 600;
+}
+`
+;
