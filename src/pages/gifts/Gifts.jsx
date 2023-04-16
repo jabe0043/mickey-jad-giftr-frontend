@@ -5,6 +5,7 @@ import * as Styled from "../../styled/components";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../context/userContext";
+import CheckAuth from "../../utils/CheckAuth";
 
 const Gifts = () => {
   //Local Server URL
@@ -71,6 +72,7 @@ const Gifts = () => {
 
   return (
     <main className="container">
+      <CheckAuth />
       <Styled.GiftsBanner>
         <Styled.GiftsBannerAvatar>
           <img
