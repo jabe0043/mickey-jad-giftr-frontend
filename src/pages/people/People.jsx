@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useUser } from "../../context/userContext"; //
+import { useUser } from "../../context/userContext"; //user context for fetching.
+import { useNavigate } from 'react-router-dom';
 import giftImg from "../../assets/pixeltrue-giveaway.png";
 import ListCard from "../ListCard";
 import { useTheme } from "styled-components";
@@ -10,6 +11,7 @@ export default function People() {
   const [people, setPeople] = useState([]);
   const [authenticatedUser, setAuthenticatedUser] = useUser();
   const theme = useTheme();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = `http://localhost:3001/api/people/`;
@@ -26,9 +28,8 @@ export default function People() {
         if (!res.ok) throw new Error("Invalid response.");
         return res.json();
       })
-      .then((data) => {
+      .then((data) => {       //TODO:should we exclude gifts from being returned from the client side (like below), or not send the gifts at all for a getAll request from the server side??
         let peopleArr = data.data;
-        console.log(peopleArr);
         setPeople(
           peopleArr.map((person) => ({
             ownerID: person.ownerID,
@@ -44,6 +45,12 @@ export default function People() {
 
   console.log(people);
 
+  const handleCardClick = (personId) => {
+    console.log('test');
+    navigate(`/people/edit/${personId}`);
+  };
+
+
   return (
     <main className="container">
       <CheckAuth />
@@ -56,7 +63,7 @@ export default function People() {
       </PageBanner>
       <CardsList className="people">
         {people.map((person) => (
-          <ListCard key={person._id} person={person} />
+          <ListCard key={person._id} person={person} onClick={()=> handleCardClick(person._id)}/> //passing the cardClick handler to the listCard comp.
         ))}
       </CardsList>
     </main>
