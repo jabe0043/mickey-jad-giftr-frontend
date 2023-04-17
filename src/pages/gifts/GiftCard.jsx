@@ -8,7 +8,6 @@ const GiftCard = ({ gift }) => {
   return (
     <Styled.GiftCard
       onClick={() => {
-        console.log("gift card clicked", gift);
         navigate(`/gift/edit/${gift._id}`);
       }}
     >

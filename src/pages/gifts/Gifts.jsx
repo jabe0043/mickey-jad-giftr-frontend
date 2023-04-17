@@ -16,9 +16,9 @@ const Gifts = () => {
   const { personId } = useParams();
 
   useEffect(() => {
-    console.log(
-      "FETCHING FOR SINGLE PERSON OBJ - IT SHOULD RETURN THE GIFTS TOO"
-    );
+    // console.log(
+    //   "FETCHING FOR SINGLE PERSON OBJ - IT SHOULD RETURN THE GIFTS TOO"
+    // );
     const url = `http://localhost:3001/api/people/${personId}`;
     let request = new Request(url, {
       method: "GET",
@@ -35,7 +35,7 @@ const Gifts = () => {
       })
       .then((data) => {
         let personData = data.data;
-        console.log(personData);
+        // console.log(personData);
         setPerson({
           //setting fetched person in state
           ownerID: personData.ownerID,

@@ -22,7 +22,7 @@ export default function App() {
 
         <Route path="/gift/:personId" element={<Gifts />} />
         {/* <Route path='/gift' element={<Gifts />} /> */}
-        <Route path="/gift/edit" element={<AddEditGift />} />
+        <Route path="/gift/edit/:giftId" element={<AddEditGift />} />
         <Route path="/gift/add" element={<AddEditGift />} />
       </Routes>
     </div>

@@ -3,9 +3,12 @@ import { useUser } from "../../context/userContext"; //
 import CheckAuth from "../../utils/CheckAuth";
 import * as Styled from "../../styled/components";
 import bannerIllustration from "../../assets/giftAddEditPageIllustration.png";
+import { useParams } from "react-router-dom";
 
 const AddEditGift = () => {
   const person = { name: "Mickey" };
+  const { giftId } = useParams();
+  console.log("giftId", giftId);
 
   return (
     <main className="container">
@@ -21,6 +24,7 @@ const AddEditGift = () => {
           type="text"
           id="giftIdea"
           name="giftIdea"
+          defaultValue={giftId ? giftId : ""}
         ></Styled.TextInput>
         <label htmlFor="name">Store</label>
         <Styled.TextInput
