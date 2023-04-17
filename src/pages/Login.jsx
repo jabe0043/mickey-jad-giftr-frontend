@@ -26,6 +26,7 @@ export default function Login() {
       setAuthenticatedUser(token);
       navigate("/people");
     }
+    if (authenticatedUser) navigate("/people");
   }, []);
 
   function initiateLogin() {

@@ -166,6 +166,7 @@ export const GiftStore = styled.p`
 export const GiftUrl = styled.a`
   font-size: ${({ theme }) => theme.default.fontSizes.ls};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
+  color: ${({ theme }) => theme.default.colors.text};
 `; 
 
 export const GiftCloseButton = styled.div`
