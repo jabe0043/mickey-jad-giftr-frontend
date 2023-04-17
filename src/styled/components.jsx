@@ -213,6 +213,12 @@ const Button = styled.button`
   border-radius: 0.35rem;
 `;
 
+export const FormForGifts = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
 /*****************************
  ** ADD/EDIT PERSON COMPONENT
  ******************************/

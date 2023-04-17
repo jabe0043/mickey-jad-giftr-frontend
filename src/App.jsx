@@ -5,7 +5,7 @@ import People from "./pages/people/People";
 import AddEditPerson from "./pages/people/AddEditPerson";
 import Header from "./pages/Header";
 import Gifts from "./pages/gifts/Gifts";
-import GiftForm from "./pages/gifts/GiftForm";
+import AddEditGift from "./pages/gifts/AddEditGift";
 
 export default function App() {
 
@@ -22,8 +22,8 @@ export default function App() {
 
         <Route path="/gift/:personId" element={<Gifts />} />
         {/* <Route path='/gift' element={<Gifts />} /> */}
-        <Route path="/gift/edit" element={<GiftForm />} />
-        <Route path="/gift/add" element={<GiftForm />} />
+        <Route path="/gift/edit" element={<AddEditGift />} />
+        <Route path="/gift/add" element={<AddEditGift />} />
       </Routes>
     </div>
   );

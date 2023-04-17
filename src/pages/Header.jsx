@@ -15,19 +15,21 @@ export default function Header() {
   };
 
   const handleAddButton = () => {
-    if (pathname.includes('/people')) {
-      navigate('/people/add')
-    } else if (pathname.includes('/gift')) {
-      navigate('/gift/add')
+    if (pathname.includes("/people")) {
+      navigate("/people/add");
+    } else if (pathname.includes("/gift")) {
+      navigate("/gift/add");
     }
   };
 
   return (
     <header>
       <AppHeader className="container">
-        {/* if loggedOut is false, then user is signed in */}
-        {!loggedOut && (
+        {/* Only if the pathname ends with '/people'(Home page), then show logout button */}
+        {pathname.match(/people$/) ? (
           <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>
+        ) : (
+          <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
         )}
 
         <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
