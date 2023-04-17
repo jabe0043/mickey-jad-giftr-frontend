@@ -211,6 +211,10 @@ const Button = styled.button`
   padding: 0.5rem;
   border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.35rem;
+  background-color: ${(props) =>
+    props.$secondary
+      ? props.theme.default.colors.buttonSecondary
+      : props.theme.default.colors.button};
 `;
 
 export const FormForGifts = styled.form`
@@ -255,7 +259,6 @@ export const GiftAddEditIllustration = styled.img`
   height: 15rem;
   object-fit: contain;
 `;
-
 
 export {
   PageBanner,
