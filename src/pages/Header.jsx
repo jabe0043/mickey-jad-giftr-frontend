@@ -1,8 +1,14 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+
+import {
+  useNavigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
+
 import { AppHeader, Logo } from "../styled/components";
 
 export default function Header() {
-  // const [params, setParams] = useSearchParams();
+  const { personId } = useParams();
   const location = useLocation();
   const pathname = location.pathname;
   // const loggedOut = pathname === "/"; //url path when user is logged out.
@@ -15,7 +21,13 @@ export default function Header() {
     navigate("/");
   };
 
-
+  const handleAddButton = () => {
+    if (pathname.includes("/people")) {
+      navigate(`/people/add`);
+    } else if (pathname.includes("/gift")) {
+      navigate(`/gift/${personId}/add`);
+    }
+  };
   const renderLeftIcon = () => {
     switch(pathname){
       case "/people":
@@ -49,15 +61,30 @@ export default function Header() {
         break;
     } 
   }
-  
+
   return (
     <header>
       <AppHeader className="container">
+      
+      {/*        
         {renderLeftIcon()}
         <div style={{display:"flex", justifyContent:"center", flexGrow:1}} >
           <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
         </div>
         {renderRightIcon()}
+       */}
+        {/* Only if the pathname ends with '/people'(Home page), then show logout button */}
+        {pathname.match(/people$/) ? (
+          <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>
+        ) : (
+          <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
+        )}
+
+        <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
+
+        {!loggedOut && (
+          <i className="bi bi-plus" onClick={() => handleAddButton()}></i>
+        )}
       </AppHeader>
     </header>
   );

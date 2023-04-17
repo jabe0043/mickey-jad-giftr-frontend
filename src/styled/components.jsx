@@ -211,6 +211,16 @@ const Button = styled.button`
   padding: 0.5rem;
   border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.35rem;
+  background-color: ${(props) =>
+    props.$secondary
+      ? props.theme.default.colors.buttonSecondary
+      : props.theme.default.colors.button};
+`;
+
+export const FormForGifts = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 /*****************************
@@ -233,6 +243,21 @@ const PeopleBanner = styled.div`
 const SelectAvatarPrompt = styled.p`
   font-size: ${({ theme }) => theme.default.fontSizes.s};
   align-self: center;
+`;
+
+/*****************************
+ ** ADD/EDIT PERSON COMPONENT
+ ******************************/
+
+export const GiftAddEditH1 = styled.h1`
+  font-size: ${({ theme }) => theme.default.fontSizes.xl};
+  font-weight: ${({ theme }) => theme.default.fontWeights.regular};
+`;
+
+export const GiftAddEditIllustration = styled.img`
+  width: 15rem;
+  height: 15rem;
+  object-fit: contain;
 `;
 
 export {

@@ -5,24 +5,26 @@ import People from "./pages/people/People";
 import AddEditPerson from "./pages/people/AddEditPerson";
 import Header from "./pages/Header";
 import Gifts from "./pages/gifts/Gifts";
-import GiftForm from "./pages/gifts/GiftForm";
+import AddEditGift from "./pages/gifts/AddEditGift";
 
 export default function App() {
-
+  
   return (
     <div className="App">
       <Header></Header>
 
       <Routes>
+
         <Route path="/" element={<Login/>} />
 
         <Route path="/people" element={<People />} />
         <Route path="/people/edit/:personId" element={<AddEditPerson />} />
         <Route path="/people/add" element={<AddEditPerson />} />
-
         <Route path="/gift/:personId" element={<Gifts />} />
-        <Route path="/gift/:personId/edit" element={<GiftForm />} />
-        <Route path="/gift/:personId/add" element={<GiftForm />} />
+
+        {/* <Route path='/gift' element={<Gifts />} /> */}
+        <Route path="/gift/:personId/edit/:giftId" element={<AddEditGift />} />
+        <Route path="/gift/:personId/add" element={<AddEditGift />} />
       </Routes>
     </div>
   );

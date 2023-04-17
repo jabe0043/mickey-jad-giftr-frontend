@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as Styled from "../../styled/components";
 
 
-export default function Person() {
+export default function AddEditPerson() {
     const [authenticatedUser, setAuthenticatedUser] = useUser();
     const navigate = useNavigate();
     const { personId } = useParams();

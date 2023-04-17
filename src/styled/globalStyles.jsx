@@ -4,9 +4,9 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-    font-family: ${({theme}) => theme.default.fonts[1]};
+    font-family: ${({ theme }) => theme.default.fonts[1]};
     line-height: 1.5;
-    font-weight: ${({theme}) => theme.default.fontWeights.regular};
+    font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 
     color:${({ theme }) => theme.default.colors.text};
     background-color: ${({ theme }) => theme.default.colors.background};
@@ -139,7 +139,7 @@ p{
 
 .bi{
     font-size: 1.5rem;
-    color: ${({theme}) => theme.default.colors.text};
+    color: ${({ theme }) => theme.default.colors.text};
 }
 
 // + icon in header
@@ -148,12 +148,17 @@ p{
     font-weight: 600;
 }
 
+// back Arrow icon in header
+.bi-backArrow{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 .save{
-    background-color: ${({theme}) => theme.default.colors.button};
+    background-color: ${({ theme }) => theme.default.colors.button};
 }
 
 .delete{
-    background-color: ${({theme}) => theme.default.colors.buttonSecondary};
+    background-color: ${({ theme }) => theme.default.colors.buttonSecondary};
 }
-`
-;
+`;
