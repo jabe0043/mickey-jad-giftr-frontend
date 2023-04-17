@@ -54,7 +54,7 @@ const Gifts = () => {
         <CheckAuth />
         <Styled.GiftsBanner>
           <Styled.GiftsBannerAvatar>
-            <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>
+            {person.avatar && <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>}
           </Styled.GiftsBannerAvatar>
           <Styled.GiftsBannerName>{person.fullName}</Styled.GiftsBannerName>
           <Styled.GiftsBannerDob>

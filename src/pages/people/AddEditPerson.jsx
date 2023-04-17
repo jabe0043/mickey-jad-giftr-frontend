@@ -45,14 +45,17 @@ export default function Person() {
             .catch(console.warn);
     }}, [authenticatedUser, personId])
 
+    console.log(person);
+    console.log(person.length);
 
         return (
         <main className="container">
             <CheckAuth />
-            {person && person.length > 0 ? (
+            {/* {person && person.length > 0 ? ( */}
+            {person._id ? (
                 //EDIT USER
                 <div>
-                    <h1>Edit Information for ${person.fullName}</h1>
+                    <h1>Edit Information for {person.fullName}</h1>
                     <Styled.GiftsBanner>
                         <Styled.GiftsBannerAvatar>
                             <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>
@@ -67,7 +70,6 @@ export default function Person() {
                             }}>
                         </Styled.GiftsBannerEditButton>
                     </Styled.GiftsBanner> 
-
                     <form>
                         <Styled.FormField>
                             <label htmlFor="name">Full Name</label>
@@ -113,7 +115,6 @@ export default function Person() {
                     </form>
                 </div>
             )}
-
         </main>
     );  
 
