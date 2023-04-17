@@ -2,13 +2,13 @@ import React from "react";
 import * as Styled from "../../styled/components";
 import { useNavigate } from "react-router-dom";
 
-const GiftCard = ({ gift }) => {
+const GiftCard = ({ gift, personId }) => {
   const navigate = useNavigate();
 
   return (
     <Styled.GiftCard
       onClick={() => {
-        navigate(`/gift/edit/${gift._id}`);
+        navigate(`/gift/${personId}/edit/${gift._id}`);
       }}
     >
       <Styled.GiftCloseButton>

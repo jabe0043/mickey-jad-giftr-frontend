@@ -82,6 +82,7 @@ const Gifts = () => {
             <GiftCard
               key={gift._id}
               gift={gift}
+              personId={personId}
             />
           ))}
         </Styled.GiftCardContainer>

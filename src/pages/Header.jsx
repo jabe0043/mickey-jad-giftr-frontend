@@ -1,8 +1,12 @@
-import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
+import {
+  useNavigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { AppHeader, Logo } from "../styled/components";
 
 export default function Header() {
-  // const [params, setParams] = useSearchParams();
+  const { personId } = useParams();
   const location = useLocation();
   const pathname = location.pathname;
   const loggedOut = pathname === "/"; //url path when user is logged out.
@@ -16,9 +20,9 @@ export default function Header() {
 
   const handleAddButton = () => {
     if (pathname.includes("/people")) {
-      navigate("/people/add");
+      navigate(`/people/add`);
     } else if (pathname.includes("/gift")) {
-      navigate("/gift/add");
+      navigate(`/gift/${personId}/add`);
     }
   };
 
