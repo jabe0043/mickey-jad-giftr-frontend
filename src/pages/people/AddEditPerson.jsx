@@ -7,6 +7,7 @@ import * as Styled from "../../styled/components";
 
 export default function Person() {
     const [authenticatedUser, setAuthenticatedUser] = useUser();
+    console.log(authenticatedUser);
     const navigate = useNavigate();
     const { personId } = useParams();
 
