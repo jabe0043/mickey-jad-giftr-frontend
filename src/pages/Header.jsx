@@ -1,23 +1,12 @@
-
-import {
-  useNavigate,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 import { AppHeader, Logo } from "../styled/components";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { personId } = useParams();
   const location = useLocation();
   const pathname = location.pathname;
-
-  //url path when user is logged out.
-  const loggedOut = pathname === "/";
-  
-  //id of the current selected person
-  // const personId = pathname.split('/')[2];
+  const personId = pathname.split("/")[2]; //id of the current selected person
 
   const logOut = () => {
     sessionStorage.removeItem("UserToken");
@@ -31,6 +20,7 @@ export default function Header() {
       navigate(`/gift/${personId}/add`);
     }
   };
+
   const renderLeftIcon = () => {
     switch (pathname) {
       case "/people":
@@ -39,36 +29,14 @@ export default function Header() {
         );
         break;
       case "/people/add":
+      case "/people/edit":
+      case pathname.match(/^\/gift/)?.input: // Check if the pathname starts with "/gift"
         return (
-          <i
-            className="bi bi-arrow-left"
-            onClick={() => navigate("/people")}
-          ></i>
+          <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
         );
         break;
-      case `/gift/${personId}`:
-        return (
-          <i
-            className="bi bi-arrow-left"
-            onClick={() => navigate("/people")}
-          ></i>
-        );
-        break;
-      case `/gift/${personId}/add`:
-        return (
-          <i
-            className="bi bi-arrow-left"
-            onClick={() => navigate(`/gift/${personId}`)}
-          ></i>
-        );
-        break;
-      case `/gift/${personId}/edit`:
-        return (
-          <i
-            className="bi bi-arrow-left"
-            onClick={() => navigate(`/gift/${personId}`)}
-          ></i>
-        );
+      default:
+        return null;
         break;
     }
   };
@@ -76,20 +44,16 @@ export default function Header() {
   const renderRightIcon = () => {
     switch (pathname) {
       case "/people":
-        return (
-          <i className="bi bi-plus" onClick={() => navigate("/people/add")}></i>
-        );
+        return <i className="bi bi-plus" onClick={() => handleAddButton()}></i>;
         break;
       case "/people/add":
         return null;
         break;
       case `/gift/${personId}`:
-        return (
-          <i
-            className="bi bi-plus"
-            onClick={() => navigate(`/gift/${personId}/add`)}
-          ></i>
-        );
+        return <i className="bi bi-plus" onClick={() => handleAddButton()}></i>;
+        break;
+      default:
+        return null;
         break;
     }
   };
@@ -97,27 +61,12 @@ export default function Header() {
   return (
     <header>
       <AppHeader className="container">
-        {/*        
         {renderLeftIcon()}
-        <div style={{display:"flex", justifyContent:"center", flexGrow:1}} >
+        <div style={{ display: "flex", justifyContent: "center", flexGrow: 1 }}>
           <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
         </div>
         {renderRightIcon()}
-       */}
-        {/* Only if the pathname ends with '/people'(Home page), then show logout button */}
-        {pathname.match(/people$/) ? (
-          <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>
-        ) : (
-          <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
-        )}
-
-        <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
-
-        {!loggedOut && (
-          <i className="bi bi-plus" onClick={() => handleAddButton()}></i>
-        )}
       </AppHeader>
     </header>
   );
 }
-

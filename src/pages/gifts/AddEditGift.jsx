@@ -40,7 +40,7 @@ const AddEditGift = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.className);
+    console.log(e.target.id);
     const giftIdea = e.target.giftIdea.value;
     const store = e.target.store.value;
     const link = e.target.link.value;
