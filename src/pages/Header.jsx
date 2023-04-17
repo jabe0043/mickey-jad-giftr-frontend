@@ -14,16 +14,26 @@ export default function Header() {
     navigate("/");
   };
 
+  const handleAddButton = () => {
+    if (pathname.includes('/people')) {
+      navigate('/people/add')
+    } else if (pathname.includes('/gift')) {
+      navigate('/gift/add')
+    }
+  };
+
   return (
     <header>
       <AppHeader className="container">
         {/* if loggedOut is false, then user is signed in */}
-        {!loggedOut && <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>}
+        {!loggedOut && (
+          <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>
+        )}
 
         <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
 
         {!loggedOut && (
-          <i className="bi bi-plus" onClick={() => navigate("/people/add")}></i>
+          <i className="bi bi-plus" onClick={() => handleAddButton()}></i>
         )}
       </AppHeader>
     </header>

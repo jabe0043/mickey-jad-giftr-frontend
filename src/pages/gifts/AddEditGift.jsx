@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../context/userContext"; //
 import CheckAuth from "../../utils/CheckAuth";
 
-const GiftForm = () => {
+const AddEditGift = () => {
   return;
   <main>
     <CheckAuth />
-    <div>GiftForm</div>;
+    <div>AddEditGift</div>;
   </main>;
 };
 
-export default GiftForm;
+export default AddEditGift;
