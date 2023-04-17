@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
-import { AppHeader,Logo } from "../styled/components";
+import { AppHeader, Logo } from "../styled/components";
 
 export default function Header() {
   // const [params, setParams] = useSearchParams();

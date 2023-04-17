@@ -2,6 +2,7 @@ import CheckAuth from "../../utils/CheckAuth";
 import { useUser } from '../../context/userContext';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import * as Styled from "../../styled/components";
 
 
 export default function Person() {
@@ -10,7 +11,7 @@ export default function Person() {
     const navigate = useNavigate();
     const { personId } = useParams();
 
-
+    console.log(personId);
 
     useEffect(()=>{
         console.log('FETCHING FOR SINGLE PERSON OBJ - IT SHOULD RETURN THE GIFTS TOO')
@@ -47,11 +48,39 @@ export default function Person() {
 
 
 
-
     return (
-        <main>
+        <main className="container">
             <CheckAuth />
-            <h1>ADD OR EDIT PERSON PAGE</h1>
+            {person && <h1>Edit information for {`${person.fullName}`} </h1>}
+            <Styled.GiftsBanner>
+            <Styled.GiftsBannerAvatar>
+                <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>
+            </Styled.GiftsBannerAvatar>
+            <Styled.GiftsBannerName>{person.fullName}</Styled.GiftsBannerName>
+            <Styled.GiftsBannerDob>
+                {new Date(person.dob).toString().slice(4, 10)}
+            </Styled.GiftsBannerDob>
+            <Styled.GiftsBannerEditButton
+                onClick={() => {
+                    navigate(`/people/edit/${personId}`);
+                }}>
+            </Styled.GiftsBannerEditButton>
+            </Styled.GiftsBanner>
+
+            <form>
+                <Styled.FormField>
+                    <label htmlFor="name">Full Name</label>
+                    <Styled.TextInput type="text" id="field1" name="field1"/>
+                </Styled.FormField>
+                <Styled.FormField>
+                    <label htmlFor="dob">Date of Birth</label>
+                    <Styled.TextInput type="text" id="field2" name="field2"/>
+                </Styled.FormField>
+                <Styled.ButtonsDiv>
+                    <Styled.Button type="submit" className="btn save">Save</Styled.Button>
+                    <Styled.Button type="button" className="btn delete">Delete</Styled.Button>
+                </Styled.ButtonsDiv>
+            </form>
         </main>
-    );
+    );  
 }
