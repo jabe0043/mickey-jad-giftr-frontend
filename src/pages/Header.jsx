@@ -13,6 +13,8 @@ export default function Header() {
     navigate("/");
   };
 
+  console.log(pathname)
+
   const handleAddButton = () => {
     if (pathname.includes("/people")) {
       navigate(`/people/add`);
@@ -29,7 +31,7 @@ export default function Header() {
         );
         break;
       case "/people/add":
-      case "/people/edit":
+      case `/people/edit/${pathname.split('/')[3]}`:
       case pathname.match(/^\/gift/)?.input: // Check if the pathname starts with "/gift"
         return (
           <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
