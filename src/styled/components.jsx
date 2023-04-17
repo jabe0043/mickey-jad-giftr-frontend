@@ -93,8 +93,9 @@ export const GiftsBanner = styled.div`
 `;
 
 export const GiftsBannerAvatar = styled.div`
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
+  object-fit: contain;
   background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 10rem;
   border: solid 0.15rem ${({ theme }) => theme.default.colors.text};
@@ -180,8 +181,9 @@ export const GiftCloseButton = styled.div`
 
 
 
-//FORM STYLING
-// Form styling (used across pages)
+/*****************************
+** FORM STYLING
+******************************/
 const FormField = styled.div`
   display: flex;
   flex-direction: column;
@@ -209,4 +211,28 @@ const Button = styled.button`
 
 
 
-export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader, Logo, FormField, TextInput, ButtonsDiv, Button};
+/*****************************
+** ADD/EDIT PERSON COMPONENT
+******************************/
+
+
+const PeopleBanner = styled.div`
+background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
+border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
+border-radius: 0.5rem;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+gap: 2rem;
+padding: 1rem;
+margin:1rem;
+`
+
+const SelectAvatarPrompt = styled.p`
+font-size: ${({ theme }) => theme.default.fontSizes.s};
+align-self: center;
+`
+
+
+export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader, Logo, FormField, TextInput, ButtonsDiv, Button, PeopleBanner, SelectAvatarPrompt};
