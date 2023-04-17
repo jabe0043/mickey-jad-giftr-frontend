@@ -7,7 +7,6 @@ import * as Styled from "../../styled/components";
 
 export default function Person() {
     const [authenticatedUser, setAuthenticatedUser] = useUser();
-    console.log(authenticatedUser);
     const navigate = useNavigate();
     const { personId } = useParams();
 
@@ -36,7 +35,6 @@ export default function Person() {
                 return res.json();
             })
             .then((data) => {
-                console.log('DATA', data);
                 let personData = data.data;
                 setPerson({                 //setting fetched data person in state 
                     ownerID: personData.ownerID,
@@ -108,15 +106,12 @@ export default function Person() {
             },
             body: JSON.stringify(updatedPerson)
         });
-        console.log(request);
         fetch(request)
             .then(res => {
                 if (res.status === 401) throw new Error("Unauthorized access to API.");
                 if (!res.ok) {
                 throw new Error('Failed to update person data in database');
                 }
-            console.log(`${person.firstName}has been added/patched`);
-            // update the person state with the updatedPerson state
             })
             .catch(console.warn);
         }
