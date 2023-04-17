@@ -3,12 +3,13 @@ import { useUser } from "../../context/userContext"; //
 import CheckAuth from "../../utils/CheckAuth";
 import * as Styled from "../../styled/components";
 import bannerIllustration from "../../assets/giftAddEditPageIllustration.png";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const AddEditGift = () => {
   const [authenticatedUser, setAuthenticatedUser] = useUser();
   const { personId, giftId } = useParams();
   const [gift, setGift] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setGift(null);
@@ -39,12 +40,57 @@ const AddEditGift = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target.id);
-    const giftIdea = e.target.giftIdea.value;
-    const store = e.target.store.value;
-    const link = e.target.link.value;
+    const formData = new FormData(e.target);
+    const giftIdea = formData.get("giftIdea");
+    const store = formData.get("store");
+    const link = formData.get("url");
+
+    const giftData = {
+      giftName: giftIdea,
+      store: store,
+      website: link,
+    };
+    console.log(giftData);
+
+    // Edit gift
+    if (giftId) {
+      accessDb(
+        giftData,
+        `http://localhost:3001/api/people/${personId}/gifts/${giftId}`,
+        "PATCH"
+      );
+      navigate(-1);
+    }
+    // Add gift
+    else {
+      accessDb(
+        giftData,
+        `http://localhost:3001/api/people/${personId}/gifts`,
+        "POST"
+      );
+      navigate(-1);
+    }
   };
+
+  function accessDb(updatedGift, url, method) {
+    console.log("accessDb run");
+    const request = new Request(url, {
+      method: method,
+      headers: {
+        Authorization: `Bearer ${authenticatedUser}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedGift),
+    });
+    fetch(request)
+      .then((res) => {
+        if (res.status === 401) throw new Error("Unauthorized access to API.");
+        if (!res.ok) {
+          throw new Error("Failed to update person data in database");
+        }
+      })
+      .catch(console.warn);
+  }
 
   return (
     <main className="container">
@@ -60,7 +106,12 @@ const AddEditGift = () => {
         alt="a smiling woman raising her hands with gift boxes"
       ></Styled.GiftAddEditIllustration>
 
-      <Styled.FormForGifts onSubmit={handleSubmit}>
+      <Styled.FormForGifts
+        onSubmit={(ev) => {
+          ev.preventDefault();
+          handleSubmit(ev);
+        }}
+      >
         <label htmlFor="name">Gift Idea</label>
         <Styled.TextInput
           type="text"
@@ -97,7 +148,8 @@ const AddEditGift = () => {
 
             <Styled.Button
               $secondary
-              type="submit"
+              // Type button prevent this button from submiting the form
+              type="button"
               style={{ marginTop: "2rem" }}
             >
               Delete
