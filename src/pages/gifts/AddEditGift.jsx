@@ -32,7 +32,6 @@ const AddEditGift = () => {
           return res.json();
         })
         .then((res) => {
-          console.log(res.data);
           setGift(res.data);
         })
         .catch(console.warn);
@@ -40,7 +39,9 @@ const AddEditGift = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    const formData = new FormData(e.target);
+    e.preventDefault();
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
     const giftIdea = formData.get("giftIdea");
     const store = formData.get("store");
     const link = formData.get("url");
@@ -50,14 +51,13 @@ const AddEditGift = () => {
       store: store,
       website: link,
     };
-    console.log(giftData);
 
     // Edit gift
     if (giftId) {
       accessDb(
         giftData,
         `http://localhost:3001/api/people/${personId}/gifts/${giftId}`,
-        "PATCH"
+        e.target.id==='save'? "PATCH" : "DELETE"
       );
       navigate(-1);
     }
@@ -73,7 +73,7 @@ const AddEditGift = () => {
   };
 
   function accessDb(updatedGift, url, method) {
-    console.log("accessDb run");
+    console.log(`accessDb -- method: ${method}`);
     const request = new Request(url, {
       method: method,
       headers: {
@@ -85,9 +85,8 @@ const AddEditGift = () => {
     fetch(request)
       .then((res) => {
         if (res.status === 401) throw new Error("Unauthorized access to API.");
-        if (!res.ok) {
-          throw new Error("Failed to update person data in database");
-        }
+        if (!res.ok)throw new Error("Failed to update person data in database");
+        console.log(`${method} was successful`)
       })
       .catch(console.warn);
   }
@@ -108,7 +107,6 @@ const AddEditGift = () => {
 
       <Styled.FormForGifts
         onSubmit={(ev) => {
-          ev.preventDefault();
           handleSubmit(ev);
         }}
       >
@@ -140,8 +138,10 @@ const AddEditGift = () => {
           <>
             <Styled.Button
               type="submit"
+              id= 'save'
               className="btn-save"
               style={{ marginTop: "2rem" }}
+              onClick={handleSubmit}
             >
               Save
             </Styled.Button>
@@ -150,6 +150,8 @@ const AddEditGift = () => {
               $secondary
               // Type button prevent this button from submiting the form
               type="button"
+              id= 'del'
+              onClick={handleSubmit}
               style={{ marginTop: "2rem" }}
             >
               Delete

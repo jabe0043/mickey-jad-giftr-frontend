@@ -44,10 +44,8 @@ export default function People() {
       .catch(console.warn);
   }, []);
 
-  // console.log(people);
 
   const handleCardClick = (personId) => {
-    console.log('test');
     navigate(`/gift/${personId}`);
   };
 

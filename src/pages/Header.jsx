@@ -13,8 +13,6 @@ export default function Header() {
     navigate("/");
   };
 
-  console.log(pathname)
-
   const handleAddButton = () => {
     if (pathname.includes("/people")) {
       navigate(`/people/add`);

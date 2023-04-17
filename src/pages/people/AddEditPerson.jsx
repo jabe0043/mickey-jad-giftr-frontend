@@ -72,10 +72,9 @@ export default function AddEditPerson() {
 // Update stateObj with user input. If no input, leave default fetched person data.
     function handleSubmit(ev) {
         ev.preventDefault();
-        const currentUrl = window.location.pathname;
 
         // creating updatedPerson obj
-        setUpdatedPerson({
+        setUpdatedPerson({  
             ownerID: person.ownerID,
             _id: person._id,        
             avatar: avatar || person.avatar,
@@ -86,18 +85,22 @@ export default function AddEditPerson() {
         });
 
         // building request
-        const method = currentUrl.includes('people/edit/') ? "PATCH" : "POST";
-        const url = `http://localhost:3001/api/people/${method === "PATCH" ? personId : ""}`; 
-        accessDb(updatedPerson, url, method);   //Initiating fetch              //TODO: need to grab userId for post need to use a context provider
-        console.log(url);
-        console.log(method); 
+        if(personId){
+            const method= ev.target.id === "save" ? "PATCH" : "DELETE";
+            const url = `http://localhost:3001/api/people/${personId}`;
+            accessDb(updatedPerson, url, method)
+        } else {
+            const method= "POST";
+            const url = `http://localhost:3001/api/people/`
+            accessDb(updatedPerson, url, method)
+        }
     }
-    console.log(updatedPerson)
 
 
 
     //TODO: Turn this into a global fetch variable (put in utils);
     function accessDb(updatedPerson, url, method) {
+        console.log(`accessDb -- method: ${method}`);
         const request = new Request(url, {
                 method: method,
                 headers: {
@@ -109,10 +112,10 @@ export default function AddEditPerson() {
         fetch(request)
             .then(res => {
                 if (res.status === 401) throw new Error("Unauthorized access to API.");
-                if (!res.ok) {
-                throw new Error('Failed to update person data in database');
-                }
+                if (!res.ok) throw new Error(`Failed to ${method} person data in database`);
+                console.log(`${method} was successful`)
             })
+            .then(navigate(method==='DELETE'? -2: -1))  //If we're deleting a user, navigating back by 1 will take us to their gift page, which no longer exists
             .catch(console.warn);
         }
 
@@ -136,6 +139,7 @@ export default function AddEditPerson() {
                         </div>
                         <i className="bi bi-arrow-right" onClick={(ev)=>changeAvatar(ev)}></i>
                     </Styled.PeopleBanner>
+                    {/* <form onSubmit={handleSubmit}> */}
                     <form onSubmit={handleSubmit}>
                         <Styled.FormField>
                             <label htmlFor="name">Full Name</label>
@@ -146,8 +150,8 @@ export default function AddEditPerson() {
                             <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
                         </Styled.FormField>
                         <Styled.ButtonsDiv>
-                            <Styled.Button type="submit" className="btn save">Save</Styled.Button>
-                            <Styled.Button type="button" className="btn delete">Delete</Styled.Button>
+                            <Styled.Button type="submit" id="save" className="btn save" onClick={handleSubmit}>Save</Styled.Button>
+                            <Styled.Button type="delete" id="del" className="btn delete" onClick={handleSubmit}>Delete</Styled.Button>
                         </Styled.ButtonsDiv>
                     </form>
                 </div>
@@ -176,7 +180,7 @@ export default function AddEditPerson() {
                             <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
                         </Styled.FormField>
                         <Styled.ButtonsDiv>
-                            <Styled.Button type="submit" className="btn save">Save</Styled.Button>
+                            <Styled.Button type="submit" id='save' className="btn save" onClick={handleSubmit}>Save</Styled.Button>
                         </Styled.ButtonsDiv>
                     </form>
                 </div>
