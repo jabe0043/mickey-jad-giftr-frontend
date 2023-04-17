@@ -76,7 +76,7 @@ const Gifts = () => {
         {person && person.gifts && (
         <Styled.GiftCardContainer>
           {person.gifts.map((gift) => (
-            <GiftCard key={gift._id} gift={gift} />
+            <GiftCard key={gift._id} gift={gift} person={personId} onClick={() => {navigate(`/gift/${personId}/edit`)}} />
           ))}
         </Styled.GiftCardContainer>
         )}
