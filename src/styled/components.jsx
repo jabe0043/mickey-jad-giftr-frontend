@@ -1,28 +1,39 @@
 import styled from "styled-components";
 
-
-
 /*****************************
-** LAYOUT - HEADER
-******************************/
+ ** LAYOUT - HEADER
+ ******************************/
 
 const AppHeader = styled.div`
-    display: flex;
-    min-width: 100vw;
-    justify-content: space-between;
-    align-items: center;
-`
+  display: flex;
+  min-width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Logo = styled.a`
   font-size: ${({ theme }) => theme.default.fontSizes.xl};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
 
+/*****************************
+ ** PAGE 0 - LOGIN PAGE
+ ******************************/
 
+export const LoginH1 = styled.h1`
+  font-size: ${({ theme }) => theme.default.fontSizes.xxl};
+  font-weight: ${({ theme }) => theme.default.fontWeights.medium};
+`;
+
+export const LoginH2 = styled.h2`
+  font-family: ${({ theme }) => theme.default.fonts["Lato"]};
+  font-size: ${({ theme }) => theme.default.fontSizes.l};
+  font-weight: ${({ theme }) => theme.default.fontWeights.regular};
+`;
 
 /*****************************
-** PAGE 1 - HOME(PEOPLE) PAGE 
-******************************/
+ ** PAGE 1 - HOME(PEOPLE) PAGE
+ ******************************/
 
 const PageBanner = styled.div`
   display: flex;
@@ -76,11 +87,9 @@ const CardTitle = styled.p`
   font-weight: ${({ theme }) => theme.default.fontWeights.semiBold};
 `;
 
-
-
 /*****************************
-** PAGE 2 - GIFT PAGE 
-******************************/
+ ** PAGE 2 - GIFT PAGE
+ ******************************/
 
 export const GiftsBanner = styled.div`
   background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
@@ -131,11 +140,9 @@ export const GiftTitleName = styled.span`
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
 `;
 
-
-
 /*****************************
-** COMPONENT - GIFT CARD
-******************************/
+ ** COMPONENT - GIFT CARD
+ ******************************/
 
 export const GiftCardContainer = styled.div`
   display: grid;
@@ -167,7 +174,7 @@ export const GiftUrl = styled.a`
   font-size: ${({ theme }) => theme.default.fontSizes.ls};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
   color: ${({ theme }) => theme.default.colors.text};
-`; 
+`;
 
 export const GiftCloseButton = styled.div`
   width: ${({ theme }) => theme.default.fontSizes.m};
@@ -178,12 +185,9 @@ export const GiftCloseButton = styled.div`
   right: 0;
 `;
 
-
-
-
 /*****************************
-** FORM STYLING
-******************************/
+ ** FORM STYLING
+ ******************************/
 const FormField = styled.div`
   display: flex;
   flex-direction: column;
@@ -191,9 +195,9 @@ const FormField = styled.div`
 `;
 
 const TextInput = styled.input`
-  padding: .5rem;
+  padding: 0.5rem;
   border: solid 0.125rem ${({ theme }) => theme.default.colors.text};
-  border-radius: .35rem;
+  border-radius: 0.35rem;
 `;
 
 const ButtonsDiv = styled.div`
@@ -204,35 +208,47 @@ const ButtonsDiv = styled.div`
 
 const Button = styled.button`
   width: 100%;
-  padding: .5rem;
+  padding: 0.5rem;
   border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
-  border-radius: .35rem;
+  border-radius: 0.35rem;
 `;
 
-
-
 /*****************************
-** ADD/EDIT PERSON COMPONENT
-******************************/
-
+ ** ADD/EDIT PERSON COMPONENT
+ ******************************/
 
 const PeopleBanner = styled.div`
-background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
-border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
-border-radius: 0.5rem;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-gap: 2rem;
-padding: 1rem;
-margin:1rem;
-`
+  background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
+  border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  margin: 1rem;
+`;
 
 const SelectAvatarPrompt = styled.p`
-font-size: ${({ theme }) => theme.default.fontSizes.s};
-align-self: center;
-`
+  font-size: ${({ theme }) => theme.default.fontSizes.s};
+  align-self: center;
+`;
 
-
-export{PageBanner, Title, CardsList, Card, CardAvatar, CardInfo, CardTitle, AppHeader, Logo, FormField, TextInput, ButtonsDiv, Button, PeopleBanner, SelectAvatarPrompt};
+export {
+  PageBanner,
+  Title,
+  CardsList,
+  Card,
+  CardAvatar,
+  CardInfo,
+  CardTitle,
+  AppHeader,
+  Logo,
+  FormField,
+  TextInput,
+  ButtonsDiv,
+  Button,
+  PeopleBanner,
+  SelectAvatarPrompt,
+};
