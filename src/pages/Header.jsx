@@ -9,11 +9,16 @@ export default function Header() {
 
   const navigate = useNavigate();
 
+  const logOut = () => {
+    sessionStorage.removeItem("UserToken");
+    navigate("/");
+  };
+
   return (
     <header>
       <AppHeader className="container">
         {/* if loggedOut is false, then user is signed in */}
-        {!loggedOut && <i className="bi bi-door-open-fill"></i>}
+        {!loggedOut && <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>}
 
         <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
 

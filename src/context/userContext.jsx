@@ -6,11 +6,10 @@ const UserContext = createContext();
 function UserProvider(props) {
   const [authenticatedUser, setAuthenticatedUser] = useSessionStorage(
     "UserToken",
-    null
+    ""
   );
 
-  useEffect(() => {
-  }, [authenticatedUser]);
+  useEffect(() => {}, [authenticatedUser]);
 
   return (
     <UserContext.Provider

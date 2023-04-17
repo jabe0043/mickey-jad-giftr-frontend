@@ -1,6 +1,8 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser } from "../context/userContext";
+import * as Styled from "../styled/components";
+import WelcomeIllustartion from "../assets/welcomeIllustration.png";
 
 export default function Login() {
   const navigate = useNavigate(); //in app navigation only;
@@ -26,7 +28,8 @@ export default function Login() {
       setAuthenticatedUser(token);
       navigate("/people");
     }
-  }, []);
+    if (authenticatedUser) navigate("/people");
+  }, [authenticatedUser]);
 
   function initiateLogin() {
     let url = baseURL + `/auth/google?redirect_url=${clientURL}`;
@@ -35,10 +38,15 @@ export default function Login() {
   }
 
   return (
-    <main>
-      <p>
-        <button onClick={initiateLogin}>Login</button>
-      </p>
+    <main className="container">
+      <Styled.LoginH1>
+        Welcome to
+        <br />
+        GIFT'R!
+      </Styled.LoginH1>
+      <img src={WelcomeIllustartion} alt="a woman shaking hand at a window" />
+      <Styled.LoginH2>Please login to explore all features</Styled.LoginH2>
+      <Styled.Button onClick={initiateLogin}>Login</Styled.Button>
     </main>
   );
 }

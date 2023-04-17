@@ -8,8 +8,8 @@ export default function CheckAuth() {
 
   useEffect(() => {
     const haveUserToken = sessionStorage.getItem("UserToken");
-    if (!haveUserToken) {
-      setAuthenticatedUser(null);
+    if (!haveUserToken || haveUserToken === "") {
+      setAuthenticatedUser("");
       navigate("/");
     }
   }, []);
