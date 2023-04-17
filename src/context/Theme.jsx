@@ -11,7 +11,7 @@ const theme = {
       button: "#E8E6D9",
       buttonSecondary: "#EBCFC4",
     },
-    fonts: ["Playfair Display", "serif"],
+    fonts: ["Playfair Display", "serif", "Lato", "sans-serif"],
     fontSizes: {
       xs: "0.6rem",
       s: "0.66rem",
