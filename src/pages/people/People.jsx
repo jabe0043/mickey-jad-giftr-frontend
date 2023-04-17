@@ -46,11 +46,6 @@ export default function People() {
 
   // console.log(people);
 
-  // const handleCardClick = (personId) => {
-  //   console.log('test');
-  //   navigate(`/people/edit/${personId}`);
-  // };
-
   const handleCardClick = (personId) => {
     console.log('test');
     navigate(`/gift/${personId}`);

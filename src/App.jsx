@@ -14,11 +14,14 @@ export default function App() {
       <Header></Header>
 
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/people" element={<People />} /> //fetch
+
+        <Route path="/" element={<Login/>} />
+
+        <Route path="/people" element={<People />} />
         <Route path="/people/edit/:personId" element={<AddEditPerson />} />
         <Route path="/people/add" element={<AddEditPerson />} />
         <Route path="/gift/:personId" element={<Gifts />} />
+
         {/* <Route path='/gift' element={<Gifts />} /> */}
         <Route path="/gift/:personId/edit/:giftId" element={<AddEditGift />} />
         <Route path="/gift/:personId/add" element={<AddEditGift />} />
