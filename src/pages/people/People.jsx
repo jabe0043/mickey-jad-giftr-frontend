@@ -37,12 +37,21 @@ export default function People() {
             _id: person._id,
             avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${person._id}&topColor=000000`,
             fullName: person.fullName,
-            dob: new Date(person.dob).toString().slice(4, 10),
+            dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),  
           }))
         );
       })
       .catch(console.warn);
   }, []);
+
+
+
+  //sort dates calls itself on people page render
+  (function sortDates(){
+    people.sort((a,b) => new Date(a.dob) - new Date(b.dob));
+    })()
+
+
 
 
   const handleCardClick = (personId) => {

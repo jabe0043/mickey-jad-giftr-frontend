@@ -79,10 +79,11 @@ export default function AddEditPerson() {
             _id: person._id,        
             avatar: avatar || person.avatar,
             fullName: updatedPerson.fullName || person.fullName,
-            dob: updatedPerson.dob || person.dob,
+            dob: updatedPerson.dob|| person.dob, 
             gifts: updatedPerson.gifts || person.gifts,
             createdAt: person.createdAt,
         });
+
 
         // building request
         if(personId){
@@ -115,7 +116,7 @@ export default function AddEditPerson() {
                 if (!res.ok) throw new Error(`Failed to ${method} person data in database`);
                 console.log(`${method} was successful`)
             })
-            .then(navigate(method==='DELETE'? -2: -1))  //If we're deleting a user, navigating back by 1 will take us to their gift page, which no longer exists
+            .then(navigate(method==='DELETE'? -2 : -1))  //If we're deleting a user, navigating back by 1 will take us to their gift page, which no longer exists
             .catch(console.warn);
         }
 
