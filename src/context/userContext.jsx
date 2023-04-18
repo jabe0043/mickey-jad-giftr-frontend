@@ -1,21 +1,17 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useSessionStorage } from "../hooks/useSessionStorage";
 
 const UserContext = createContext();
 
 function UserProvider(props) {
   console.log("UserProvider rendered");
 
-  const [authenticatedUserToken, setAuthenticatedUserToken] = useSessionStorage("UserToken", null");
-  
-  useState(() => {
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useState(() => {
     return JSON.parse(sessionStorage.getItem("UserToken"));
   });
 
   useEffect(() => {
     console.log("UserProvider useEffect");
-    // sessionStorage.setItem("UserToken", JSON.stringify(authenticatedUserToken));
-    setAuthenticatedUserToken;
+    sessionStorage.setItem("UserToken", JSON.stringify(authenticatedUserToken));
   }, [authenticatedUserToken]);
 
   return (
