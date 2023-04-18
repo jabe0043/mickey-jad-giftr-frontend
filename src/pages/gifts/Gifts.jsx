@@ -10,7 +10,7 @@ const Gifts = () => {
   //Local Server URL
   const localServerURL = `http://localhost:3001`;
 
-  const [authenticatedUser, setAuthenticatedUser] = useUser();
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const [person, setPerson] = useState({});
   const navigate = useNavigate();
   const { personId } = useParams();
@@ -23,7 +23,7 @@ const Gifts = () => {
     let request = new Request(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${authenticatedUser}`,
+        Authorization: `Bearer ${authenticatedUserToken}`,
         "content-type": "application/json",
       },
     });
@@ -47,7 +47,7 @@ const Gifts = () => {
         });
       })
       .catch(console.warn);
-  }, [authenticatedUser, personId]);
+  }, [authenticatedUserToken, personId]);
   // console.log(person)
 
   return (

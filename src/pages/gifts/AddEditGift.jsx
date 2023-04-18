@@ -6,7 +6,7 @@ import bannerIllustration from "../../assets/giftAddEditPageIllustration.png";
 import { useParams, useNavigate } from "react-router-dom";
 
 const AddEditGift = () => {
-  const [authenticatedUser, setAuthenticatedUser] = useUser();
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const { personId, giftId } = useParams();
   const [gift, setGift] = useState(null);
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const AddEditGift = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${authenticatedUser}`,
+            Authorization: `Bearer ${authenticatedUserToken}`,
           },
         }
       );
@@ -75,7 +75,7 @@ const AddEditGift = () => {
     const request = new Request(url, {
       method: method,
       headers: {
-        Authorization: `Bearer ${authenticatedUser}`,
+        Authorization: `Bearer ${authenticatedUserToken}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedGift),

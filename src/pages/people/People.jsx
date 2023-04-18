@@ -10,7 +10,8 @@ import CheckAuth from "../../utils/CheckAuth";
 
 export default function People() {
   const [people, setPeople] = useState([]);
-  const [authenticatedUser, setAuthenticatedUser] = useUser();
+  console.log("People rendered");
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ export default function People() {
     let request = new Request(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${authenticatedUser}`,
+        Authorization: `Bearer ${authenticatedUserToken}`,
         "content-type": "application/json",
       },
     });
