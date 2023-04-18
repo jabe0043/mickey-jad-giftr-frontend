@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 export function useSessionStorage(key, initialState) {
   //when calling our custom hook we pass in a key and an initial value.
 
-  const [authenticatedUserToken, setAuthenticatedUser] = useState(() => {
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useState(() => {
     const userToken = sessionStorage.getItem(key);
     return userToken ? JSON.parse(userToken) : initialState;
   });
@@ -18,5 +18,5 @@ export function useSessionStorage(key, initialState) {
 
   //each time useSessionStorageState is called it will return a reference
   // to the authenticatedUserToken variable and the function to update the value
-  return [authenticatedUserToken, setAuthenticatedUser];
+  return [authenticatedUserToken, setAuthenticatedUserToken];
 }
