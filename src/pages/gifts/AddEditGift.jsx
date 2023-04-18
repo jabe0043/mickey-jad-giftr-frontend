@@ -59,7 +59,6 @@ const AddEditGift = () => {
         `http://localhost:3001/api/people/${personId}/gifts/${giftId}`,
         e.target.id==='save'? "PATCH" : "DELETE"
       );
-      navigate(-1);
     }
     // Add gift
     else {
@@ -68,7 +67,6 @@ const AddEditGift = () => {
         `http://localhost:3001/api/people/${personId}/gifts`,
         "POST"
       );
-      navigate(-1);
     }
   };
 
@@ -88,6 +86,7 @@ const AddEditGift = () => {
         if (!res.ok)throw new Error("Failed to update person data in database");
         console.log(`${method} was successful`)
       })
+      .then(navigate(-1))
       .catch(console.warn);
   }
 
@@ -105,11 +104,7 @@ const AddEditGift = () => {
         alt="a smiling woman raising her hands with gift boxes"
       ></Styled.GiftAddEditIllustration>
 
-      <Styled.FormForGifts
-        onSubmit={(ev) => {
-          handleSubmit(ev);
-        }}
-      >
+      <Styled.FormForGifts>
         <label htmlFor="name">Gift Idea</label>
         <Styled.TextInput
           type="text"
@@ -158,7 +153,7 @@ const AddEditGift = () => {
             </Styled.Button>
           </>
         ) : (
-          <Styled.Button type="submit" style={{ marginTop: "2rem" }}>
+          <Styled.Button type="submit" style={{ marginTop: "2rem" }} onClick={handleSubmit}>
             Add Gift
           </Styled.Button>
         )}
