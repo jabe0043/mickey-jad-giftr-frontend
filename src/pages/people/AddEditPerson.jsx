@@ -6,9 +6,11 @@ import * as Styled from "../../styled/components";
 
 
 export default function AddEditPerson() {
+    console.log("AddEditPerson rendered");
     const [authenticatedUser, setAuthenticatedUser] = useUser();
     const navigate = useNavigate();
     const { personId } = useParams();
+    const [avatarSeed, setAvatarSeed] = useState(crypto.randomUUID());
 
     const [person, setPerson] = useState({
         avatar:"",
@@ -53,10 +55,11 @@ export default function AddEditPerson() {
 // Change avatar based on arrow click 
     const [avatar, setAvatar] = useState("");
     function changeAvatar(ev){
-        let shuffleIcon = ev.target;  
-        let currentAvatar = shuffleIcon.parentElement.querySelector('img').src; 
-        setAvatar(currentAvatar)
-        currentAvatar = `https://api.dicebear.com/6.x/croodles/svg?seed=${crypto.randomUUID()}&topColor=000000`
+        setAvatarSeed(crypto.randomUUID());
+        // let shuffleIcon = ev.target;  
+        // let currentAvatar = shuffleIcon.parentElement.querySelector('img').src; 
+        // setAvatar(currentAvatar)
+        // currentAvatar = `https://api.dicebear.com/6.x/croodles/svg?seed=${crypto.randomUUID()}&topColor=000000`
     }
 
 
@@ -164,7 +167,7 @@ export default function AddEditPerson() {
                         {/* <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i> */}
                         <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
                         <Styled.GiftsBannerAvatar>
-                            <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${crypto.randomUUID()}&topColor=000000`} alt={`avatar`}></img>
+                            <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`} alt={`avatar`}></img>
                         </Styled.GiftsBannerAvatar>
                             {/* <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt> */}
                             <i className="bi bi-shuffle" onClick={(ev)=>changeAvatar(ev)} style={{alignSelf: 'center'}}></i>
