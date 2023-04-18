@@ -7,9 +7,11 @@ import * as Styled from "../../styled/components";
 
 export default function AddEditPerson() {
     console.log("AddEditPerson rendered");
-    const [authenticatedUser, setAuthenticatedUser] = useUser();
+    const offset = -4; // offset for UTC time
+    const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
     const navigate = useNavigate();
     const { personId } = useParams();
+
     const [avatarSeed, setAvatarSeed] = useState(crypto.randomUUID());
 
     const [person, setPerson] = useState({
@@ -22,11 +24,12 @@ export default function AddEditPerson() {
 
     useEffect(()=>{
         if(personId){
+            console.log("fetch person data with id: ", personId);
             const url = `http://localhost:3001/api/people/${personId}`; //TODO:
             let request = new Request(url, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${authenticatedUser}`,
+                    Authorization: `Bearer ${authenticatedUserToken}`,
                     "content-type": "application/json",
                 },
             });
@@ -38,29 +41,20 @@ export default function AddEditPerson() {
             })
             .then((data) => {
                 let personData = data.data;
-                setPerson({                 //setting fetched data person in state 
-                    ownerID: personData.ownerID,
-                    _id: personData._id,
-                    avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${personData._id}&topColor=000000`,
-                    fullName: personData.fullName,
-                    dob: new Date(personData.dob).toISOString().slice(0, 10),
-                    gifts: personData.gifts,
-                    createdAt: personData.createdAt,
+                setPerson({
+                  //setting fetched data person in state
+                  ownerID: personData.ownerID,
+                  _id: personData._id,
+                  avatar: personData.avatar,
+                  fullName: personData.fullName,
+                  dob: new Date(personData.dob).toISOString().slice(0, 10),
+                  gifts: personData.gifts,
+                  createdAt: personData.createdAt,
                 });
+                setAvatarSeed(personData.avatar.split("seed=")[1].split("&")[0]);
             })
             .catch(console.warn);
-    }}, [authenticatedUser, personId])
-
-
-// Change avatar based on arrow click 
-    const [avatar, setAvatar] = useState("");
-    function changeAvatar(ev){
-        setAvatarSeed(crypto.randomUUID());
-        // let shuffleIcon = ev.target;  
-        // let currentAvatar = shuffleIcon.parentElement.querySelector('img').src; 
-        // setAvatar(currentAvatar)
-        // currentAvatar = `https://api.dicebear.com/6.x/croodles/svg?seed=${crypto.randomUUID()}&topColor=000000`
-    }
+    }}, [])
 
 
 // Create state variable for keyboard entries
@@ -68,23 +62,29 @@ export default function AddEditPerson() {
 
 // Update state above^ with form entries
     function updatePerson(ev) {
+        console.log("updatePerson");
         const { name, value } = ev.target;
         setUpdatedPerson(prevPerson => ({ ...prevPerson, [name]: value }));
     }
 
 // Update stateObj with user input. If no input, leave default fetched person data.
     function handleSubmit(ev) {
+        console.log("handleSubmit");
         ev.preventDefault();
 
         // creating updatedPerson obj
-        setUpdatedPerson({  
-            ownerID: person.ownerID,
-            _id: person._id,        
-            avatar: avatar || person.avatar,
-            fullName: updatedPerson.fullName || person.fullName,
-            dob: updatedPerson.dob|| person.dob, 
-            gifts: updatedPerson.gifts || person.gifts,
-            createdAt: person.createdAt,
+        setUpdatedPerson({
+          ownerID: person.ownerID,
+          _id: person._id,
+          avatar:
+            `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` ||
+            person.avatar,
+          fullName: updatedPerson.fullName || person.fullName,
+          dob:
+            new Date(updatedPerson.dob || person.dob).getTime +
+            3600000 * offset,
+          gifts: updatedPerson.gifts || person.gifts,
+          createdAt: person.createdAt,
         });
 
 
@@ -108,7 +108,7 @@ export default function AddEditPerson() {
         const request = new Request(url, {
                 method: method,
                 headers: {
-                Authorization: `Bearer ${authenticatedUser}`,
+                Authorization: `Bearer ${authenticatedUserToken}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(updatedPerson)
@@ -134,14 +134,18 @@ export default function AddEditPerson() {
                 <div>
                     <h1>Edit Information for {person.fullName}</h1>
                     <Styled.PeopleBanner>
-                        <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i>
+                        <i className="bi bi-arrow-left" onClick={() => {
+                            setAvatarSeed(crypto.randomUUID());
+                            }}></i>
                         <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
                         <Styled.GiftsBannerAvatar>
-                            <img className='randomAvatar' src={person.avatar} alt={`avatar`}></img>
+                            <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`} alt={`avatar`}></img>
                         </Styled.GiftsBannerAvatar>
                             <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt>
                         </div>
-                        <i className="bi bi-arrow-right" onClick={(ev)=>changeAvatar(ev)}></i>
+                        <i className="bi bi-arrow-right" onClick={() => {
+                            setAvatarSeed(crypto.randomUUID());
+                            }}></i>
                     </Styled.PeopleBanner>
                     {/* <form onSubmit={handleSubmit}> */}
                     <form onSubmit={handleSubmit}>
@@ -170,7 +174,9 @@ export default function AddEditPerson() {
                             <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`} alt={`avatar`}></img>
                         </Styled.GiftsBannerAvatar>
                             {/* <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt> */}
-                            <i className="bi bi-shuffle" onClick={(ev)=>changeAvatar(ev)} style={{alignSelf: 'center'}}></i>
+                            <i className="bi bi-shuffle" onClick={() => {
+                            setAvatarSeed(crypto.randomUUID());
+                            }} style={{alignSelf: 'center'}}></i>
                         </div>
                         {/* <i className="bi bi-arrow-right" onClick={(ev)=>changeAvatar(ev)}></i> */}
                     </Styled.PeopleBanner>
@@ -181,7 +187,9 @@ export default function AddEditPerson() {
                         </Styled.FormField>
                         <Styled.FormField>
                             <label htmlFor="dob">Date of Birth</label>
-                            <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
+                            <Styled.TextInput 
+                            type="date" 
+                            id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
                         </Styled.FormField>
                         <Styled.ButtonsDiv>
                             <Styled.Button type="submit" id='save' className="btn save" onClick={handleSubmit}>Save</Styled.Button>

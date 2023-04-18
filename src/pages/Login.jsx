@@ -20,23 +20,23 @@ export default function Login() {
   // const clientURL = `netlify.app`;
 
   const [params, setParams] = useSearchParams();
-  const [authenticatedUser, setAuthenticatedUser] = useUser();
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
 
   useEffect(() => {
     let token = params.get("token");
     if (token) {
-      setAuthenticatedUser(token);
+      console.log("set token to the sessionStorage", token);
+      setAuthenticatedUserToken(token);
       navigate("/people");
     }
-    if (authenticatedUser) navigate("/people");
-  }, [authenticatedUser]);
+    if (authenticatedUserToken) navigate("/people");
+  }, []);
 
   function initiateLogin() {
     let url = baseURL + `/auth/google?redirect_url=${clientURL}`;
     console.log(url);
     location.href = url;
   }
-
 
   return (
     <main className="container">
