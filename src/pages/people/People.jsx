@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../../context/userContext"; //user context for fetching.
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import giftImg from "../../assets/pixeltrue-giveaway.png";
 import ListCard from "../ListCard";
 import { useTheme } from "styled-components";
 import { PageBanner, Title, CardsList } from "../../styled/components";
 import CheckAuth from "../../utils/CheckAuth";
 
-
 export default function People() {
+  const [userName, setUserName] = useState("");
   const [people, setPeople] = useState([]);
   console.log("People rendered");
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
@@ -30,7 +30,8 @@ export default function People() {
         if (!res.ok) throw new Error("Invalid response.");
         return res.json();
       })
-      .then((data) => {       //TODO:should we exclude gifts from being returned from the client side (like below), or not send the gifts at all for a getAll request from the server side??
+      .then((data) => {
+        //TODO:should we exclude gifts from being returned from the client side (like below), or not send the gifts at all for a getAll request from the server side??
         let peopleArr = data.data;
         setPeople(
           peopleArr.map((person) => ({
@@ -38,33 +39,48 @@ export default function People() {
             _id: person._id,
             avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${person._id}&topColor=000000`,
             fullName: person.fullName,
-            dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),  
+            dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),
           }))
         );
       })
       .catch(console.warn);
+
+    const requestForUserName = new Request(`http://localhost:3001/api/users/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${authenticatedUserToken}`,
+        "content-type": "application/json",
+      },
+    });
+
+    // fetch(requestForUserName)
+    //   .then((res) => {
+    //     if (res.status === 401) throw new Error("Unauthorized access to API.");
+    //     if (!res.ok) throw new Error("Invalid response.");
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     let userName = data.data;
+    //     setUserName(userName);
+    //   })
+    //   .catch(console.warn);
+
   }, []);
 
-
-
   //sort dates calls itself on people page render
-  (function sortDates(){
-    people.sort((a,b) => new Date(a.dob) - new Date(b.dob));
-    })()
-
-
-
+  (function sortDates() {
+    people.sort((a, b) => new Date(a.dob) - new Date(b.dob));
+  })();
 
   const handleCardClick = (personId) => {
     navigate(`/gift/${personId}`);
   };
 
-
   return (
     <main className="container">
       <CheckAuth />
       <PageBanner className="page-banner">
-        <Title>Welcome</Title>
+        <Title>{`Welcome ${userName}`}</Title>
         <div>
           <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
         </div>
@@ -72,7 +88,7 @@ export default function People() {
       </PageBanner>
       <CardsList className="people">
         {people.map((person) => (
-          <ListCard key={person._id} person={person} onClick={()=> handleCardClick(person._id)}/> //passing the cardClick handler to the listCard comp.
+          <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
         ))}
       </CardsList>
     </main>
