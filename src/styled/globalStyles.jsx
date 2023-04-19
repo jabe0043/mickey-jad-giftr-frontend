@@ -80,8 +80,8 @@ a:focus-visible {
 /* Make images easier to work with */
 img,
 picture {
-    max-width: 100%;
-    display: block;
+    max-width: 90%;
+    // display: block;
 }
 
 svg {
@@ -161,4 +161,10 @@ p{
 .delete{
     background-color: ${({ theme }) => theme.default.colors.buttonSecondary};
 }
+
+
+.cardHover{
+}
+
+
 `;

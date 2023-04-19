@@ -7,12 +7,13 @@ const GiftCard = ({ gift, personId }) => {
 
   return (
     <Styled.GiftCard
+      className='cardHover'
       onClick={() => {
         navigate(`/gift/${personId}/edit/${gift._id}`);
       }}
     >
       <Styled.GiftCloseButton>
-        <i className="bi bi-pencil"></i>
+        {/* <i className="bi bi-pencil" style={{fontSize:'1rem'}}></i> */}
       </Styled.GiftCloseButton>
       <Styled.GiftName>{gift.giftName}</Styled.GiftName>
       <Styled.GiftStore>{gift.store}</Styled.GiftStore>

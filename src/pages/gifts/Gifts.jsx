@@ -16,9 +16,6 @@ const Gifts = () => {
   const { personId } = useParams();
 
   useEffect(() => {
-    // console.log(
-    //   "FETCHING FOR SINGLE PERSON OBJ - IT SHOULD RETURN THE GIFTS TOO"
-    // );
     const url = `http://localhost:3001/api/people/${personId}`;
     let request = new Request(url, {
       method: "GET",
@@ -35,7 +32,6 @@ const Gifts = () => {
       })
       .then((data) => {
         let personData = data.data;
-        // console.log(personData);
         setPerson({
           //setting fetched person in state
           ownerID: personData.ownerID,
@@ -48,32 +44,25 @@ const Gifts = () => {
       })
       .catch(console.warn);
   }, [authenticatedUserToken, personId]);
-  // console.log(person)
 
   return (
     <main className="container">
       <CheckAuth />
       <Styled.GiftsBanner>
-        <Styled.GiftsBannerAvatar>
-          {person.avatar && (
-            <img src={person.avatar} alt={`avatar for${person.fullName}`}></img>
-          )}
-        </Styled.GiftsBannerAvatar>
-        <Styled.GiftsBannerName>{person.fullName}</Styled.GiftsBannerName>
-        <Styled.GiftsBannerDob>
-          {person.dob}
-        </Styled.GiftsBannerDob>
-        <Styled.GiftsBannerEditButton
-          onClick={() => {
-            navigate(`/people/edit/${personId}`);
-          }}
-        >
-          <i className="bi bi-pencil"></i>
-        </Styled.GiftsBannerEditButton>
+        <div style={{ display: "flex", flexDirection:'column', width:'100%' }}>
+          <Styled.GiftsBannerEditButton onClick={() => { navigate(`/people/edit/${personId}`)}}>
+            <i className="bi bi-pencil" ></i>
+          </Styled.GiftsBannerEditButton>
+          <Styled.GiftsBannerAvatar>{person.avatar && (<img src={person.avatar} alt={`avatar for${person.fullName}`}></img>)} </Styled.GiftsBannerAvatar>
+        </div>
+        <div>
+          <Styled.GiftsBannerName>{person.fullName}</Styled.GiftsBannerName>
+          <Styled.GiftsBannerDob>{person.dob}</Styled.GiftsBannerDob>
+        </div>
       </Styled.GiftsBanner>
 
       <Styled.GiftTitle>
-        Here are your gifts for{" "}
+        Here are your gifts for {" "}
         <Styled.GiftTitleName>{person.fullName}</Styled.GiftTitleName>
       </Styled.GiftTitle>
 
