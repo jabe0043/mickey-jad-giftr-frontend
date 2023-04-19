@@ -53,7 +53,6 @@ const CardsList = styled.ul`
   gap: 1rem;
   padding: 0;
   margin: 0;
-
 `;
 
 // this is the list item styling (for people. Will need to add conditions for gifts)
@@ -65,25 +64,16 @@ const Card = styled.li`
   border: solid 0.25rem ${({ theme }) => theme.default.colors.text};
   border-radius: 1rem;
   padding: 1rem;
-  transition: all 0.25s ease-in-out;
-
-  &:hover{
-    transform: translateY(-.25rem);  
-    box-shadow:-3px 11px 12px -2px rgba(0,0,0,0.29);
-  }
 `;
 
 // card avatar image styling
 const CardAvatar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 5rem;
   height: 5rem;
   background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 10rem;
   border: solid 0.15rem ${({ theme }) => theme.default.colors.text};
-  `;
+`;
 
 // card title and dob
 const CardInfo = styled.div`
@@ -108,19 +98,16 @@ export const GiftsBanner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
 `;
 
 export const GiftsBannerAvatar = styled.div`
   width: 8rem;
   height: 8rem;
-  display: flex;
-  justify-content: center;
+  object-fit: contain;
   background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 10rem;
   border: solid 0.15rem ${({ theme }) => theme.default.colors.text};
-  padding: .5rem;
-  align-self: center;
 `;
 
 export const GiftsBannerName = styled.h1`
@@ -138,7 +125,9 @@ export const GiftsBannerDob = styled.p`
 export const GiftsBannerEditButton = styled.div`
   width: ${({ theme }) => theme.default.fontSizes.xxl};
   height: ${({ theme }) => theme.default.fontSizes.xxl};
-  align-self: flex-end;
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
 `;
 
 export const GiftTitle = styled.h2`
@@ -167,22 +156,13 @@ export const GiftCard = styled.div`
   border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
   display: flex;
   flex-direction: column;
-  // gap: 1rem;
-  cursor: pointer;
+  gap: 1rem;
   padding: 1rem;
-  transition: all 0.25s ease-in-out;
-
-  &:hover{
-    transform: translateY(-.25rem);  
-    box-shadow:-3px 11px 12px -2px rgba(0,0,0,0.29);
-    background-color: ${({ theme }) => theme.default.colors.button} 
-  }
 `;
 
 export const GiftName = styled.h3`
   font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
-  margin-top: -1rem;
 `;
 
 export const GiftStore = styled.p`
@@ -194,7 +174,6 @@ export const GiftUrl = styled.a`
   font-size: ${({ theme }) => theme.default.fontSizes.ls};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
   color: ${({ theme }) => theme.default.colors.text};
-  width: max-content;
 `;
 
 export const GiftCloseButton = styled.div`
@@ -204,7 +183,6 @@ export const GiftCloseButton = styled.div`
   align-self: flex-end;
   top: 0;
   right: 0;
-  margin-top:-.5rem;
 `;
 
 /*****************************
@@ -237,13 +215,6 @@ const Button = styled.button`
     props.$secondary
       ? props.theme.default.colors.buttonSecondary
       : props.theme.default.colors.button};
-
-  &:hover{
-    background-color: ${(props) => props.$secondary 
-      ? props.theme.default.colors.buttonSecondaryHover
-      : props.theme.default.colors.buttonHover};
-  }
-
 `;
 
 export const FormForGifts = styled.form`
@@ -275,7 +246,7 @@ const SelectAvatarPrompt = styled.p`
 `;
 
 /*****************************
- ** ADD/EDIT GIFT COMPONENT
+ ** ADD/EDIT PERSON COMPONENT
  ******************************/
 
 export const GiftAddEditH1 = styled.h1`

@@ -143,6 +143,7 @@ const AddEditGift = () => {
 
             <Styled.Button
               $secondary
+              // Type button prevent this button from submiting the form
               type="button"
               id= 'del'
               onClick={handleSubmit}

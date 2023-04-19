@@ -10,8 +10,6 @@ const theme = {
       backgroundSecondary: "#EEEEEE",
       button: "#E8E6D9",
       buttonSecondary: "#EBCFC4",
-      buttonHover: "#CDD0B9",
-      buttonSecondaryHover:"#D8BEB3",
     },
     fonts: ["Playfair Display", "serif", "Lato", "sans-serif"],
     fontSizes: {
