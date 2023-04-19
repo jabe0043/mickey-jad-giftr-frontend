@@ -37,7 +37,7 @@ export default function People() {
           peopleArr.map((person) => ({
             ownerID: person.ownerID,
             _id: person._id,
-            avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${person._id}&topColor=000000`,
+            avatar: person.avatar,
             fullName: person.fullName,
             dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),
           }))
