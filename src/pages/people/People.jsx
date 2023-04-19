@@ -80,7 +80,7 @@ export default function People() {
     <main className="container">
       <CheckAuth />
       <PageBanner className="page-banner">
-        <Title>{`Welcome ${userName}`}</Title>
+        <Title>{`Welcome ${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</Title>
         <div>
           <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
         </div>

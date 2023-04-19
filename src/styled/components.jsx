@@ -153,7 +153,7 @@ export const GiftTitleName = styled.span`
 
 /*****************************
  ** COMPONENT - GIFT CARD
- ******************************/
+******************************/
 
 export const GiftCardContainer = styled.div`
   display: grid;
@@ -237,6 +237,7 @@ const Button = styled.button`
     props.$secondary
       ? props.theme.default.colors.buttonSecondary
       : props.theme.default.colors.button};
+  transition: background-color 0.25s ease-in-out;
 
   &:hover{
     background-color: ${(props) => props.$secondary 
