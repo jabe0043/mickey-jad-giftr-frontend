@@ -1,25 +1,24 @@
 import CheckAuth from "../../utils/CheckAuth";
-import { useUser } from '../../context/userContext';
+import { useUser } from "../../context/userContext";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Styled from "../../styled/components";
 
-
 export default function AddEditPerson() {
-    console.log("AddEditPerson rendered");
-    const offset = -4; // offset for UTC time
-    const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
-    const navigate = useNavigate();
-    const { personId } = useParams();
+  console.log("AddEditPerson rendered");
+  const offset = -4; // offset for UTC time
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
+  const navigate = useNavigate();
+  const { personId } = useParams();
 
-    const [avatarSeed, setAvatarSeed] = useState(crypto.randomUUID());
+  const [avatarSeed, setAvatarSeed] = useState(crypto.randomUUID());
 
-    const [person, setPerson] = useState({
-        avatar:"",
-        fullName: "",
-        dob: "",
-        gifts: "",
-    });
+  const [person, setPerson] = useState({
+    avatar: "",
+    fullName: "",
+    dob: "",
+    gifts: "",
+  });
 
 
     useEffect(()=>{
@@ -43,35 +42,34 @@ export default function AddEditPerson() {
                 let personData = data.data;
                 setPerson({
                   //setting fetched data person in state
-                    ownerID: personData.ownerID,
-                    _id: personData._id,
-                    avatar: personData.avatar,
-                    fullName: personData.fullName,
-                    dob: new Date(personData.dob).toISOString().slice(0, 10),
-                    gifts: personData.gifts,
-                    createdAt: personData.createdAt,
+                  ownerID: personData.ownerID,
+                  _id: personData._id,
+                  avatar: personData.avatar,
+                  fullName: personData.fullName,
+                  dob: new Date(personData.dob).toISOString().slice(0, 10),
+                  gifts: personData.gifts,
+                  createdAt: personData.createdAt,
                 });
                 setAvatarSeed(personData.avatar.split("seed=")[1].split("&")[0]);
             })
             .catch(console.warn);
     }}, [])
 
-console.log(person)
 
-// Create state variable for keyboard entries
-    const [updatedPerson, setUpdatedPerson] = useState({});
+  // Create state variable for keyboard entries
+  const [updatedPerson, setUpdatedPerson] = useState({});
 
-// Update state above^ with form entries
-    function updatePerson(ev) {
-        console.log("updatePerson");
-        const { name, value } = ev.target;
-        setUpdatedPerson(prevPerson => ({ ...prevPerson, [name]: value }));
-    }
+  // Update state above^ with form entries
+  function updatePerson(ev) {
+    console.log("updatePerson");
+    const { name, value } = ev.target;
+    setUpdatedPerson((prevPerson) => ({ ...prevPerson, [name]: value }));
+  }
 
-// Update stateObj with user input. If no input, leave default fetched person data.
-    function handleSubmit(ev) {
-        console.log("handleSubmit");
-        ev.preventDefault();
+  // Update stateObj with user input. If no input, leave default fetched person data.
+  function handleSubmit(ev) {
+    console.log("handleSubmit");
+    ev.preventDefault();
 
         // creating updatedPerson obj
         setUpdatedPerson({
@@ -81,50 +79,46 @@ console.log(person)
             `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` ||
             person.avatar,
           fullName: updatedPerson.fullName || person.fullName,
-          dob:new Date(updatedPerson.dob).toISOString().slice(0, 10),
-            // new Date(updatedPerson.dob || person.dob).getTime +
-            // 3600000 * offset,
+          dob:
+            new Date(updatedPerson.dob || person.dob).getTime +
+            3600000 * offset,
           gifts: updatedPerson.gifts || person.gifts,
           createdAt: person.createdAt,
         });
 
 
-        // building request
-        if(personId){
-            const method= ev.target.id === "save" ? "PATCH" : "DELETE";
-            const url = `http://localhost:3001/api/people/${personId}`;
-            accessDb(updatedPerson, url, method)
-        } else {
-            const method= "POST";
-            const url = `http://localhost:3001/api/people/`
-            accessDb(updatedPerson, url, method)
-        }
+    // building request
+    if (personId) {
+      const method = ev.target.id === "save" ? "PATCH" : "DELETE";
+      const url = `http://localhost:3001/api/people/${personId}`;
+      accessDb(updatedPerson, url, method);
+    } else {
+      const method = "POST";
+      const url = `http://localhost:3001/api/people/`;
+      accessDb(updatedPerson, url, method);
     }
+  }
 
-
-
-    //TODO: Turn this into a global fetch variable (put in utils);
-    function accessDb(updatedPerson, url, method) {
-        console.log(`accessDb -- method: ${method}`);
-        const request = new Request(url, {
-                method: method,
-                headers: {
-                Authorization: `Bearer ${authenticatedUserToken}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedPerson)
-        });
-        fetch(request)
-            .then(res => {
-                if (res.status === 401) throw new Error("Unauthorized access to API.");
-                if (!res.ok) throw new Error(`Failed to ${method} person data in database`);
-                console.log(`${method} was successful`)
-            })
-            .then(navigate(method==='DELETE'? -2 : -1))  //If we're deleting a user, navigating back by 1 will take us to their gift page, which no longer exists
-            .catch(console.warn);
-        }
-
-
+  //TODO: Turn this into a global fetch variable (put in utils);
+  function accessDb(updatedPerson, url, method) {
+    console.log(`accessDb -- method: ${method}`);
+    const request = new Request(url, {
+      method: method,
+      headers: {
+        Authorization: `Bearer ${authenticatedUserToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedPerson),
+    });
+    fetch(request)
+      .then((res) => {
+        if (res.status === 401) throw new Error("Unauthorized access to API.");
+        if (!res.ok) throw new Error(`Failed to ${method} person data in database`);
+        console.log(`${method} was successful`);
+      })
+      .then(navigate(method === "DELETE" ? -2 : -1)) //If we're deleting a user, navigating back by 1 will take us to their gift page, which no longer exists
+      .catch(console.warn);
+  }
 
         //TODO: can make way shorter
         return (
@@ -159,8 +153,8 @@ console.log(person)
                             <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
                         </Styled.FormField>
                         <Styled.ButtonsDiv>
-                            <Styled.Button type="submit" id="save" onClick={handleSubmit}>Save</Styled.Button>
-                            <Styled.Button $secondary type="delete" id="del" onClick={handleSubmit}>Delete</Styled.Button>
+                            <Styled.Button type="submit" id="save" className="btn save" onClick={handleSubmit}>Save</Styled.Button>
+                            <Styled.Button type="delete" id="del" className="btn delete" onClick={handleSubmit}>Delete</Styled.Button>
                         </Styled.ButtonsDiv>
                     </form>
                 </div>
