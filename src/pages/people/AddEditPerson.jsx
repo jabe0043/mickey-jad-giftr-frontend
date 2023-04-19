@@ -43,19 +43,20 @@ export default function AddEditPerson() {
                 let personData = data.data;
                 setPerson({
                   //setting fetched data person in state
-                  ownerID: personData.ownerID,
-                  _id: personData._id,
-                  avatar: personData.avatar,
-                  fullName: personData.fullName,
-                  dob: new Date(personData.dob).toISOString().slice(0, 10),
-                  gifts: personData.gifts,
-                  createdAt: personData.createdAt,
+                    ownerID: personData.ownerID,
+                    _id: personData._id,
+                    avatar: personData.avatar,
+                    fullName: personData.fullName,
+                    dob: new Date(personData.dob).toISOString().slice(0, 10),
+                    gifts: personData.gifts,
+                    createdAt: personData.createdAt,
                 });
                 setAvatarSeed(personData.avatar.split("seed=")[1].split("&")[0]);
             })
             .catch(console.warn);
     }}, [])
 
+console.log(person)
 
 // Create state variable for keyboard entries
     const [updatedPerson, setUpdatedPerson] = useState({});
@@ -80,9 +81,9 @@ export default function AddEditPerson() {
             `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` ||
             person.avatar,
           fullName: updatedPerson.fullName || person.fullName,
-          dob:
-            new Date(updatedPerson.dob || person.dob).getTime +
-            3600000 * offset,
+          dob:new Date(updatedPerson.dob).toISOString().slice(0, 10),
+            // new Date(updatedPerson.dob || person.dob).getTime +
+            // 3600000 * offset,
           gifts: updatedPerson.gifts || person.gifts,
           createdAt: person.createdAt,
         });
@@ -158,8 +159,8 @@ export default function AddEditPerson() {
                             <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
                         </Styled.FormField>
                         <Styled.ButtonsDiv>
-                            <Styled.Button type="submit" id="save" className="btn save" onClick={handleSubmit}>Save</Styled.Button>
-                            <Styled.Button type="delete" id="del" className="btn delete" onClick={handleSubmit}>Delete</Styled.Button>
+                            <Styled.Button type="submit" id="save" onClick={handleSubmit}>Save</Styled.Button>
+                            <Styled.Button $secondary type="delete" id="del" onClick={handleSubmit}>Delete</Styled.Button>
                         </Styled.ButtonsDiv>
                     </form>
                 </div>
