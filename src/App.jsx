@@ -1,31 +1,27 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import People from "./pages/people/People";
-// import PersonForm from './pages/people/PersonForm'       //this comp. will be called by the person page. This is the equiv. of ListCard comp for people page.
 import AddEditPerson from "./pages/people/AddEditPerson";
 import Header from "./pages/Header";
 import Gifts from "./pages/gifts/Gifts";
 import AddEditGift from "./pages/gifts/AddEditGift";
+import AnimatedRoutes from "./AnimatedRoutes";
 
 export default function App() {
-  
   return (
     <div className="App">
-      <Header></Header>
+      <Header />
 
-      <Routes>
-
+      <AnimatedRoutes />
+      {/* <Routes>
         <Route path="/" element={<Login/>} />
-
         <Route path="/people" element={<People />} />
         <Route path="/people/edit/:personId" element={<AddEditPerson />} />
         <Route path="/people/add" element={<AddEditPerson />} />
         <Route path="/gift/:personId" element={<Gifts />} />
-
-        {/* <Route path='/gift' element={<Gifts />} /> */}
         <Route path="/gift/:personId/edit/:giftId" element={<AddEditGift />} />
         <Route path="/gift/:personId/add" element={<AddEditGift />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

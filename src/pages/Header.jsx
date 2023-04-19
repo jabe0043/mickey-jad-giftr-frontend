@@ -63,8 +63,8 @@ export default function Header() {
   };
 
   return (
-    <header>
-      <AppHeader className="container">
+    <header className="container" >
+      <AppHeader>
         {renderLeftIcon()}
         <div style={{ display: "flex", justifyContent: "center", flexGrow: 1 }}>
           <Logo onClick={() => authenticatedUserToken && navigate("/people")}>GIFT'R</Logo>

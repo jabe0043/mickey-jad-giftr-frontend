@@ -5,6 +5,7 @@ import * as Styled from "../../styled/components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import CheckAuth from "../../utils/CheckAuth";
+import { motion } from "framer-motion";
 
 const Gifts = () => {
   //Local Server URL
@@ -46,7 +47,11 @@ const Gifts = () => {
   }, [authenticatedUserToken, personId]);
 
   return (
-    <main className="container">
+    <motion.main className="container"
+    initial={{ x: "-100%" }}
+    animate={{ x: "0" }}
+    exit={{ x: "-100%" }}
+    transition={{ duration: 0.2, ease: "easeIn" }}>
       <CheckAuth />
       <Styled.GiftsBanner>
         <div style={{ display: "flex", flexDirection:'column', width:'100%' }}>
@@ -77,7 +82,7 @@ const Gifts = () => {
           ))}
         </Styled.GiftCardContainer>
       )}
-    </main>
+    </motion.main>
   );
 };
 
