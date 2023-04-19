@@ -42,7 +42,7 @@ const Gifts = () => {
           _id: personData._id,
           avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${personData._id}&topColor=000000`,
           fullName: personData.fullName,
-          dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),  
+          dob: new Date(personData.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),  
           gifts: personData.gifts,
         });
       })
