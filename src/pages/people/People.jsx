@@ -45,7 +45,7 @@ export default function People() {
       })
       .catch(console.warn);
 
-    const requestForUserName = new Request(`http://localhost:3001/api/users/`, {
+    const requestForUserName = new Request(`http://localhost:3001/api/user/userName/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${authenticatedUserToken}`,
@@ -53,17 +53,17 @@ export default function People() {
       },
     });
 
-    // fetch(requestForUserName)
-    //   .then((res) => {
-    //     if (res.status === 401) throw new Error("Unauthorized access to API.");
-    //     if (!res.ok) throw new Error("Invalid response.");
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     let userName = data.data;
-    //     setUserName(userName);
-    //   })
-    //   .catch(console.warn);
+    fetch(requestForUserName)
+      .then((res) => {
+        if (res.status === 401) throw new Error("Unauthorized access to API.");
+        if (!res.ok) throw new Error("Invalid response.");
+        return res.json();
+      })
+      .then((data) => {
+        let userName = data.data;
+        setUserName(userName.name);
+      })
+      .catch(console.warn);
 
   }, []);
 
