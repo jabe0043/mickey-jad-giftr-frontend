@@ -114,100 +114,82 @@ export default function AddEditPerson() {
       .catch(console.warn);
   }
 
-  //TODO: can make way shorter
-  return (
+
+
+    //TODO: can make way shorter
+    return (
     <main className="container">
-      <CheckAuth />
-      {person._id ? (
-        //EDIT USER
-        <div>
-          <h1>Edit Information for {person.fullName}</h1>
-          <Styled.PeopleBanner>
-            <i
-              className="bi bi-arrow-left"
-              onClick={() => {
-                setAvatarSeed(crypto.randomUUID());
-              }}
-            ></i>
-            <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
-              <Styled.GiftsBannerAvatar>
-                <img
-                  className="randomAvatar"
-                  src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`}
-                  alt={`avatar`}
-                ></img>
-              </Styled.GiftsBannerAvatar>
-              <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt>
+        <CheckAuth />
+        {person._id ? (
+            //EDIT USER
+            <div>
+                <h1>Edit Information for {person.fullName}</h1>
+                <Styled.PeopleBanner>
+                    <i className="bi bi-arrow-left" onClick={() => {
+                        setAvatarSeed(crypto.randomUUID());
+                        }}></i>
+                    <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
+                    <Styled.GiftsBannerAvatar>
+                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`} alt={`avatar`}></img>
+                    </Styled.GiftsBannerAvatar>
+                        <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt>
+                    </div>
+                    <i className="bi bi-arrow-right" onClick={() => {
+                        setAvatarSeed(crypto.randomUUID());
+                        }}></i>
+                </Styled.PeopleBanner>
+                {/* <form onSubmit={handleSubmit}> */}
+                <form onSubmit={handleSubmit}>
+                    <Styled.FormField>
+                        <label htmlFor="name">Full Name</label>
+                        <Styled.TextInput type="text" id="fullName" name="fullName" defaultValue={person.fullName} onChange={updatePerson}/>
+                    </Styled.FormField>
+                    <Styled.FormField>
+                        <label htmlFor="dob">Date of Birth</label>
+                        <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
+                    </Styled.FormField>
+                    <Styled.ButtonsDiv>
+                        <Styled.Button type="submit" id="save" onClick={handleSubmit}>Save</Styled.Button>
+                        <Styled.Button $secondary type="delete" id="del" onClick={handleSubmit}>Delete</Styled.Button>
+                    </Styled.ButtonsDiv>
+                </form>
             </div>
-            <i
-              className="bi bi-arrow-right"
-              onClick={() => {
-                setAvatarSeed(crypto.randomUUID());
-              }}
-            ></i>
-          </Styled.PeopleBanner>
-          {/* <form onSubmit={handleSubmit}> */}
-          <form onSubmit={handleSubmit}>
-            <Styled.FormField>
-              <label htmlFor="name">Full Name</label>
-              <Styled.TextInput type="text" id="fullName" name="fullName" defaultValue={person.fullName} onChange={updatePerson} />
-            </Styled.FormField>
-            <Styled.FormField>
-              <label htmlFor="dob">Date of Birth</label>
-              <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
-            </Styled.FormField>
-            <Styled.ButtonsDiv>
-              <Styled.Button type="submit" id="save" className="btn save" onClick={handleSubmit}>
-                Save
-              </Styled.Button>
-              <Styled.Button type="delete" id="del" className="btn delete" onClick={handleSubmit}>
-                Delete
-              </Styled.Button>
-            </Styled.ButtonsDiv>
-          </form>
-        </div>
-      ) : (
-        //ADD USER
-        <div>
-          <h1>Add a new person to the list</h1>
-          <Styled.PeopleBanner>
-            {/* <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i> */}
-            <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
-              <Styled.GiftsBannerAvatar>
-                <img
-                  className="randomAvatar"
-                  src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`}
-                  alt={`avatar`}
-                ></img>
-              </Styled.GiftsBannerAvatar>
-              {/* <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt> */}
-              <i
-                className="bi bi-shuffle"
-                onClick={() => {
-                  setAvatarSeed(crypto.randomUUID());
-                }}
-                style={{ alignSelf: "center" }}
-              ></i>
+        ) : (               
+            //ADD USER
+            <div>
+                <h1>Add a new person to the list</h1>
+                <Styled.PeopleBanner>
+                    {/* <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i> */}
+                    <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
+                    <Styled.GiftsBannerAvatar>
+                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`} alt={`avatar`}></img>
+                    </Styled.GiftsBannerAvatar>
+                        {/* <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt> */}
+                        <i className="bi bi-shuffle" onClick={() => {
+                        setAvatarSeed(crypto.randomUUID());
+                        }} style={{alignSelf: 'center'}}></i>
+                    </div>
+                    {/* <i className="bi bi-arrow-right" onClick={(ev)=>changeAvatar(ev)}></i> */}
+                </Styled.PeopleBanner>
+                <form onSubmit={handleSubmit}>
+                    <Styled.FormField>
+                        <label htmlFor="name">Full Name</label>
+                        <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson}/>
+                    </Styled.FormField>
+                    <Styled.FormField>
+                        <label htmlFor="dob">Date of Birth</label>
+                        <Styled.TextInput 
+                        type="date" 
+                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
+                    </Styled.FormField>
+                    <Styled.ButtonsDiv>
+                        <Styled.Button type="submit" id='save' className="btn save" onClick={handleSubmit}>Save</Styled.Button>
+                    </Styled.ButtonsDiv>
+                </form>
             </div>
-            {/* <i className="bi bi-arrow-right" onClick={(ev)=>changeAvatar(ev)}></i> */}
-          </Styled.PeopleBanner>
-          <form onSubmit={handleSubmit}>
-            <Styled.FormField>
-              <label htmlFor="name">Full Name</label>
-              <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} />
-            </Styled.FormField>
-            <Styled.FormField>
-              <label htmlFor="dob">Date of Birth</label>
-              <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
-            </Styled.FormField>
-            <Styled.ButtonsDiv>
-              <Styled.Button type="submit" id="save" className="btn save" onClick={handleSubmit}>
-                Save
-              </Styled.Button>
-            </Styled.ButtonsDiv>
-          </form>
-        </div>
-      )}
+        )}
     </main>
-  );
+);  
+
+
 }

@@ -23,14 +23,13 @@ export default function Login() {
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
 
   useEffect(() => {
-    let token = params.get("token");
+    const token = params.get("token");
     if (token) {
       console.log("set token to the sessionStorage", token);
 
       setAuthenticatedUserToken(token);
       navigate("/people");
     }
-    if (authenticatedUserToken) navigate("/people");
   }, []);
 
   function initiateLogin() {
