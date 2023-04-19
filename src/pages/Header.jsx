@@ -1,17 +1,21 @@
 import { useNavigate, useLocation, useParams } from "react-router-dom";
-
 import { AppHeader, Logo } from "../styled/components";
+import { useUser } from '../context/userContext';
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
   const personId = pathname.split("/")[2]; //id of the current selected person
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
 
   const logOut = () => {
     sessionStorage.removeItem("UserToken");
     navigate("/");
+    setAuthenticatedUserToken(null); //instead make it re-render homepage
   };
+
+
 
   const handleAddButton = () => {
     if (pathname.includes("/people")) {
@@ -63,7 +67,7 @@ export default function Header() {
       <AppHeader className="container">
         {renderLeftIcon()}
         <div style={{ display: "flex", justifyContent: "center", flexGrow: 1 }}>
-          <Logo onClick={() => navigate("/people")}>GIFT'R</Logo>
+          <Logo onClick={() => authenticatedUserToken && navigate("/people")}>GIFT'R</Logo>
         </div>
         {renderRightIcon()}
       </AppHeader>
