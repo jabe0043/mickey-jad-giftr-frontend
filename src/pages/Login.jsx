@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser } from "../context/userContext";
 import * as Styled from "../styled/components";
-import WelcomeIllustartion from "../assets/welcomeIllustration.png";
+import WelcomeIllustration from "../assets/welcomeIllustration.png";
 
 export default function Login() {
   const navigate = useNavigate(); //in app navigation only;
@@ -26,6 +26,7 @@ export default function Login() {
     let token = params.get("token");
     if (token) {
       console.log("set token to the sessionStorage", token);
+
       setAuthenticatedUserToken(token);
       navigate("/people");
     }
@@ -45,7 +46,7 @@ export default function Login() {
         <br />
         GIFT'R!
       </Styled.LoginH1>
-      <img src={WelcomeIllustartion} alt="a woman shaking hand at a window" />
+      <img src={WelcomeIllustration} alt="a woman shaking hand at a window" />
       <Styled.LoginH2>Please login to explore all features</Styled.LoginH2>
       <Styled.Button onClick={initiateLogin}>Login</Styled.Button>
     </main>
