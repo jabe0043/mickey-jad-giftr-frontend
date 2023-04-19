@@ -3,6 +3,8 @@ import { useUser } from "../../context/userContext";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Styled from "../../styled/components";
+import { motion } from "framer-motion";
+
 
 export default function AddEditPerson() {
   console.log("AddEditPerson rendered");
@@ -124,7 +126,12 @@ export default function AddEditPerson() {
 
   //TODO: can make way shorter
   return (
-    <main className="container">
+    <motion.main className="container" 
+    initial={{ x: "100%" }}
+    animate={{ x: "0" }}
+    exit={{ x: "100%" }}
+    transition={{ duration: 0.2, ease: "easeIn" }}
+    >
         <CheckAuth />
         {person._id ? (
             //EDIT USER
@@ -194,6 +201,6 @@ export default function AddEditPerson() {
                 </form>
             </div>
         )}
-    </main>
+    </motion.main>
   );
 }

@@ -6,7 +6,8 @@ import styled from "styled-components";
 
 const AppHeader = styled.div`
   display: flex;
-  min-width: 100vw;
+  width: 100vw;
+  height: 5rem;
   justify-content: space-between;
   align-items: center;
 `;
@@ -14,15 +15,25 @@ const AppHeader = styled.div`
 const Logo = styled.a`
   font-size: ${({ theme }) => theme.default.fontSizes.xl};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
+  position:absolute;
+  align-self: center;
 `;
 
 /*****************************
  ** PAGE 0 - LOGIN PAGE
  ******************************/
 
+const Login = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+`
+
 export const LoginH1 = styled.h1`
   font-size: ${({ theme }) => theme.default.fontSizes.xxl};
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
+  align-self: flex-start;
 `;
 
 export const LoginH2 = styled.h2`
@@ -53,6 +64,7 @@ const CardsList = styled.ul`
   gap: 1rem;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 
 `;
 
@@ -291,6 +303,7 @@ export const GiftAddEditIllustration = styled.img`
 `;
 
 export {
+  Login,
   PageBanner,
   Title,
   CardsList,

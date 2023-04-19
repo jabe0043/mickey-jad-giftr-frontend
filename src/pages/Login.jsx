@@ -39,15 +39,15 @@ export default function Login() {
   }
 
   return (
-    <main className="container">
+    <Styled.Login className="container">
       <Styled.LoginH1>
         Welcome to
         <br />
         GIFT'R!
       </Styled.LoginH1>
-      <img src={WelcomeIllustration} alt="a woman shaking hand at a window" />
+      <img src={WelcomeIllustration} style={{maxHeight:'40vh'}} alt="a woman shaking hand at a window" />
       <Styled.LoginH2>Please login to explore all features</Styled.LoginH2>
       <Styled.Button onClick={initiateLogin}>Login</Styled.Button>
-    </main>
+    </Styled.Login>
   );
 }

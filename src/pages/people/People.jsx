@@ -6,6 +6,8 @@ import ListCard from "../ListCard";
 import { useTheme } from "styled-components";
 import { PageBanner, Title, CardsList } from "../../styled/components";
 import CheckAuth from "../../utils/CheckAuth";
+import { motion } from "framer-motion";
+
 
 export default function People() {
   const [userName, setUserName] = useState("");
@@ -77,7 +79,12 @@ export default function People() {
   };
 
   return (
-    <main className="container">
+    <motion.main className="container" 
+    initial={{ x: "-100%" }}
+    animate={{ x: "0" }}
+    exit={{ x: "-100%" }}
+    transition={{ duration: 0.2, ease: "easeIn" }}
+    >
       <CheckAuth />
       <PageBanner className="page-banner">
         <Title>{`Welcome ${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</Title>
@@ -91,6 +98,6 @@ export default function People() {
           <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
         ))}
       </CardsList>
-    </main>
+    </motion.main>
   );
 }

@@ -4,6 +4,8 @@ import CheckAuth from "../../utils/CheckAuth";
 import * as Styled from "../../styled/components";
 import bannerIllustration from "../../assets/giftAddEditPageIllustration.png";
 import { useParams, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
 
 const AddEditGift = () => {
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
@@ -91,7 +93,12 @@ const AddEditGift = () => {
   }
 
   return (
-    <main className="container">
+    <motion.main className="container"
+    initial={{ y: "100%", opacity: "0" }}
+    animate={{ y: 0, opacity:"1" }}
+    exit={{ y: "100%" }}
+    transition={{ duration: 0.25, ease: "easeInOut" }}
+    >
       <CheckAuth />
 
       {/* TODO: add person Name when we start using Context */}
@@ -157,7 +164,7 @@ const AddEditGift = () => {
           </Styled.Button>
         )}
       </Styled.FormForGifts>
-    </main>
+    </motion.main>
   );
 };
 
