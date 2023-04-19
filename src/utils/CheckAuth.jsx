@@ -8,11 +8,11 @@ export default function CheckAuth() {
   const [_authenticatedUser, setAuthenticatedUser] = useUser();
 
   useEffect(() => {
-    const haveUserToken = sessionStorage.getItem("UserToken");
-    console.log("haveUserToken: ", haveUserToken);
-    if (!haveUserToken || haveUserToken == '""') {
+//     const haveUserToken = sessionStorage.getItem("UserToken");
+//     console.log("haveUserToken: ", haveUserToken);
+    if (!_authenticatedUser) {
       console.log("No user token found, redirecting to login page");
-      setAuthenticatedUser("");
+      setAuthenticatedUser(null);
       navigate("/");
     }
   }, []);
