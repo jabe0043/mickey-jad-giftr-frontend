@@ -126,7 +126,7 @@ export default function AddEditPerson() {
         {person._id ? (
             //EDIT USER
             <div>
-                <h1>Edit Information for {person.fullName}</h1>
+                <Styled.PersonAddEditTitle>Edit Information for {person.fullName}</Styled.PersonAddEditTitle>
                 <Styled.PeopleBanner>
                     <i className="bi bi-arrow-left" onClick={() => {
                         setAvatarSeed(crypto.randomUUID());
@@ -144,11 +144,11 @@ export default function AddEditPerson() {
                 {/* <form onSubmit={handleSubmit}> */}
                 <form onSubmit={handleSubmit}>
                     <Styled.FormField>
-                        <label htmlFor="name">Full Name</label>
+                        <Styled.Label For="name">Full Name</Styled.Label>
                         <Styled.TextInput type="text" id="fullName" name="fullName" defaultValue={person.fullName} onChange={updatePerson}/>
                     </Styled.FormField>
                     <Styled.FormField>
-                        <label htmlFor="dob">Date of Birth</label>
+                        <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
                         <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} onClick={(ev)=> {ev.target.showPicker();}}/>
                     </Styled.FormField>
                     <Styled.ButtonsDiv>
@@ -176,11 +176,13 @@ export default function AddEditPerson() {
                 </Styled.PeopleBanner>
                 <form onSubmit={handleSubmit}>
                     <Styled.FormField>
+
                         <label htmlFor="name">Full Name</label>
                         <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} required/>
+
                     </Styled.FormField>
                     <Styled.FormField>
-                        <label htmlFor="dob">Date of Birth</label>
+                        <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
                         <Styled.TextInput 
                         type="date" 
                         id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} onClick={(ev)=> {ev.target.showPicker();}}/>
