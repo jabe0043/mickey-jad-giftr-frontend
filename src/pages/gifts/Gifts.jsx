@@ -46,6 +46,9 @@ const Gifts = () => {
       .catch(console.warn);
   }, [authenticatedUserToken, personId]);
 
+  console.log(person);
+  // console.log(person.gifts.length);
+
   return (
     <motion.main className="container"
     initial={{ x: "-100%" }}
@@ -67,8 +70,13 @@ const Gifts = () => {
       </Styled.GiftsBanner>
 
       <Styled.GiftTitle>
-        Here are your gifts for {" "}
+        {/* {person ? (
+        <> */}
+        {person.gifts && person.gifts.length === 0 ? (
+        'There are currently no gifts for ') : ('Here are your gifts for ')}
         <Styled.GiftTitleName>{person.fullName}</Styled.GiftTitleName>
+        {/* </>)  */}
+        {/* : ('Loading...')} */}
       </Styled.GiftTitle>
 
       {person && person.gifts && (

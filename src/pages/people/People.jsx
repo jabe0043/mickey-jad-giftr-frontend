@@ -46,6 +46,8 @@ export default function People() {
       })
       .catch(console.warn);
 
+      console.log(people);
+
     const requestForUserName = new Request(`http://localhost:3001/api/user/userName/`, {
       method: "GET",
       headers: {
@@ -90,7 +92,13 @@ export default function People() {
         <div style={{display: "flex", justifyContent:"flex-end", marginTop:"-6rem"}}>
           <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
         </div>
+<<<<<<< Updated upstream
         <Subtitle>Here's your list of giftees</Subtitle>
+=======
+        {people.length === 0  
+          ? (<h2>There are no people in the list</h2>) 
+          : (<h2>Here's your list of giftees</h2>)}
+>>>>>>> Stashed changes
       </PageBanner>
       <CardsList className="people">
         {people.map((person) => (

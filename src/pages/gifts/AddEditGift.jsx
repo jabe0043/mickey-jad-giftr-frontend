@@ -103,7 +103,7 @@ const AddEditGift = () => {
 
       {/* TODO: add person Name when we start using Context */}
       <Styled.GiftAddEditH1>
-        {giftId ? "Edit" : "Add"} a gift idea for 000
+        {giftId ? "Edit" : "Add"} a gift idea for 
       </Styled.GiftAddEditH1>
 
       <Styled.GiftAddEditIllustration

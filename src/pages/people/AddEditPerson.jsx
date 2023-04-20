@@ -57,6 +57,7 @@ export default function AddEditPerson() {
     }
   }, []);
 
+
   useEffect(() => {
     setUpdatedPerson((prevPerson) => ({ ...prevPerson, avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` }));
   }, [avatarSeed]);
@@ -159,7 +160,7 @@ export default function AddEditPerson() {
                     </Styled.FormField>
                     <Styled.FormField>
                         <label htmlFor="dob">Date of Birth</label>
-                        <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
+                        <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} required />
                     </Styled.FormField>
                     <Styled.ButtonsDiv>
                         <Styled.Button type="submit" id="save" onClick={handleSubmit}>Save</Styled.Button>
@@ -187,13 +188,13 @@ export default function AddEditPerson() {
                 <form onSubmit={handleSubmit}>
                     <Styled.FormField>
                         <label htmlFor="name">Full Name</label>
-                        <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson}/>
+                        <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} required/>
                     </Styled.FormField>
                     <Styled.FormField>
                         <label htmlFor="dob">Date of Birth</label>
                         <Styled.TextInput 
                         type="date" 
-                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
+                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} required/>
                     </Styled.FormField>
                     <Styled.ButtonsDiv>
                         <Styled.Button type="submit" id='save' className="btn save" onClick={handleSubmit}>Save</Styled.Button>
