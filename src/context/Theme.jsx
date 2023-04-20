@@ -52,7 +52,7 @@ function Theme(props) {
   const handleWindowResize = () => {
     console.log("Theme.jsx handleWindowResize", window.innerWidth);
     if (window.innerWidth < 400) {
-      // theme.default.layout.cardColumnCount = "1";
+      // screen width < 400
       setThemeState({
         ...themeState,
         default: {
@@ -64,7 +64,7 @@ function Theme(props) {
         },
       });
     } else if (window.innerWidth < 700) {
-      // theme.default.layout.cardColumnCount = "2";
+      // 400px< screen width < 700px
       setThemeState({
         ...themeState,
         default: {
@@ -76,7 +76,7 @@ function Theme(props) {
         },
       });
     } else {
-      // theme.default.layout.cardColumnCount = "3";
+      // 700px < screen width
       setThemeState({
         ...themeState,
         default: {
