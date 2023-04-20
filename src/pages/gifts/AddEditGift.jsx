@@ -5,7 +5,7 @@ import * as Styled from "../../styled/components";
 import bannerIllustration from "../../assets/giftAddEditPageIllustration.png";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import useAccessDbHook from "../../hooks/useAccessDb";
 
 const AddEditGift = () => {
   console.log("AddEditGift rendered");
@@ -13,11 +13,10 @@ const AddEditGift = () => {
   const { personId, giftId } = useParams();
   const [gift, setGift] = useState(null);
   const [personName, setPersonName] = useState("");
-  const navigate = useNavigate();
+  const accessDb = useAccessDbHook();
 
   useEffect(() => {
     setGift(null);
-
     let request = new Request(`https://gift-backend.onrender.com/api/people/${personId}`, {
       method: "GET",
       headers: {
@@ -55,43 +54,27 @@ const AddEditGift = () => {
 
     // Edit gift
     if (giftId) {
-      accessDb(giftData, `https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`, e.target.id === "save" ? "PATCH" : "DELETE");
+      accessDb(
+        giftData,
+        `https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`,
+        e.target.id === "save" ? "PATCH" : "DELETE",
+        authenticatedUserToken,
+        -1
+      );
     }
     // Add gift
     else {
-      accessDb(giftData, `https://gift-backend.onrender.com/api/people/${personId}/gifts`, "POST");
+      accessDb(giftData, `https://gift-backend.onrender.com/api/people/${personId}/gifts`, "POST", authenticatedUserToken, -1);
     }
   };
 
-  function accessDb(updatedGift, url, method) {
-    console.log(`accessDb -- method: ${method}`);
-    const request = new Request(url, {
-      method: method,
-      headers: {
-        Authorization: `Bearer ${authenticatedUserToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedGift),
-    });
-    fetch(request)
-      .then((res) => {
-        if (res.status === 401) throw new Error("Unauthorized access to API.");
-        if (!res.ok) throw new Error("Failed to update person data in database");
-        console.log(`${method} was successful`);
-      })
-      .then(() => {
-        console.log("navigating back");
-        navigate(-1);
-      })
-      .catch(console.warn);
-  }
-
   return (
-    <motion.main className="container"
-    initial={{ y: "100%", opacity: "0" }}
-    animate={{ y: 0, opacity:"1" }}
-    exit={{ y: "100%" }}
-    transition={{ duration: 0.25, ease: "easeInOut" }}
+    <motion.main
+      className="container"
+      initial={{ y: "100%", opacity: "0" }}
+      animate={{ y: 0, opacity: "1" }}
+      exit={{ y: "100%" }}
+      transition={{ duration: 0.25, ease: "easeInOut" }}
     >
       <CheckAuth />
       <Styled.GiftAddEditH1>
