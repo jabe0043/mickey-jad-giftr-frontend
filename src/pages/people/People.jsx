@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 export default function People() {
   const [userName, setUserName] = useState("");
   const [people, setPeople] = useState([]);
-  console.log("People rendered");
+  console.log("People rendered.. people: ", people);
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const theme = useTheme();
   const navigate = useNavigate();
@@ -34,7 +34,9 @@ export default function People() {
       })
       .then((data) => {
         //TODO:should we exclude gifts from being returned from the client side (like below), or not send the gifts at all for a getAll request from the server side??
+        //Mickey(4/19 8pm): I think it's better to not send the gifts at all for a getAll request from the server side.
         let peopleArr = data.data;
+        console.log("fetched peopleArr: ", peopleArr);
         setPeople(
           peopleArr.map((person) => ({
             ownerID: person.ownerID,
@@ -44,6 +46,7 @@ export default function People() {
             dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),
           }))
         );
+        console.log("setPeople to: ", people);
       })
       .catch(console.warn);
 

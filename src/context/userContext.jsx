@@ -11,9 +11,9 @@ function UserProvider(props) {
   });
 
   useEffect(() => {
-    console.log("UserProvider useEffect / Token:", authenticatedUserToken);
+    // console.log("UserProvider useEffect / Token:", authenticatedUserToken);
     sessionStorage.setItem("UserToken", JSON.stringify(authenticatedUserToken));
-    console.log(JSON.parse(sessionStorage.getItem("UserToken")));
+    // console.log(JSON.parse(sessionStorage.getItem("UserToken")));
   }, [authenticatedUserToken]);
 
   return <UserContext.Provider value={[authenticatedUserToken, setAuthenticatedUserToken]} {...props} />;
