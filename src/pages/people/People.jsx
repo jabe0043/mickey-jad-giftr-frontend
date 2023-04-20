@@ -32,6 +32,7 @@ export default function People() {
       })
       .then((data) => {
         //TODO:should we exclude gifts from being returned from the client side (like below), or not send the gifts at all for a getAll request from the server side??
+        //Mickey(4/19 8pm): I think it's better to not send the gifts at all for a getAll request from the server side.
         let peopleArr = data.data;
         console.log("fetched peopleArr: ", peopleArr);
         setPeople(

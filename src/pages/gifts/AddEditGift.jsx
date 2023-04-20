@@ -87,8 +87,6 @@ const AddEditGift = () => {
   return (
     <main className="container">
       <CheckAuth />
-
-      {/* TODO: add person Name when we start using Context */}
       <Styled.GiftAddEditH1>
         {giftId ? "Edit" : "Add"} {`a gift idea for ${personName}`}
       </Styled.GiftAddEditH1>

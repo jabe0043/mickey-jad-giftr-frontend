@@ -188,7 +188,7 @@ export default function AddEditPerson() {
                         <label htmlFor="dob">Date of Birth</label>
                         <Styled.TextInput 
                         type="date" 
-                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} />
+                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} onClick={(ev)=> {ev.target.showPicker();}}/>
                     </Styled.FormField>
                     <Styled.ButtonsDiv>
                         <Styled.Button type="submit" id='save' className="btn save" onClick={handleSubmit}>Save</Styled.Button>
