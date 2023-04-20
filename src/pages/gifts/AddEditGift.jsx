@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../context/userContext";
 import CheckAuth from "../../utils/CheckAuth";
 import * as Styled from "../../styled/components";
-import bannerIllustration from "../../assets/giftAddEditPageIllustration.png";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAccessDbHook from "../../hooks/useAccessDb";
 
@@ -14,7 +13,7 @@ const AddEditGift = () => {
   const [gift, setGift] = useState(null);
   const [personName, setPersonName] = useState("");
   const accessDb = useAccessDbHook();
-
+ 
   useEffect(() => {
     setGift(null);
     let request = new Request(`https://gift-backend.onrender.com/api/people/${personId}`, {
@@ -83,20 +82,15 @@ const AddEditGift = () => {
         </Styled.GiftAddEditH1>
       </Styled.PageBanner>
 
-      {/* <Styled.GiftAddEditIllustration
-        src={bannerIllustration}
-        alt="a smiling woman raising her hands with gift boxes"
-      ></Styled.GiftAddEditIllustration> */}
-
       <Styled.FormForGifts>
         <label htmlFor="name">Gift Idea</label>
-        <Styled.TextInput type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}required></Styled.TextInput>
+        <Styled.TextInput type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""} required></Styled.TextInput>
 
         <label htmlFor="name">Store</label>
-        <Styled.TextInput type="text" id="store" name="store" defaultValue={gift ? gift.store : "" }required></Styled.TextInput>
+        <Styled.TextInput type="text" id="store" name="store" defaultValue={gift ? gift.store : "" } required></Styled.TextInput>
 
         <label htmlFor="name">Website URL</label>
-        <Styled.TextInput type="text" id="url" name="url" defaultValue={gift ? gift.website : ""}required></Styled.TextInput>
+        <Styled.TextInput type="text" id="url" name="url" defaultValue={gift ? gift.website : ""} required></Styled.TextInput>
 
         {giftId ? (
           <>

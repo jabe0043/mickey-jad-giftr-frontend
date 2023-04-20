@@ -119,83 +119,119 @@ export default function AddEditPerson() {
 
   //TODO: can make way shorter
   return (
-    <motion.main className="container" 
-    initial={{ x: "100%" }}
-    animate={{ x: "0" }}
-    exit={{ x: "100%" }}
-    transition={{ duration: 0.2, ease: "easeIn" }}
+    <motion.main
+      className="container"
+      initial={{ x: "100%" }}
+      animate={{ x: "0" }}
+      exit={{ x: "100%" }}
+      transition={{ duration: 0.2, ease: "easeIn" }}
     >
-        <CheckAuth />
-        {person._id ? (
-            //EDIT USER
-            <div>
-                <Styled.PersonAddEditTitle>Edit Information for {person.fullName}</Styled.PersonAddEditTitle>
-                <Styled.PeopleBanner>
-                    {/* <i className="bi bi-arrow-left" onClick={() => {
+      <CheckAuth />
+      {person._id ? (
+        //EDIT USER
+        <div>
+          <Styled.PersonAddEditTitle>Edit Information for {person.fullName}</Styled.PersonAddEditTitle>
+          <Styled.PeopleBanner>
+            {/* <i className="bi bi-arrow-left" onClick={() => {
                         setAvatarSeed(crypto.randomUUID());
                         }}></i> */}
-                    <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
-                    <Styled.GiftsBannerAvatar>
-                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`}></img>
-                    </Styled.GiftsBannerAvatar>
-                    <i className="bi bi-shuffle" onClick={() => {
-                        setAvatarSeed(crypto.randomUUID());
-                        }} style={{alignSelf: 'center', color:'#1E1E1E'}}></i>
-                    </div>
-                    {/* <i className="bi bi-arrow-right" onClick={() => {
+            <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+              <Styled.GiftsBannerAvatar>
+                <img
+                  className="randomAvatar"
+                  src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`}
+                ></img>
+              </Styled.GiftsBannerAvatar>
+              <i
+                className="bi bi-shuffle"
+                onClick={() => {
+                  setAvatarSeed(crypto.randomUUID());
+                }}
+                style={{ alignSelf: "center", color: "#1E1E1E" }}
+              ></i>
+            </div>
+            {/* <i className="bi bi-arrow-right" onClick={() => {
                         setAvatarSeed(crypto.randomUUID());
                         }}></i> */}
-                </Styled.PeopleBanner>
-                <form onSubmit={handleSubmit}>
-                    <Styled.FormField>
-                        <Styled.Label For="name">Full Name</Styled.Label>
-                        <Styled.TextInput type="text" id="fullName" name="fullName" defaultValue={person.fullName} onChange={updatePerson}/>
-                    </Styled.FormField>
-                    <Styled.FormField>
-                        <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
-                        <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} onClick={(ev)=> {ev.target.showPicker();}}/>
-                    </Styled.FormField>
-                    <Styled.ButtonsDiv>
-                        <Styled.Button type="submit" id="save" onClick={handleSubmit}>Save</Styled.Button>
-                        <Styled.Button $secondary type="delete" id="del" onClick={handleSubmit}>Delete</Styled.Button>
-                    </Styled.ButtonsDiv>
-                </form>
+          </Styled.PeopleBanner>
+          <form onSubmit={handleSubmit}>
+            <Styled.FormField>
+              <Styled.Label For="name">Full Name</Styled.Label>
+              <Styled.TextInput type="text" id="fullName" name="fullName" defaultValue={person.fullName} onChange={updatePerson} />
+            </Styled.FormField>
+            <Styled.FormField>
+              <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
+              <Styled.TextInput
+                type="date"
+                id="dob"
+                name="dob"
+                defaultValue={person.dob}
+                onChange={updatePerson}
+                onClick={(ev) => {
+                  ev.target.showPicker();
+                }}
+              />
+            </Styled.FormField>
+            <Styled.ButtonsDiv>
+              <Styled.Button type="submit" id="save" onClick={handleSubmit}>
+                Save
+              </Styled.Button>
+              <Styled.Button $secondary type="delete" id="del" onClick={handleSubmit}>
+                Delete
+              </Styled.Button>
+            </Styled.ButtonsDiv>
+          </form>
+        </div>
+      ) : (
+        //ADD USER
+        <div>
+          <Styled.GiftAddEditH1>Add a new person to the list</Styled.GiftAddEditH1>
+          <Styled.PeopleBanner>
+            {/* <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i> */}
+            <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+              <Styled.GiftsBannerAvatar>
+                <img
+                  className="randomAvatar"
+                  src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`}
+                  alt={`avatar`}
+                ></img>
+              </Styled.GiftsBannerAvatar>
+              <i
+                className="bi bi-shuffle"
+                onClick={() => {
+                  setAvatarSeed(crypto.randomUUID());
+                }}
+                style={{ alignSelf: "center", color: "#1E1E1E" }}
+              ></i>
             </div>
-        ) : (               
-            //ADD USER
-            <div>
-                <Styled.GiftAddEditH1>Add a new person to the list</Styled.GiftAddEditH1>
-                <Styled.PeopleBanner>
-                    {/* <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i> */}
-                    <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
-                    <Styled.GiftsBannerAvatar>
-                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`} 
-                        alt={`avatar`}></img>
-                    </Styled.GiftsBannerAvatar>
-                        <i className="bi bi-shuffle" onClick={() => {
-                        setAvatarSeed(crypto.randomUUID());
-                        }} style={{alignSelf: 'center', color:'#1E1E1E'}}></i>
-                    </div>
-                </Styled.PeopleBanner>
-                <form onSubmit={handleSubmit}>
-                    <Styled.FormField>
-
-                        <Styled.Label htmlFor="name">Full Name</Styled.Label>
-                        <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} required/>
-
-                    </Styled.FormField>
-                    <Styled.FormField>
-                        <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
-                        <Styled.TextInput 
-                        type="date" 
-                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} onClick={(ev)=> {ev.target.showPicker();}}/>
-                    </Styled.FormField>
-                    <Styled.ButtonsDiv>
-                        <Styled.Button type="submit" id='save' className="btn save" onClick={handleSubmit}>Save</Styled.Button>
-                    </Styled.ButtonsDiv>
-                </form>
-            </div>
-        )}
+          </Styled.PeopleBanner>
+          <form onSubmit={handleSubmit}>
+            <Styled.FormField>
+              <Styled.Label htmlFor="name">Full Name</Styled.Label>
+              <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} required />
+            </Styled.FormField>
+            <Styled.FormField>
+              <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
+              <Styled.TextInput
+                Required
+                type="date"
+                id="dob"
+                name="dob"
+                defaultValue={person.dob}
+                onChange={updatePerson}
+                onClick={(ev) => {
+                  ev.target.showPicker();
+                }}
+              />
+            </Styled.FormField>
+            <Styled.ButtonsDiv>
+              <Styled.Button required type="submit" id="save" className="btn save" onClick={handleSubmit}>
+                Save
+              </Styled.Button>
+            </Styled.ButtonsDiv>
+          </form>
+        </div>
+      )}
     </motion.main>
   );
 }

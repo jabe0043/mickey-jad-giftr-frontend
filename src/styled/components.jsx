@@ -96,12 +96,11 @@ const Subtitle = styled.h2`
 // ul that holds the list items (cards)
 const CardsList = styled.ul`
   display: grid;
-  column-count: 2;   
+  grid-template-columns: repeat(${({ theme }) => theme.default.layout.cardColumnCount}, 1fr);
   column-gap: .75rem;
   padding: 0;
   margin: 1rem 0;
   gap: 0.75rem;
-  display: block;
 `;
 
 // this is the list item styling (for people. Will need to add conditions for gifts)
@@ -228,12 +227,11 @@ export const GiftTitleName = styled.span`
 export const GiftCardContainer = styled.div`
   gap: 1rem;
   display: grid;
-  column-count: 2;   
+  grid-template-columns: repeat(${({ theme }) => theme.default.layout.cardColumnCount}, 1fr);
   column-gap: .75rem;
   // padding: 0;
   // margin: 1rem 0;
   gap: 0.75rem;
-  display: block;
 `;
 
 export const GiftCard = styled.div`
@@ -312,7 +310,7 @@ const ButtonsDiv = styled.div`
 `;
 
 const Button = styled.button`
-  width: 100%;
+  width: 100%
   padding: 0.5rem;
   border-radius: 0.35rem;
   background-color: ${(props) => (props.$secondary ? props.theme.default.colors.white : props.theme.default.colors.button)};
