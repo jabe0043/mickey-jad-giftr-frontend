@@ -8,11 +8,11 @@ import { GlobalStyle } from "./styled/globalStyles";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <UserProvider>
-    <BrowserRouter>
-      <Theme>
-        <GlobalStyle />
-        <App />
-      </Theme>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Theme>
+          <GlobalStyle />
+          <App />
+        </Theme>
+      </BrowserRouter>
   </UserProvider>
 );

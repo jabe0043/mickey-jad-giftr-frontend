@@ -77,17 +77,6 @@ export default function AddEditPerson() {
     console.log("handleSubmit");
     ev.preventDefault();
 
-    // creating updatedPerson obj
-    setUpdatedPerson({
-      ownerID: person.ownerID,
-      _id: person._id,
-      avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` || person.avatar,
-      fullName: updatedPerson.fullName || person.fullName,
-      dob: new Date(updatedPerson.dob || person.dob).getTime + 3600000 * offset,
-      gifts: updatedPerson.gifts || person.gifts,
-      createdAt: person.createdAt,
-    });
-
     // building request
     if (personId) {
       const method = ev.target.id === "save" ? "PATCH" : "DELETE";
@@ -160,7 +149,7 @@ export default function AddEditPerson() {
                     </Styled.FormField>
                     <Styled.FormField>
                         <label htmlFor="dob">Date of Birth</label>
-                        <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} required />
+                        <Styled.TextInput type="date" id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} onClick={(ev)=> {ev.target.showPicker();}}/>
                     </Styled.FormField>
                     <Styled.ButtonsDiv>
                         <Styled.Button type="submit" id="save" onClick={handleSubmit}>Save</Styled.Button>
@@ -194,7 +183,7 @@ export default function AddEditPerson() {
                         <label htmlFor="dob">Date of Birth</label>
                         <Styled.TextInput 
                         type="date" 
-                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} required/>
+                        id="dob" name="dob" defaultValue={person.dob} onChange={updatePerson} onClick={(ev)=> {ev.target.showPicker();}}/>
                     </Styled.FormField>
                     <Styled.ButtonsDiv>
                         <Styled.Button type="submit" id='save' className="btn save" onClick={handleSubmit}>Save</Styled.Button>
