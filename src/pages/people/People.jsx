@@ -18,7 +18,7 @@ export default function People() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `https://gift-backend.onrender.com/`;
+    const url = `https://gift-backend.onrender.com/api/people`;
     let request = new Request(url, {
       method: "GET",
       headers: {
@@ -97,7 +97,7 @@ export default function People() {
           <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
         </div>
         <Subtitle>
-          {people.length === 0  ? (<h2>There are no people in the list</h2>) : (<h2>Here's your list of giftees</h2>)}
+          {people.length === 0  ? ("There are no people in the list") : ("Here\'s your list of giftees")}
         </Subtitle>
       </PageBanner>
       <CardsList className="people">
