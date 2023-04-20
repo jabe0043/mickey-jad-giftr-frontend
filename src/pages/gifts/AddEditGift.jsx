@@ -18,7 +18,7 @@ const AddEditGift = () => {
   useEffect(() => {
     setGift(null);
 
-    let request = new Request(`http://localhost:3001/api/people/${personId}`, {
+    let request = new Request(`https://gift-backend.onrender.com/api/people/${personId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -55,11 +55,11 @@ const AddEditGift = () => {
 
     // Edit gift
     if (giftId) {
-      accessDb(giftData, `http://localhost:3001/api/people/${personId}/gifts/${giftId}`, e.target.id === "save" ? "PATCH" : "DELETE");
+      accessDb(giftData, `https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`, e.target.id === "save" ? "PATCH" : "DELETE");
     }
     // Add gift
     else {
-      accessDb(giftData, `http://localhost:3001/api/people/${personId}/gifts`, "POST");
+      accessDb(giftData, `https://gift-backend.onrender.com/api/people/${personId}/gifts`, "POST");
     }
   };
 
