@@ -4,12 +4,12 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-    font-family: ${({ theme }) => theme.default.fonts[1]};
+    font-family: ${({ theme }) => theme.default.fonts[0]};
     line-height: 1.5;
     font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 
     color:${({ theme }) => theme.default.colors.text};
-    background-color: ${({ theme }) => theme.default.colors.background};
+    background-color: ${({ theme }) => theme.default.colors.white};
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -40,6 +40,7 @@ body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     margin: 0;
+    margin-bottom: 1rem;
 }
 
 /* Update default margin */
@@ -140,6 +141,18 @@ p{
 .bi{
     font-size: 1.5rem;
     color: ${({ theme }) => theme.default.colors.text};
+}
+
+
+i.bi-pencil-fill{
+    height: 1rem;
+    width: 1rem;
+    display: flex;
+}
+
+i.bi-pencil-fill::before{
+    height: 1.3rem;
+    width: 1.3rem;
 }
 
 // + icon in header

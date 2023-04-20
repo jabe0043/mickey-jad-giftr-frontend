@@ -131,20 +131,21 @@ export default function AddEditPerson() {
             <div>
                 <Styled.PersonAddEditTitle>Edit Information for {person.fullName}</Styled.PersonAddEditTitle>
                 <Styled.PeopleBanner>
-                    <i className="bi bi-arrow-left" onClick={() => {
+                    {/* <i className="bi bi-arrow-left" onClick={() => {
                         setAvatarSeed(crypto.randomUUID());
-                        }}></i>
+                        }}></i> */}
                     <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
                     <Styled.GiftsBannerAvatar>
                         <img className='randomAvatar' src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`}></img>
                     </Styled.GiftsBannerAvatar>
-                        <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt>
-                    </div>
-                    <i className="bi bi-arrow-right" onClick={() => {
+                    <i className="bi bi-shuffle" onClick={() => {
                         setAvatarSeed(crypto.randomUUID());
-                        }}></i>
+                        }} style={{alignSelf: 'center', color:'#1E1E1E'}}></i>
+                    </div>
+                    {/* <i className="bi bi-arrow-right" onClick={() => {
+                        setAvatarSeed(crypto.randomUUID());
+                        }}></i> */}
                 </Styled.PeopleBanner>
-                {/* <form onSubmit={handleSubmit}> */}
                 <form onSubmit={handleSubmit}>
                     <Styled.FormField>
                         <Styled.Label For="name">Full Name</Styled.Label>
@@ -163,7 +164,7 @@ export default function AddEditPerson() {
         ) : (               
             //ADD USER
             <div>
-                <h1>Add a new person to the list</h1>
+                <Styled.GiftAddEditH1>Add a new person to the list</Styled.GiftAddEditH1>
                 <Styled.PeopleBanner>
                     {/* <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i> */}
                     <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
@@ -171,17 +172,15 @@ export default function AddEditPerson() {
                         <img className='randomAvatar' src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`} 
                         alt={`avatar`}></img>
                     </Styled.GiftsBannerAvatar>
-                        {/* <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt> */}
                         <i className="bi bi-shuffle" onClick={() => {
                         setAvatarSeed(crypto.randomUUID());
-                        }} style={{alignSelf: 'center', color:'white'}}></i>
+                        }} style={{alignSelf: 'center', color:'#1E1E1E'}}></i>
                     </div>
-                    {/* <i className="bi bi-arrow-right" onClick={(ev)=>changeAvatar(ev)}></i> */}
                 </Styled.PeopleBanner>
                 <form onSubmit={handleSubmit}>
                     <Styled.FormField>
 
-                        <label htmlFor="name">Full Name</label>
+                        <Styled.Label htmlFor="name">Full Name</Styled.Label>
                         <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} required/>
 
                     </Styled.FormField>

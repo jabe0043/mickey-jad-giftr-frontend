@@ -94,14 +94,16 @@ const AddEditGift = () => {
     transition={{ duration: 0.25, ease: "easeInOut" }}
     >
       <CheckAuth />
-      <Styled.GiftAddEditH1>
-        {giftId ? "Edit" : "Add"} {`a gift idea for ${personName}`}
-      </Styled.GiftAddEditH1>
+      <Styled.PageBanner>
+        <Styled.GiftAddEditH1>
+          {giftId ? "Edit" : "Add"} {`a gift idea for`}<br /><strong>{`${personName}`}</strong> 
+        </Styled.GiftAddEditH1>
+      </Styled.PageBanner>
 
-      <Styled.GiftAddEditIllustration
+      {/* <Styled.GiftAddEditIllustration
         src={bannerIllustration}
         alt="a smiling woman raising her hands with gift boxes"
-      ></Styled.GiftAddEditIllustration>
+      ></Styled.GiftAddEditIllustration> */}
 
       <Styled.FormForGifts>
         <label htmlFor="name">Gift Idea</label>

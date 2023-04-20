@@ -94,11 +94,14 @@ export default function People() {
     >
       <CheckAuth />
       <PageBanner className="page-banner">
-        <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#007b7f'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
-        <Subtitle>
+        <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#1E1E1E'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
+        {/* <Subtitle>
           {people.length === 0  ? (<h2>There are no people in the list</h2>) : (<h2>Here's your list of giftees</h2>)}
-        </Subtitle>
+        </Subtitle> */}
       </PageBanner>
+        <Subtitle>
+          {people.length === 0  ? ('There are no people in the list') : ("Here's your list of giftees")}
+        </Subtitle>
       <div>      
         <CardsList >
           {people.map((person) => (
