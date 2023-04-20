@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import giftImg from "../../assets/pixeltrue-giveaway.png";
 import ListCard from "../ListCard";
 import { useTheme } from "styled-components";
-import { PageBanner, Title, CardsList } from "../../styled/components";
+import { PageBanner, Title, CardsList, Subtitle } from "../../styled/components";
 import CheckAuth from "../../utils/CheckAuth";
 import { motion } from "framer-motion";
 
@@ -12,7 +12,6 @@ import { motion } from "framer-motion";
 export default function People() {
   const [userName, setUserName] = useState("");
   const [people, setPeople] = useState([]);
-  console.log("People rendered");
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const theme = useTheme();
   const navigate = useNavigate();
@@ -87,11 +86,11 @@ export default function People() {
     >
       <CheckAuth />
       <PageBanner className="page-banner">
-        <Title>{`Welcome ${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</Title>
-        <div>
+        <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#007b7f'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
+        <div style={{display: "flex", justifyContent:"flex-end", marginTop:"-6rem"}}>
           <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
         </div>
-        <h2>Here's your list of giftees</h2>
+        <Subtitle>Here's your list of giftees</Subtitle>
       </PageBanner>
       <CardsList className="people">
         {people.map((person) => (

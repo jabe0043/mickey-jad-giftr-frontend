@@ -33,7 +33,6 @@ const Login = styled.main`
 export const LoginH1 = styled.h1`
   font-size: ${({ theme }) => theme.default.fontSizes.xxl};
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
-  align-self: flex-start;
 `;
 
 export const LoginH2 = styled.h2`
@@ -49,39 +48,55 @@ export const LoginH2 = styled.h2`
 const PageBanner = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.default.colors.text};
-  font-size: ${({ theme }) => theme.default.fontSizes.l};
+  font-size: ${({ theme }) => theme.default.fontSizes.xxl};
+  font: ${({ theme }) => theme.default.fontWeights.semiBold};
+  align-self: flex-start;
+  padding: 2rem 0 0 2rem;
 `;
+
+const Subtitle = styled.h2`
+align-self: flex-start;
+padding:1rem 2rem;
+color: ${({ theme }) => theme.default.colors.text};
+font-family: ${({ theme }) => theme.default.fonts[3]};
+font-weight: ${({ theme }) => theme.default.fontWeights.medium};
+`
 
 // ul that holds the list items (cards)
 const CardsList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   padding: 0;
   margin: 0;
   cursor: pointer;
-
+  gap: .75rem;
 `;
 
 // this is the list item styling (for people. Will need to add conditions for gifts)
 const Card = styled.li`
-  background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
   display: flex;
   align-items: center;
   gap: 2rem;
-  border: solid 0.25rem ${({ theme }) => theme.default.colors.text};
   border-radius: 1rem;
-  padding: 1rem;
+  padding: .75rem 1rem;
   transition: all 0.25s ease-in-out;
+  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
+  border-radius: .35rem;
+
 
   &:hover{
+    background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
     transform: translateY(-.25rem);  
-    box-shadow:-3px 11px 12px -2px rgba(0,0,0,0.29);
+    box-shadow:-3px 10px 10px -2px rgba(0,0,0,0.29);
+    // border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
+    border: none;
+
   }
 `;
 
@@ -94,20 +109,25 @@ const CardAvatar = styled.div`
   height: 5rem;
   background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 10rem;
-  border: solid 0.15rem ${({ theme }) => theme.default.colors.text};
+  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
   `;
 
 // card title and dob
 const CardInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: .5rem;
 `;
 
 // this is the persons name in the card;
 const CardTitle = styled.p`
   font-weight: ${({ theme }) => theme.default.fontWeights.semiBold};
+  font-size: ${({ theme }) => theme.default.fontSizes.l};
 `;
+
+const CardSubtitle = styled.p`
+  color: ${({ theme }) => theme.default.colors.text};
+`
 
 /*****************************
  ** PAGE 2 - GIFT PAGE
@@ -115,7 +135,7 @@ const CardTitle = styled.p`
 
 export const GiftsBanner = styled.div`
   background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
-  border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
+  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -130,7 +150,7 @@ export const GiftsBannerAvatar = styled.div`
   justify-content: center;
   background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 10rem;
-  border: solid 0.15rem ${({ theme }) => theme.default.colors.text};
+  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
   padding: .5rem;
   align-self: center;
 `;
@@ -230,8 +250,8 @@ const FormField = styled.div`
 
 const TextInput = styled.input`
   padding: 0.5rem;
-  border: solid 0.125rem ${({ theme }) => theme.default.colors.text};
-  border-radius: 0.35rem;
+  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
+  border-radius: 0.25rem;
 `;
 
 const ButtonsDiv = styled.div`
@@ -279,7 +299,7 @@ const PeopleBanner = styled.div`
   justify-content: center;
   gap: 2rem;
   padding: 1rem;
-  margin: 1rem;
+  // margin: 1rem;
 `;
 
 const SelectAvatarPrompt = styled.p`
@@ -306,11 +326,13 @@ export {
   Login,
   PageBanner,
   Title,
+  Subtitle,
   CardsList,
   Card,
   CardAvatar,
   CardInfo,
   CardTitle,
+  CardSubtitle,
   AppHeader,
   Logo,
   FormField,

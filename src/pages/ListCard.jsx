@@ -1,5 +1,5 @@
 import {useTheme} from 'styled-components';
-import {Card, CardAvatar, CardInfo, CardTitle} from '../styled/components'
+import {Card, CardAvatar, CardInfo, CardTitle, CardSubtitle} from '../styled/components'
 
 
 // will need to create a context provider or state
@@ -19,7 +19,7 @@ export default function ListCard(props){
             </CardAvatar>
             <CardInfo>
                 <CardTitle className='person__fullname'>{ person.fullName } </CardTitle>
-                <p className='person__dob'>{ person.dob }</p>
+                <CardSubtitle className='person__dob'>{ person.dob }</CardSubtitle>
             </CardInfo>
         </Card>
     )
