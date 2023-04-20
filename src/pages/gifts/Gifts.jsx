@@ -7,6 +7,7 @@ import { useUser } from "../../context/userContext";
 import CheckAuth from "../../utils/CheckAuth";
 
 const Gifts = () => {
+  console.log("Gifts rendered");
   //Local Server URL
   const localServerURL = `http://localhost:3001`;
 
@@ -16,6 +17,7 @@ const Gifts = () => {
   const { personId } = useParams();
 
   useEffect(() => {
+    console.log("Gifts useEffect rendered");
     const url = `http://localhost:3001/api/people/${personId}`;
     let request = new Request(url, {
       method: "GET",
