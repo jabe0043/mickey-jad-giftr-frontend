@@ -33,8 +33,6 @@ export default function People() {
         return res.json();
       })
       .then((data) => {
-        //TODO:should we exclude gifts from being returned from the client side (like below), or not send the gifts at all for a getAll request from the server side??
-        //Mickey(4/19 8pm): I think it's better to not send the gifts at all for a getAll request from the server side.
         let peopleArr = data.data;
         console.log("fetched peopleArr: ", peopleArr);
         setPeople(
@@ -81,26 +79,30 @@ export default function People() {
     navigate(`/gift/${personId}`);
   };
 
+
+
+
+
   return (
-    <motion.main className="container" 
+    <motion.main
     initial={{ x: "-100%" }}
     animate={{ x: "0" }}
     exit={{ x: "-100%" }}
     transition={{ duration: 0.2, ease: "easeIn" }}
     >
       <CheckAuth />
-      <PageBanner className="page-banner">
-        <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#007b7f'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
-        <div style={{display: "flex", justifyContent:"flex-end", marginTop:"-6rem"}}>
-          <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
-        </div>
+      <PageBanner className=" container page-banner">
+        <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#F9A77F'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
         <Subtitle>Here's your list of giftees</Subtitle>
       </PageBanner>
-      <CardsList className="people">
-        {people.map((person) => (
-          <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
-        ))}
-      </CardsList>
+      <div>      
+        <CardsList className="container" >
+          {people.map((person) => (
+            <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
+          ))}
+        </CardsList>
+      </div>
+
     </motion.main>
   );
 }

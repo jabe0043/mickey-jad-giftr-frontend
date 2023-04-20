@@ -154,6 +154,8 @@ p{
     font-weight: 600;
 }
 
-
+.randomAvatar{
+    border-radius: 10rem;
+}
 
 `;

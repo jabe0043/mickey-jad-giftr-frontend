@@ -60,7 +60,7 @@ const Gifts = () => {
           <Styled.GiftsBannerEditButton onClick={() => { navigate(`/people/edit/${personId}`)}}>
             <i className="bi bi-pencil" ></i>
           </Styled.GiftsBannerEditButton>
-          <Styled.GiftsBannerAvatar>{person.avatar && (<img src={person.avatar} alt={`avatar for${person.fullName}`}></img>)} </Styled.GiftsBannerAvatar>
+          <Styled.GiftsBannerAvatar>{person.avatar && (<img className="randomAvatar" src={person.avatar} alt={`avatar for${person.fullName}`}></img>)} </Styled.GiftsBannerAvatar>
         </div>
         <div>
           <Styled.GiftsBannerName>{person.fullName}</Styled.GiftsBannerName>

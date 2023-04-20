@@ -1,0 +1,1 @@
+The avatar style Micah is based on: Avatar Illustration System by Micah Lanier, licensed under CC BY 4.0 . / Remix of the original.

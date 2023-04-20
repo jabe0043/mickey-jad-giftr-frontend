@@ -1,4 +1,17 @@
 import styled from "styled-components";
+import {useTheme} from 'styled-components';
+import Theme from '../context/Theme';
+
+
+
+
+function RandomBgColor() {
+  const theme = useTheme();
+  const bgOptions = theme.default.colors.bgOptions
+
+  const randomNum = Math.floor(Math.random() * bgOptions.length);
+  return `#${bgOptions[randomNum]}`;
+}
 
 /*****************************
  ** LAYOUT - HEADER
@@ -35,24 +48,28 @@ export const LoginH1 = styled.h1`
 `;
 
 export const LoginH2 = styled.h2`
-  font-family: ${({ theme }) => theme.default.fonts[3]};
+  font-family: ${({ theme }) => theme.default.fonts[0]};
   font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
 
-/*****************************
+/*************************************
  ** PAGE 1 - HOME(PEOPLE) PAGE
- ******************************/
+ ************************************/
 
 const PageBanner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.default.colors.primary};
+  margin-bottom: 1rem;
+  border-radius: 0.45rem;
 `;
 
 const Title = styled.h1`
-  color: ${({ theme }) => theme.default.colors.text};
+  color: ${({ theme }) => theme.default.colors.white};
+  font-family: ${({ theme }) => theme.default.fonts[0]};
   font-size: ${({ theme }) => theme.default.fontSizes.xxl};
   font: ${({ theme }) => theme.default.fontWeights.semiBold};
   align-self: flex-start;
@@ -63,50 +80,58 @@ const Subtitle = styled.h2`
   align-self: flex-start;
   padding: 1rem 2rem;
   color: ${({ theme }) => theme.default.colors.text};
-  font-family: ${({ theme }) => theme.default.fonts[3]};
+  font-family: ${({ theme }) => theme.default.fonts[0]};
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
+  color: ${({ theme }) => theme.default.colors.white};
 `;
 
 // ul that holds the list items (cards)
 const CardsList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
+  display: grid;
+  column-count: 2;   
+  column-gap: .75rem;
+  padding: 1;
   cursor: pointer;
   gap: 0.75rem;
+  display: block;
+  padding-bottom: 1rem;
 `;
 
 // this is the list item styling (for people. Will need to add conditions for gifts)
 const Card = styled.li`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  // gap: 2rem;
   border-radius: 1rem;
   padding: 0.75rem 1rem;
   transition: all 0.25s ease-in-out;
-  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.35rem;
+  // background-color: ${(RandomBgColor)};
+  background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
+  break-inside: avoid-column; 
+  margin-bottom: .75rem;
+
+
 
   &:hover {
-    background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
     transform: translateY(-0.25rem);
     box-shadow: -3px 10px 10px -2px rgba(0, 0, 0, 0.29);
-    // border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
-    border: none;
+    // background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
+    background-color: ${(RandomBgColor)};
+
+
+
   }
 `;
 
-// card avatar image styling
+// card avatar image styling      //avatar div on people page
 const CardAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 5rem;
-  height: 5rem;
-  background-color: ${({ theme }) => theme.default.colors.pureWhite};
-  border-radius: 10rem;
-  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
+  height: 5rem; 
 `;
 
 // card title and dob
@@ -140,16 +165,14 @@ export const GiftsBanner = styled.div`
   padding: 1rem;
 `;
 
-export const GiftsBannerAvatar = styled.div`
-  width: 8rem;
-  height: 8rem;
-  display: flex;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.default.colors.pureWhite};
-  border-radius: 10rem;
-  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
-  padding: 0.5rem;
-  align-self: center;
+export const GiftsBannerAvatar = styled.div`  //ADD/EDIT PERSON PAGE
+  width: 10rem;
+  height: 10rem;
+  // background-color: ${({ theme }) => theme.default.colors.pureWhite};
+  // border-radius: 10rem;
+  // // border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
+  // padding: 0.5rem;
+  // align-self: center;
 `;
 
 export const GiftsBannerName = styled.h1`
@@ -288,8 +311,8 @@ export const FormForGifts = styled.form`
  ******************************/
 
 const PeopleBanner = styled.div`
-  background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
-  border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
+  background-color: ${({ theme }) => theme.default.colors.primary};
+  // border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.5rem;
   display: flex;
   flex-direction: row;

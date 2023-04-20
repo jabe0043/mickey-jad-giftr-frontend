@@ -58,7 +58,7 @@ export default function AddEditPerson() {
   }, []);
 
   useEffect(() => {
-    setUpdatedPerson((prevPerson) => ({ ...prevPerson, avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` }));
+    setUpdatedPerson((prevPerson) => ({ ...prevPerson, avatar:`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`}));
   }, [avatarSeed]);
 
   // Create state variable for keyboard entries
@@ -126,6 +126,9 @@ export default function AddEditPerson() {
       .catch(console.warn);
   }
 
+
+
+
   //TODO: can make way shorter
   return (
     <motion.main className="container" 
@@ -145,7 +148,7 @@ export default function AddEditPerson() {
                         }}></i>
                     <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
                     <Styled.GiftsBannerAvatar>
-                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`} alt={`avatar`}></img>
+                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`}></img>
                     </Styled.GiftsBannerAvatar>
                         <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt>
                     </div>
@@ -177,12 +180,13 @@ export default function AddEditPerson() {
                     {/* <i className="bi bi-arrow-left" onClick={(ev)=>changeAvatar(ev)}></i> */}
                     <div style={{display: "flex", flexDirection: "column", gap: ".5rem"}}>
                     <Styled.GiftsBannerAvatar>
-                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000`} alt={`avatar`}></img>
+                        <img className='randomAvatar' src={`https://api.dicebear.com/6.x/micah/svg?seed=${avatarSeed}&mouth=laughing,nervous,smile,smirk,surprised&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&earringsProbability=0&facialHairProbability=0`} 
+                        alt={`avatar`}></img>
                     </Styled.GiftsBannerAvatar>
                         {/* <Styled.SelectAvatarPrompt> select an avatar</Styled.SelectAvatarPrompt> */}
                         <i className="bi bi-shuffle" onClick={() => {
                         setAvatarSeed(crypto.randomUUID());
-                        }} style={{alignSelf: 'center'}}></i>
+                        }} style={{alignSelf: 'center', color:'white'}}></i>
                     </div>
                     {/* <i className="bi bi-arrow-right" onClick={(ev)=>changeAvatar(ev)}></i> */}
                 </Styled.PeopleBanner>
