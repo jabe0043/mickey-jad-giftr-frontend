@@ -45,7 +45,7 @@ const AddEditGift = () => {
     const giftIdea = formData.get("giftIdea");
     const store = formData.get("store");
     const link = formData.get("url");
-
+    
     const giftData = {
       giftName: giftIdea,
       store: store,
@@ -77,24 +77,26 @@ const AddEditGift = () => {
       transition={{ duration: 0.25, ease: "easeInOut" }}
     >
       <CheckAuth />
-      <Styled.GiftAddEditH1>
-        {giftId ? "Edit" : "Add"} {`a gift idea for ${personName}`}
-      </Styled.GiftAddEditH1>
+      <Styled.PageBanner>
+        <Styled.GiftAddEditH1>
+          {giftId ? "Edit" : "Add"} {`a gift idea for`}<br /><strong>{`${personName}`}</strong> 
+        </Styled.GiftAddEditH1>
+      </Styled.PageBanner>
 
-      <Styled.GiftAddEditIllustration
+      {/* <Styled.GiftAddEditIllustration
         src={bannerIllustration}
         alt="a smiling woman raising her hands with gift boxes"
-      ></Styled.GiftAddEditIllustration>
+      ></Styled.GiftAddEditIllustration> */}
 
       <Styled.FormForGifts>
         <label htmlFor="name">Gift Idea</label>
-        <Styled.TextInput type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}></Styled.TextInput>
+        <Styled.TextInput type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}required></Styled.TextInput>
 
         <label htmlFor="name">Store</label>
-        <Styled.TextInput type="text" id="store" name="store" defaultValue={gift ? gift.store : ""}></Styled.TextInput>
+        <Styled.TextInput type="text" id="store" name="store" defaultValue={gift ? gift.store : "" }required></Styled.TextInput>
 
         <label htmlFor="name">Website URL</label>
-        <Styled.TextInput type="text" id="url" name="url" defaultValue={gift ? gift.website : ""}></Styled.TextInput>
+        <Styled.TextInput type="text" id="url" name="url" defaultValue={gift ? gift.website : ""}required></Styled.TextInput>
 
         {giftId ? (
           <>

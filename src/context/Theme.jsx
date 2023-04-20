@@ -3,28 +3,35 @@ import { ThemeProvider } from "styled-components";
 const theme = {
   default: {
     colors: {
-      pureWhite: "#FFFFFF",
+ 
+        //TODO: V2
+      white: "#F5F5F5",
       text: "#1E1E1E",
       textSecondary: "#999999",
-      background: "#F4EDE7",
-      backgroundSecondary: "#EEEEEE",
-      button: "#E8E6D9",
-      buttonSecondary: "#EBCFC4",
-      buttonHover: "#CDD0B9",
-      buttonSecondaryHover:"#D8BEB3",
+      
+      // primary: "#c0aede",
+      primary: "#80c9e0",
+      secondary:"#b6e3f4", 
+      bgOptions: ["b6e3f4", "c0aede", "d1d4f9", "ffd5dc", "ffdfbf"],
 
-      //TODO: V2
-      background: "#f5f5f5",
-      // backgroundSecondary: "#a0b6d8",
-      // test: "#9ba48e  #1a2a41  #007b7f #1d4739",
+
+      backgroundSecondary: "#F5F5F5",
+
+
+      button: "#d1d4f9",
+      buttonHover: "#b6e3f4",
+      // button: "#b6e3f4",
+      // buttonHover: "#80c9e0",
+      buttonSecondary: "#ff8c85",
+      buttonSecondaryHover: "#ffb3b3",
     },
-    fonts: ["Playfair Display", "serif", "Lato", "sans-serif"],
+    fonts: ["Poppins, Playfair Display", "serif", "Lato", "sans-serif"],
     fontSizes: {
       xs: "0.78rem",
-      s: "1.01rem",
+      s: "1.1rem",
       m: "1.3rem",
       l: "1.733rem",
-      xl: "1.55rem",
+      xl: "1.85rem",
       xxl: "2.02rem",
     },
     fontWeights: {
@@ -32,11 +39,12 @@ const theme = {
       medium: "500",
       semiBold: "600",
     },
-    border: {
-      normal: `solid .1rem ${({ theme }) => theme.default.colors.text}`,
-    },
+    margins: {
+      regular: ".5rem",
+    }
   },
 };
+
 
 function Theme(props) {
   // import {useTheme} on any page that wants access to theme

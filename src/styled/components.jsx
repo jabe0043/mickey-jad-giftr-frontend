@@ -1,4 +1,19 @@
 import styled from "styled-components";
+import {useTheme} from 'styled-components';
+import Theme from '../context/Theme';
+import homeImg from "../assets/pastel_gradient_2.jpg";
+import addEditImg from "../assets/2084.jpg";
+
+
+
+
+function RandomBgColor() {
+  const theme = useTheme();
+  const bgOptions = theme.default.colors.bgOptions
+
+  const randomNum = Math.floor(Math.random() * bgOptions.length);
+  return `#${bgOptions[randomNum]}`;
+}
 
 /*****************************
  ** LAYOUT - HEADER
@@ -35,24 +50,32 @@ export const LoginH1 = styled.h1`
 `;
 
 export const LoginH2 = styled.h2`
-  font-family: ${({ theme }) => theme.default.fonts[3]};
+  font-family: ${({ theme }) => theme.default.fonts[0]};
   font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
 
-/*****************************
+/*************************************
  ** PAGE 1 - HOME(PEOPLE) PAGE
- ******************************/
+ ************************************/
 
 const PageBanner = styled.div`
+  height: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+  margin: 1rem 0rem !important;
+  border-radius: 0.45rem;
+  background-image: 
+  url(${homeImg});
+  background-fit: contain;
+  background-position: center;
+  `;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.default.colors.text};
+  font-family: ${({ theme }) => theme.default.fonts[0]};
   font-size: ${({ theme }) => theme.default.fontSizes.xxl};
   font: ${({ theme }) => theme.default.fontWeights.semiBold};
   align-self: flex-start;
@@ -61,52 +84,60 @@ const Title = styled.h1`
 
 const Subtitle = styled.h2`
   align-self: flex-start;
-  padding: 1rem 2rem;
   color: ${({ theme }) => theme.default.colors.text};
-  font-family: ${({ theme }) => theme.default.fonts[3]};
+  font-family: ${({ theme }) => theme.default.fonts[0]};
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
-`;
+  font-size: ${({ theme }) => theme.default.fontSizes.m};
+  margin: 0rem;
+  margin-top:2rem;
+
+  `;
 
 // ul that holds the list items (cards)
 const CardsList = styled.ul`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  column-count: 2;   
+  column-gap: .75rem;
   padding: 0;
-  margin: 0;
-  cursor: pointer;
+  margin: 1rem 0;
   gap: 0.75rem;
+  display: block;
 `;
 
 // this is the list item styling (for people. Will need to add conditions for gifts)
 const Card = styled.li`
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
   border-radius: 1rem;
   padding: 0.75rem 1rem;
   transition: all 0.25s ease-in-out;
-  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.35rem;
+  cursor: pointer;
+  background-color: ${(RandomBgColor)};
+  break-inside: avoid-column; 
+  margin-bottom: .75rem;
+
+
 
   &:hover {
-    background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
     transform: translateY(-0.25rem);
     box-shadow: -3px 10px 10px -2px rgba(0, 0, 0, 0.29);
-    // border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
-    border: none;
+    background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
+
+
+
   }
 `;
 
-// card avatar image styling
+// card avatar image styling      //avatar div on people page
 const CardAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 5rem;
-  height: 5rem;
-  background-color: ${({ theme }) => theme.default.colors.pureWhite};
-  border-radius: 10rem;
-  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
+  height: 5rem; 
+  align-self: center;
 `;
 
 // card title and dob
@@ -118,8 +149,9 @@ const CardInfo = styled.div`
 
 // this is the persons name in the card;
 const CardTitle = styled.p`
+  font-weight: ${({ theme }) => theme.default.fonts[0]};
   font-weight: ${({ theme }) => theme.default.fontWeights.semiBold};
-  font-size: ${({ theme }) => theme.default.fontSizes.l};
+  font-size: ${({ theme }) => theme.default.fontSizes.m};
 `;
 
 const CardSubtitle = styled.p`
@@ -132,28 +164,29 @@ const CardSubtitle = styled.p`
 
 export const GiftsBanner = styled.div`
   background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
-  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  background-image: 
+  url(${homeImg});
+  background-fit: contain;
+  background-position: center;
 `;
 
-export const GiftsBannerAvatar = styled.div`
-  width: 8rem;
-  height: 8rem;
-  display: flex;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.default.colors.pureWhite};
-  border-radius: 10rem;
-  border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
-  padding: 0.5rem;
+export const GiftsBannerAvatar = styled.div`  //ADD/EDIT PERSON PAGE
+  width: 10rem;
+  height: 10rem;
+  padding: 0rem;
+  margin: 0rem;
   align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const GiftsBannerName = styled.h1`
-  font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.semiBold};
   margin-top: 1rem;
 `;
@@ -165,17 +198,25 @@ export const GiftsBannerDob = styled.p`
 `;
 
 export const GiftsBannerEditButton = styled.div`
-  width: ${({ theme }) => theme.default.fontSizes.xxl};
-  height: ${({ theme }) => theme.default.fontSizes.xxl};
+  width: 2.5rem;
+  height: 2.5rem;
   align-self: flex-end;
+  background-color: ${({ theme }) => theme.default.colors.secondary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
 `;
 
 export const GiftTitle = styled.h2`
+  padding-top: 1rem;
   color: ${({ theme }) => theme.default.colors.text};
-  font-size: ${({ theme }) => theme.default.fontSizes.l};
+  font-size: ${({ theme }) => theme.default.fontSizes.m};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
 
+
+//here are your gifts for ...
 export const GiftTitleName = styled.span`
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
 `;
@@ -185,33 +226,38 @@ export const GiftTitleName = styled.span`
  ******************************/
 
 export const GiftCardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+  display: grid;
+  column-count: 2;   
+  column-gap: .75rem;
+  // padding: 0;
+  // margin: 1rem 0;
+  gap: 0.75rem;
+  display: block;
 `;
 
 export const GiftCard = styled.div`
-  background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 0.5rem;
-  border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
   display: flex;
   flex-direction: column;
-  // gap: 1rem;
   cursor: pointer;
+  margin-bottom: .75rem;
   padding: 1rem;
   transition: all 0.25s ease-in-out;
+  background-color: ${(RandomBgColor)};
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-0.25rem);
     box-shadow: -3px 11px 12px -2px rgba(0, 0, 0, 0.29);
-    background-color: ${({ theme }) => theme.default.colors.button};
+    background-color: ${({ theme }) => theme.default.colors.white};
   }
 `;
 
-export const GiftName = styled.h3`
-  font-size: ${({ theme }) => theme.default.fontSizes.l};
-  font-weight: ${({ theme }) => theme.default.fontWeights.medium};
-  margin-top: -1rem;
+export const GiftName = styled.p`
+  font-size: ${({ theme }) => theme.default.fontSizes.m};
+  word-wrap: break-word;
+  font-weight:${({ theme }) => theme.default.fontWeights.semiBold}
 `;
 
 export const GiftStore = styled.p`
@@ -247,15 +293,16 @@ const FormField = styled.div`
 
 export const Label = styled.label`
   font-family: ${({ theme }) => theme.default.fonts[3]};
-  font-size: ${({ theme }) => theme.default.fontSizes.m};
+  font-size: ${({ theme }) => theme.default.fontSizes.s};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
-  margin-bottom: ${({ theme }) => theme.default.fontSizes.m};
+  margin-bottom: ${({ theme }) => theme.default.margins.regular};
 `;
 
 const TextInput = styled.input`
   padding: 0.5rem;
   border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.25rem;
+  margin-bottom: 1rem;
 `;
 
 const ButtonsDiv = styled.div`
@@ -267,13 +314,20 @@ const ButtonsDiv = styled.div`
 const Button = styled.button`
   width: 100%;
   padding: 0.5rem;
-  border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.35rem;
-  background-color: ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.button)};
-  transition: background-color 0.25s ease-in-out;
+  background-color: ${(props) => (props.$secondary ? props.theme.default.colors.white : props.theme.default.colors.button)};
+  border: .15rem solid;
+  // border: none;
+  border-color:  ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondaryHover : props.theme.default.colors.button)};
+  transition: all 0.25s ease-in-out;
 
   &:hover {
-    background-color: ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondaryHover : props.theme.default.colors.buttonHover)};
+    border: .15rem solid;
+    border-color:  ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.buttonHover)};
+    background-color: ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.buttonHover)};
+    color: ${(props) => (props.$secondary ? props.theme.default.colors.text : props.theme.default.colors.white)}
+    font-weight: ${({ theme }) => theme.default.fontWeights.semiBold}
+    // border-color:  ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.button)};
   }
 `;
 
@@ -288,16 +342,20 @@ export const FormForGifts = styled.form`
  ******************************/
 
 const PeopleBanner = styled.div`
-  background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
-  border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
-  border-radius: 0.5rem;
+
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 2rem;
   padding: 1rem;
-  // margin: 1rem;
+  margin: 1rem 0 2rem;
+  border-radius: 0.45rem;
+
+  background-image: 
+  url(${homeImg});
+  background-fit: contain;
+  background-position: center;
 `;
 
 export const PersonAddEditTitle = styled.h1`
@@ -315,8 +373,10 @@ const SelectAvatarPrompt = styled.p`
  ******************************/
 
 export const GiftAddEditH1 = styled.h1`
-  font-size: ${({ theme }) => theme.default.fontSizes.xl};
+  font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
+  padding: .75rem;
+  align-self: flex-start;
 `;
 
 export const GiftAddEditIllustration = styled.img`

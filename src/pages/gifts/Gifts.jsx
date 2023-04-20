@@ -59,24 +59,21 @@ const Gifts = () => {
       <Styled.GiftsBanner>
         <div style={{ display: "flex", flexDirection:'column', width:'100%' }}>
           <Styled.GiftsBannerEditButton onClick={() => { navigate(`/people/edit/${personId}`)}}>
-            <i className="bi bi-pencil" ></i>
+          <i class="bi-pencil-fill" style={({color:'#1E1E1E'})}></i>
           </Styled.GiftsBannerEditButton>
-          <Styled.GiftsBannerAvatar>{person.avatar && (<img src={person.avatar} alt={`avatar for${person.fullName}`}></img>)} </Styled.GiftsBannerAvatar>
+          <Styled.GiftsBannerAvatar>{person.avatar && (<img className="randomAvatar" src={person.avatar} alt={`avatar for${person.fullName}`}></img>)} </Styled.GiftsBannerAvatar>
         </div>
-        <div>
+        <div style={({textAlign:"center"})}>
           <Styled.GiftsBannerName>{person.fullName}</Styled.GiftsBannerName>
           <Styled.GiftsBannerDob>{person.dob}</Styled.GiftsBannerDob>
         </div>
       </Styled.GiftsBanner>
 
       <Styled.GiftTitle>
-        {/* {person ? (
-        <> */}
-        {person.gifts && person.gifts.length === 0 ? (
-        'There are currently no gifts for ') : ('Here are your gifts for ')}
+        {person.gifts && person.gifts.length === 0 
+        ? ('There are currently no gifts for ') 
+        : ('Here are your gifts for ')}
         <Styled.GiftTitleName>{person.fullName}</Styled.GiftTitleName>
-        {/* </>)  */}
-        {/* : ('Loading...')} */}
       </Styled.GiftTitle>
 
       {person && person.gifts && (
