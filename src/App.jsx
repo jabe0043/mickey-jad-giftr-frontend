@@ -9,7 +9,7 @@ import AnimatedRoutes from "./AnimatedRoutes";
 
 export default function App() {
   return (
-    <div className="App">
+    <div className="App container">
       <Header />
 
       <AnimatedRoutes />
@@ -26,24 +26,21 @@ export default function App() {
   );
 }
 
-/* ROUTE PLANNING (Use context variables for ids or put them in the url?) 
 
 
-  ROUTE               NAVIGATION 
 
-//****** AUTHORIZATION NOT REQUIRED *********
+/****** AUTHORIZATION NOT REQUIRED *********
   /                   --> login route   
 
 
   // ***** AUTHORIZATION REQUIRED *****
-  /people             --> list of people from the DB (need to be logged in)
+  /people             --> list of people from the DB
   
   /people/add         --> add a new person form OR
   /people/:pid        --> edit a person   OR
   /people/form/:pid   --> edit a person
-  /people/form        --> add a person (you're adding or editing based on whether or not there's an id in the route (if the route has no id, i know im adding a new person))
+  /people/form        --> add a person
   
-  /gifts              --> get person id from a context variable OR
   /people/:pid/gifts  --> person id is part of the url 
   
   /gifts/form         --> both person and gift id are context variables

@@ -33,8 +33,6 @@ export default function People() {
         return res.json();
       })
       .then((data) => {
-        //TODO:should we exclude gifts from being returned from the client side (like below), or not send the gifts at all for a getAll request from the server side??
-        //Mickey(4/19 8pm): I think it's better to not send the gifts at all for a getAll request from the server side.
         let peopleArr = data.data;
         console.log("fetched peopleArr: ", peopleArr);
         setPeople(
@@ -83,8 +81,12 @@ export default function People() {
     navigate(`/gift/${personId}`);
   };
 
+
+
+
+
   return (
-    <motion.main className="container" 
+    <motion.main
     initial={{ x: "-100%" }}
     animate={{ x: "0" }}
     exit={{ x: "-100%" }}
@@ -100,11 +102,14 @@ export default function People() {
           {people.length === 0  ? (<h2>There are no people in the list</h2>) : (<h2>Here's your list of giftees</h2>)}
         </Subtitle>
       </PageBanner>
-      <CardsList className="people">
-        {people.map((person) => (
-          <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
-        ))}
-      </CardsList>
+      <div>      
+        <CardsList className="container" >
+          {people.map((person) => (
+            <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
+          ))}
+        </CardsList>
+      </div>
+
     </motion.main>
   );
 }
