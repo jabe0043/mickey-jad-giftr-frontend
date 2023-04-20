@@ -57,6 +57,7 @@ export default function AddEditPerson() {
     }
   }, []);
 
+
   useEffect(() => {
     setUpdatedPerson((prevPerson) => ({ ...prevPerson, avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` }));
   }, [avatarSeed]);
@@ -75,19 +76,6 @@ export default function AddEditPerson() {
   function handleSubmit(ev) {
     console.log("handleSubmit");
     ev.preventDefault();
-
-    // This is unnecessary because
-    //  A. we are updating personDate whenever we change input values
-    //  B. This setState function is async so it will not wait for the setState to finish before running the next line of code
-    // setUpdatedPerson({
-    //   ownerID: person.ownerID,
-    //   _id: person._id,
-    //   avatar: `https://api.dicebear.com/6.x/croodles/svg?seed=${avatarSeed}&topColor=000000` || person.avatar,
-    //   fullName: updatedPerson.fullName || person.fullName,
-    //   dob: new Date(updatedPerson.dob || person.dob).getTime + 3600000 * offset,
-    //   gifts: updatedPerson.gifts || person.gifts,
-    //   createdAt: person.createdAt,
-    // });
 
     // building request
     if (personId) {
@@ -188,8 +176,10 @@ export default function AddEditPerson() {
                 </Styled.PeopleBanner>
                 <form onSubmit={handleSubmit}>
                     <Styled.FormField>
-                        <Styled.Label htmlFor="name">Full Name</Styled.Label>
-                        <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson}/>
+
+                        <label htmlFor="name">Full Name</label>
+                        <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} required/>
+
                     </Styled.FormField>
                     <Styled.FormField>
                         <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
