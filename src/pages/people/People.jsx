@@ -18,7 +18,7 @@ export default function People() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:3001/api/people/`;
+    const url = `https://gift-backend.onrender.com/`;
     let request = new Request(url, {
       method: "GET",
       headers: {
@@ -52,7 +52,7 @@ export default function People() {
 
       console.log(people);
 
-    const requestForUserName = new Request(`http://localhost:3001/api/user/userName/`, {
+    const requestForUserName = new Request(`https://gift-backend.onrender.com/api/user/userName/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${authenticatedUserToken}`,

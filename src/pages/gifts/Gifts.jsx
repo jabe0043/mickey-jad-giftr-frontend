@@ -9,8 +9,6 @@ import { motion } from "framer-motion";
 
 const Gifts = () => {
   console.log("Gifts rendered");
-  //Local Server URL
-  const localServerURL = `http://localhost:3001`;
 
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const [person, setPerson] = useState({});
@@ -19,7 +17,7 @@ const Gifts = () => {
 
   useEffect(() => {
     console.log("Gifts useEffect rendered");
-    const url = `http://localhost:3001/api/people/${personId}`;
+    const url = `https://gift-backend.onrender.com/api/people/${personId}`;
     let request = new Request(url, {
       method: "GET",
       headers: {
