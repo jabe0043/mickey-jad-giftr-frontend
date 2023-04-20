@@ -15,7 +15,7 @@ const AppHeader = styled.div`
 const Logo = styled.a`
   font-size: ${({ theme }) => theme.default.fontSizes.xl};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
-  position:absolute;
+  position: absolute;
   align-self: center;
 `;
 
@@ -27,8 +27,7 @@ const Login = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-`
+`;
 
 export const LoginH1 = styled.h1`
   font-size: ${({ theme }) => theme.default.fontSizes.xxl};
@@ -36,7 +35,7 @@ export const LoginH1 = styled.h1`
 `;
 
 export const LoginH2 = styled.h2`
-  font-family: ${({ theme }) => theme.default.fonts["Lato"]};
+  font-family: ${({ theme }) => theme.default.fonts[3]};
   font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
@@ -61,12 +60,12 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.h2`
-align-self: flex-start;
-padding:1rem 2rem;
-color: ${({ theme }) => theme.default.colors.text};
-font-family: ${({ theme }) => theme.default.fonts[3]};
-font-weight: ${({ theme }) => theme.default.fontWeights.medium};
-`
+  align-self: flex-start;
+  padding: 1rem 2rem;
+  color: ${({ theme }) => theme.default.colors.text};
+  font-family: ${({ theme }) => theme.default.fonts[3]};
+  font-weight: ${({ theme }) => theme.default.fontWeights.medium};
+`;
 
 // ul that holds the list items (cards)
 const CardsList = styled.ul`
@@ -75,7 +74,7 @@ const CardsList = styled.ul`
   padding: 0;
   margin: 0;
   cursor: pointer;
-  gap: .75rem;
+  gap: 0.75rem;
 `;
 
 // this is the list item styling (for people. Will need to add conditions for gifts)
@@ -84,19 +83,17 @@ const Card = styled.li`
   align-items: center;
   gap: 2rem;
   border-radius: 1rem;
-  padding: .75rem 1rem;
+  padding: 0.75rem 1rem;
   transition: all 0.25s ease-in-out;
   border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
-  border-radius: .35rem;
+  border-radius: 0.35rem;
 
-
-  &:hover{
+  &:hover {
     background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
-    transform: translateY(-.25rem);  
-    box-shadow:-3px 10px 10px -2px rgba(0,0,0,0.29);
+    transform: translateY(-0.25rem);
+    box-shadow: -3px 10px 10px -2px rgba(0, 0, 0, 0.29);
     // border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
     border: none;
-
   }
 `;
 
@@ -110,13 +107,13 @@ const CardAvatar = styled.div`
   background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 10rem;
   border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
-  `;
+`;
 
 // card title and dob
 const CardInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 `;
 
 // this is the persons name in the card;
@@ -127,7 +124,7 @@ const CardTitle = styled.p`
 
 const CardSubtitle = styled.p`
   color: ${({ theme }) => theme.default.colors.text};
-`
+`;
 
 /*****************************
  ** PAGE 2 - GIFT PAGE
@@ -151,7 +148,7 @@ export const GiftsBannerAvatar = styled.div`
   background-color: ${({ theme }) => theme.default.colors.pureWhite};
   border-radius: 10rem;
   border: solid 0.05rem ${({ theme }) => theme.default.colors.text};
-  padding: .5rem;
+  padding: 0.5rem;
   align-self: center;
 `;
 
@@ -185,7 +182,7 @@ export const GiftTitleName = styled.span`
 
 /*****************************
  ** COMPONENT - GIFT CARD
-******************************/
+ ******************************/
 
 export const GiftCardContainer = styled.div`
   display: grid;
@@ -204,10 +201,10 @@ export const GiftCard = styled.div`
   padding: 1rem;
   transition: all 0.25s ease-in-out;
 
-  &:hover{
-    transform: translateY(-.25rem);  
-    box-shadow:-3px 11px 12px -2px rgba(0,0,0,0.29);
-    background-color: ${({ theme }) => theme.default.colors.button} 
+  &:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: -3px 11px 12px -2px rgba(0, 0, 0, 0.29);
+    background-color: ${({ theme }) => theme.default.colors.button};
   }
 `;
 
@@ -236,7 +233,7 @@ export const GiftCloseButton = styled.div`
   align-self: flex-end;
   top: 0;
   right: 0;
-  margin-top:-.5rem;
+  margin-top: -0.5rem;
 `;
 
 /*****************************
@@ -246,6 +243,13 @@ const FormField = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
+`;
+
+export const Label = styled.label`
+  font-family: ${({ theme }) => theme.default.fonts[3]};
+  font-size: ${({ theme }) => theme.default.fontSizes.m};
+  font-weight: ${({ theme }) => theme.default.fontWeights.regular};
+  margin-bottom: ${({ theme }) => theme.default.fontSizes.m};
 `;
 
 const TextInput = styled.input`
@@ -265,18 +269,12 @@ const Button = styled.button`
   padding: 0.5rem;
   border: solid 0.1rem ${({ theme }) => theme.default.colors.text};
   border-radius: 0.35rem;
-  background-color: ${(props) =>
-    props.$secondary
-      ? props.theme.default.colors.buttonSecondary
-      : props.theme.default.colors.button};
+  background-color: ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.button)};
   transition: background-color 0.25s ease-in-out;
 
-  &:hover{
-    background-color: ${(props) => props.$secondary 
-      ? props.theme.default.colors.buttonSecondaryHover
-      : props.theme.default.colors.buttonHover};
+  &:hover {
+    background-color: ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondaryHover : props.theme.default.colors.buttonHover)};
   }
-
 `;
 
 export const FormForGifts = styled.form`
@@ -300,6 +298,11 @@ const PeopleBanner = styled.div`
   gap: 2rem;
   padding: 1rem;
   // margin: 1rem;
+`;
+
+export const PersonAddEditTitle = styled.h1`
+  font-size: ${({ theme }) => theme.default.fontSizes.xl};
+  font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
 
 const SelectAvatarPrompt = styled.p`

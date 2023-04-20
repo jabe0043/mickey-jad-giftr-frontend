@@ -20,12 +20,12 @@ const theme = {
     },
     fonts: ["Playfair Display", "serif", "Lato", "sans-serif"],
     fontSizes: {
-      xs: "0.6rem",
-      s: "0.66rem",
-      m: "1rem",
-      l: "1.3rem",
+      xs: "0.78rem",
+      s: "1.01rem",
+      m: "1.3rem",
+      l: "1.733rem",
       xl: "1.55rem",
-      xxl: "1.77rem",
+      xxl: "2.02rem",
     },
     fontWeights: {
       regular: "400",
