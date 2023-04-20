@@ -46,7 +46,7 @@ const AddEditGift = () => {
     const giftIdea = formData.get("giftIdea");
     const store = formData.get("store");
     const link = formData.get("url");
-
+    
     const giftData = {
       giftName: giftIdea,
       store: store,
@@ -105,13 +105,13 @@ const AddEditGift = () => {
 
       <Styled.FormForGifts>
         <label htmlFor="name">Gift Idea</label>
-        <Styled.TextInput type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}></Styled.TextInput>
+        <Styled.TextInput type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}required></Styled.TextInput>
 
         <label htmlFor="name">Store</label>
-        <Styled.TextInput type="text" id="store" name="store" defaultValue={gift ? gift.store : ""}></Styled.TextInput>
+        <Styled.TextInput type="text" id="store" name="store" defaultValue={gift ? gift.store : "" }required></Styled.TextInput>
 
         <label htmlFor="name">Website URL</label>
-        <Styled.TextInput type="text" id="url" name="url" defaultValue={gift ? gift.website : ""}></Styled.TextInput>
+        <Styled.TextInput type="text" id="url" name="url" defaultValue={gift ? gift.website : ""}required></Styled.TextInput>
 
         {giftId ? (
           <>

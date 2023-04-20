@@ -90,11 +90,11 @@ const CardsList = styled.ul`
   display: grid;
   column-count: 2;   
   column-gap: .75rem;
-  margin-top: 2rem;
+  padding: 0;
+  margin: 2rem 0;
   cursor: pointer;
   gap: 0.75rem;
   display: block;
-  padding-bottom: 1rem;
 `;
 
 // this is the list item styling (for people. Will need to add conditions for gifts)

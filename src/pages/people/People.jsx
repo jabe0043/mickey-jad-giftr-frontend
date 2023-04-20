@@ -95,15 +95,12 @@ export default function People() {
       <CheckAuth />
       <PageBanner className="page-banner">
         <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#007b7f'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
-        <div style={{display: "flex", justifyContent:"flex-end", marginTop:"-6rem"}}>
-          <img src={giftImg} alt="Happy lady with 2 gift boxes"></img>
-        </div>
         <Subtitle>
           {people.length === 0  ? (<h2>There are no people in the list</h2>) : (<h2>Here's your list of giftees</h2>)}
         </Subtitle>
       </PageBanner>
       <div>      
-        <CardsList className="container" >
+        <CardsList >
           {people.map((person) => (
             <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
           ))}
