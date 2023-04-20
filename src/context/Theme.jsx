@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
+const FontSizeIncreaseRateInPercentage = 10;
 const theme = {
   default: {
     colors: {
@@ -53,10 +54,18 @@ function Theme(props) {
     console.log("Theme.jsx handleWindowResize", window.innerWidth);
     if (window.innerWidth < 400) {
       // screen width < 400
+      let fontSizes = { ...themeState.default.fontSizes };
+      Object.keys(fontSizes).forEach((key) => {
+        const originalValue = Number(fontSizes[key].replace("rem", ""));
+        fontSizes[key] = (originalValue * (1 - FontSizeIncreaseRateInPercentage / 100)).toString() + "rem";
+      });
+
+      // console.log("newFontSizes", newFontSizes);
       setThemeState({
         ...themeState,
         default: {
           ...themeState.default,
+          fontSizes: fontSizes,
           layout: {
             ...themeState.default.layout,
             cardColumnCount: "1",
@@ -64,7 +73,7 @@ function Theme(props) {
         },
       });
     } else if (window.innerWidth < 700) {
-      // 400px< screen width < 700px
+      // 400px < screen width < 700px
       setThemeState({
         ...themeState,
         default: {
@@ -77,10 +86,18 @@ function Theme(props) {
       });
     } else {
       // 700px < screen width
+
+      let fontSizes = { ...themeState.default.fontSizes };
+      Object.keys(fontSizes).forEach((key) => {
+        const originalValue = Number(fontSizes[key].replace("rem", ""));
+        fontSizes[key] = (originalValue * (1 + FontSizeIncreaseRateInPercentage / 100)).toString() + "rem";
+      });
+
       setThemeState({
         ...themeState,
         default: {
           ...themeState.default,
+          fontSizes: fontSizes,
           layout: {
             ...themeState.default.layout,
             cardColumnCount: "3",
