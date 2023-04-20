@@ -25,7 +25,7 @@ export default function AddEditPerson() {
   useEffect(() => {
     if (personId) {
       console.log("fetch person data with id: ", personId);
-      const url = `http://localhost:3001/api/people/${personId}`; 
+      const url = `https://gift-backend.onrender.com/api/people/${personId}`; 
       let request = new Request(url, {
         method: "GET",
         headers: {
@@ -80,11 +80,11 @@ export default function AddEditPerson() {
     // building request
     if (personId) {
       const method = ev.target.id === "save" ? "PATCH" : "DELETE";
-      const url = `http://localhost:3001/api/people/${personId}`;
+      const url = `https://gift-backend.onrender.com/api/people/${personId}`;
       accessDb(updatedPerson, url, method);
     } else {
       const method = "POST";
-      const url = `http://localhost:3001/api/people/`;
+      const url = `https://gift-backend.onrender.com/api/people/`;
       accessDb(updatedPerson, url, method);
     }
   }
