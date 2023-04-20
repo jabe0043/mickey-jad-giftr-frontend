@@ -12,6 +12,11 @@ const theme = {
       buttonSecondary: "#EBCFC4",
       buttonHover: "#CDD0B9",
       buttonSecondaryHover:"#D8BEB3",
+
+      //TODO: V2
+      background: "#f5f5f5",
+      // backgroundSecondary: "#a0b6d8",
+      // test: "#9ba48e  #1a2a41  #007b7f #1d4739",
     },
     fonts: ["Playfair Display", "serif", "Lato", "sans-serif"],
     fontSizes: {
@@ -26,6 +31,9 @@ const theme = {
       regular: "400",
       medium: "500",
       semiBold: "600",
+    },
+    border: {
+      normal: `solid .1rem ${({ theme }) => theme.default.colors.text}`,
     },
   },
 };
