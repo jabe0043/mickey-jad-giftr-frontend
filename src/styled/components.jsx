@@ -63,7 +63,7 @@ const PageBanner = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.default.colors.primary};
-  margin-bottom: 1rem;
+  margin-bottom: 1rem !important;
   border-radius: 0.45rem;
 `;
 
@@ -90,7 +90,7 @@ const CardsList = styled.ul`
   display: grid;
   column-count: 2;   
   column-gap: .75rem;
-  padding: 1;
+  margin-top: 2rem;
   cursor: pointer;
   gap: 0.75rem;
   display: block;
@@ -143,6 +143,7 @@ const CardInfo = styled.div`
 
 // this is the persons name in the card;
 const CardTitle = styled.p`
+  font-weight: ${({ theme }) => theme.default.fonts[0]};
   font-weight: ${({ theme }) => theme.default.fontWeights.semiBold};
   font-size: ${({ theme }) => theme.default.fontSizes.l};
 `;
