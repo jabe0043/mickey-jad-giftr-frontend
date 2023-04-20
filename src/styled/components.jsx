@@ -310,7 +310,7 @@ const ButtonsDiv = styled.div`
 `;
 
 const Button = styled.button`
-  width: 100%
+  width: 100%;
   padding: 0.5rem;
   border-radius: 0.35rem;
   background-color: ${(props) => (props.$secondary ? props.theme.default.colors.white : props.theme.default.colors.button)};
