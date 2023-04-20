@@ -59,7 +59,7 @@ const Gifts = () => {
       <Styled.GiftsBanner>
         <div style={{ display: "flex", flexDirection:'column', width:'100%' }}>
           <Styled.GiftsBannerEditButton onClick={() => { navigate(`/people/edit/${personId}`)}}>
-          <i class="bi-pencil-fill" style={({color:'#1E1E1E'})}></i>
+          <i className="bi-pencil-fill" style={({color:'#1E1E1E'})}></i>
           </Styled.GiftsBannerEditButton>
           <Styled.GiftsBannerAvatar>{person.avatar && (<img className="randomAvatar" src={person.avatar} alt={`avatar for${person.fullName}`}></img>)} </Styled.GiftsBannerAvatar>
         </div>
