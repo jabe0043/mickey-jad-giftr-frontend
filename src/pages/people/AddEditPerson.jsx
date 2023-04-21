@@ -81,7 +81,6 @@ export default function AddEditPerson() {
       }
     } else { 
       if (confirm("Are you sure you want to delete this person?")) {
-        accessDb(updatedPerson,`https://gift-backend.onrender.com/api/people/${personId}`,"DELETE", -2)
       } else {
         return;
       }

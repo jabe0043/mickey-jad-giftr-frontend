@@ -59,7 +59,6 @@ const AddEditGift = () => {
       }
     } else {
       if (confirm("Are you sure you want to delete this gift?")) {
-        accessDb(giftData,`https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`, "DELETE", authenticatedUserToken,-1)
       } else {
         return;
       }
@@ -69,8 +68,7 @@ const AddEditGift = () => {
       accessDb(
         giftData,
         `https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`,
-        // e.target.id === "save" ? "PATCH" : "DELETE",
-        "DELETE",
+        e.target.id === "save" ? "PATCH" : "DELETE",
         authenticatedUserToken,
         -1
       );
