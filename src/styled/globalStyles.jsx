@@ -122,6 +122,10 @@ header{
     }
 }
 
+main{
+    padding-top: 6.5rem;
+}
+
 // TODO: added by jad
 h1{
     margin:0;

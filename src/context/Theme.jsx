@@ -107,7 +107,7 @@ function Theme(props) {
   };
 
   useEffect(() => {
-    console.log("Theme.jsx useEffect");
+    // console.log("Theme.jsx useEffect");
     window.addEventListener("resize", (ev) => handleWindowResize());
   }, []);
 

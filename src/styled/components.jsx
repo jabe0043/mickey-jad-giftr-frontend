@@ -18,10 +18,13 @@ function RandomBgColor() {
 
 const AppHeader = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 5rem;
   align-items: center;
   margin-top: 1rem;
+  padding-left: .5rem;
+  padding-right: .1rem;
+
 `;
 
 const HeaderIconLeft = styled.div`
