@@ -10,12 +10,12 @@ import { motion } from "framer-motion";
 
 export default function AddEditPerson() {
   const offset = -4; // the time difference between EST & UTC
-  
+
   const [updatedPerson, setUpdatedPerson] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const [formValid, setFormValid] = useState(false);
   const [avatarSeed, setAvatarSeed] = useState(crypto.randomUUID());
-  
+
   const { personId } = useParams();
   const [authenticatedUserToken, _setAuthenticatedUserToken] = useUser();
   const accessDb = useAccessDbHook();
@@ -76,16 +76,16 @@ export default function AddEditPerson() {
   // Update stateObj with user input. If no input, leave default fetched person data.
   function handleSubmit(ev) {
     ev.preventDefault();
-    if(ev.target.id==='save'){
+    if (ev.target.id === "save") {
       if (!validateForm()) {
         return;
       }
-    } else { 
+    } else {
       if (confirm("Are you sure you want to delete this person?")) {
       } else {
         return;
       }
-    };
+    }
     // building request (updatedPerson, api-endpoint, method, authenticatedUserToken, navigationPath)
     if (personId) {
       accessDb(
@@ -93,8 +93,8 @@ export default function AddEditPerson() {
         `https://gift-backend.onrender.com/api/people/${personId}`,
         ev.target.id === "save" ? "PATCH" : "DELETE",
         authenticatedUserToken,
-        ev.target.id ==="save" ? -1 : -2
-        );
+        ev.target.id === "save" ? -1 : -2
+      );
     } else {
       accessDb(updatedPerson, `https://gift-backend.onrender.com/api/people/`, "POST", authenticatedUserToken, -1);
     }
@@ -102,19 +102,19 @@ export default function AddEditPerson() {
 
   function validateForm() {
     let errors = {};
-    let isValid = true;
+    let isValid = updatedPerson.fullName || updatedPerson.dob ? true : false;
     const pathname = location.pathname;
 
-    switch (pathname) {
-      case `/people/edit/${pathname.split("/")[3]}`:
-        errors.patchErr = "Please update this person's name or date of birth.";
-        isValid = updatedPerson.fullName || updatedPerson.dob ? true : false;
-        break;
-      case "/people/add":
-        errors.postErr = "Full name and date of birth are required.";
-        isValid = !updatedPerson.fullName || !updatedPerson.dob ? false : true;
+    if (!isValid) {
+      switch (pathname) {
+        case `/people/edit/${pathname.split("/")[3]}`:
+          errors.patchErr = "Please update this person's name or date of birth.";
+          break;
+        case "/people/add":
+          errors.postErr = "Full name and date of birth are required.";
+      }
+      setFormErrors(errors);
     }
-    setFormErrors(errors);
     setFormValid(isValid);
     return isValid;
   }
