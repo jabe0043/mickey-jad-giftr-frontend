@@ -216,6 +216,9 @@ export const GiftsBannerEditButton = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 2rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const GiftTitle = styled.h2`
@@ -288,6 +291,9 @@ export const GiftCloseButton = styled.div`
   top: 0;
   right: 0;
   margin-top: -0.5rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /*****************************
@@ -330,12 +336,14 @@ const Button = styled.button`
   transition: all 0.25s ease-in-out;
 
   &:hover {
+    cursor: pointer;
     border: .15rem solid;
     border-color:  ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.buttonHover)};
     background-color: ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.buttonHover)};
     color: ${(props) => (props.$secondary ? props.theme.default.colors.text : props.theme.default.colors.white)}
     font-weight: ${({ theme }) => theme.default.fontWeights.semiBold}
     // border-color:  ${(props) => (props.$secondary ? props.theme.default.colors.buttonSecondary : props.theme.default.colors.button)};
+
   }
 `;
 
