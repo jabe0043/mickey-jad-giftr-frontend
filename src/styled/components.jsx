@@ -1,15 +1,12 @@
 import styled from "styled-components";
-import {useTheme} from 'styled-components';
-import Theme from '../context/Theme';
+import { useTheme } from "styled-components";
+import Theme from "../context/Theme";
 import homeImg from "../assets/pastel_gradient_2.jpg";
 import addEditImg from "../assets/2084.jpg";
 
-
-
-
 function RandomBgColor() {
   const theme = useTheme();
-  const bgOptions = theme.default.colors.bgOptions
+  const bgOptions = theme.default.colors.bgOptions;
 
   const randomNum = Math.floor(Math.random() * bgOptions.length);
   return `#${bgOptions[randomNum]}`;
@@ -23,15 +20,29 @@ const AppHeader = styled.div`
   display: flex;
   width: 100vw;
   height: 5rem;
-  justify-content: space-between;
+  align-items: center;
+`;
+
+const HeaderIconLeft = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const HeaderIconRight = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 `;
 
 const Logo = styled.a`
+  flex: 1;
+  display: flex;
+  justify-content: center;
   font-size: ${({ theme }) => theme.default.fontSizes.xl};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
-  position: absolute;
-  align-self: center;
 `;
 
 /*****************************
@@ -67,11 +78,10 @@ const PageBanner = styled.div`
   align-items: center;
   margin: 1rem 0rem !important;
   border-radius: 0.45rem;
-  background-image: 
-  url(${homeImg});
+  background-image: url(${homeImg});
   background-fit: contain;
   background-position: center;
-  `;
+`;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.default.colors.text};
@@ -89,15 +99,14 @@ const Subtitle = styled.h2`
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
   font-size: ${({ theme }) => theme.default.fontSizes.m};
   margin: 0rem;
-  margin-top:2rem;
-
-  `;
+  margin-top: 2rem;
+`;
 
 // ul that holds the list items (cards)
 const CardsList = styled.ul`
   display: grid;
   grid-template-columns: repeat(${({ theme }) => theme.default.layout.cardColumnCount}, 1fr);
-  column-gap: .75rem;
+  column-gap: 0.75rem;
   padding: 0;
   margin: 1rem 0;
   gap: 0.75rem;
@@ -113,19 +122,14 @@ const Card = styled.li`
   transition: all 0.25s ease-in-out;
   border-radius: 0.35rem;
   cursor: pointer;
-  background-color: ${(RandomBgColor)};
-  break-inside: avoid-column; 
-  margin-bottom: .75rem;
-
-
+  background-color: ${RandomBgColor};
+  break-inside: avoid-column;
+  margin-bottom: 0.75rem;
 
   &:hover {
     transform: translateY(-0.25rem);
     box-shadow: -3px 10px 10px -2px rgba(0, 0, 0, 0.29);
     background-color: ${({ theme }) => theme.default.colors.backgroundSecondary};
-
-
-
   }
 `;
 
@@ -135,7 +139,7 @@ const CardAvatar = styled.div`
   align-items: center;
   justify-content: center;
   width: 5rem;
-  height: 5rem; 
+  height: 5rem;
   align-self: center;
 `;
 
@@ -168,13 +172,13 @@ export const GiftsBanner = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  background-image: 
-  url(${homeImg});
+  background-image: url(${homeImg});
   background-fit: contain;
   background-position: center;
 `;
 
-export const GiftsBannerAvatar = styled.div`  //ADD/EDIT PERSON PAGE
+export const GiftsBannerAvatar = styled.div`
+  //ADD/EDIT PERSON PAGE
   width: 10rem;
   height: 10rem;
   padding: 0rem;
@@ -214,7 +218,6 @@ export const GiftTitle = styled.h2`
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
 `;
 
-
 //here are your gifts for ...
 export const GiftTitleName = styled.span`
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
@@ -228,7 +231,7 @@ export const GiftCardContainer = styled.div`
   gap: 1rem;
   display: grid;
   grid-template-columns: repeat(${({ theme }) => theme.default.layout.cardColumnCount}, 1fr);
-  column-gap: .75rem;
+  column-gap: 0.75rem;
   // padding: 0;
   // margin: 1rem 0;
   gap: 0.75rem;
@@ -239,10 +242,10 @@ export const GiftCard = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
   padding: 1rem;
   transition: all 0.25s ease-in-out;
-  background-color: ${(RandomBgColor)};
+  background-color: ${RandomBgColor};
   overflow: hidden;
 
   &:hover {
@@ -255,7 +258,7 @@ export const GiftCard = styled.div`
 export const GiftName = styled.p`
   font-size: ${({ theme }) => theme.default.fontSizes.m};
   word-wrap: break-word;
-  font-weight:${({ theme }) => theme.default.fontWeights.semiBold}
+  font-weight: ${({ theme }) => theme.default.fontWeights.semiBold};
 `;
 
 export const GiftStore = styled.p`
@@ -340,7 +343,6 @@ export const FormForGifts = styled.form`
  ******************************/
 
 const PeopleBanner = styled.div`
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -350,8 +352,7 @@ const PeopleBanner = styled.div`
   margin: 1rem 0 2rem;
   border-radius: 0.45rem;
 
-  background-image: 
-  url(${homeImg});
+  background-image: url(${homeImg});
   background-fit: contain;
   background-position: center;
 `;
@@ -373,7 +374,7 @@ const SelectAvatarPrompt = styled.p`
 export const GiftAddEditH1 = styled.h1`
   font-size: ${({ theme }) => theme.default.fontSizes.l};
   font-weight: ${({ theme }) => theme.default.fontWeights.regular};
-  padding: .75rem;
+  padding: 0.75rem;
   align-self: flex-start;
 `;
 
@@ -395,6 +396,8 @@ export {
   CardTitle,
   CardSubtitle,
   AppHeader,
+  HeaderIconLeft,
+  HeaderIconRight,
   Logo,
   FormField,
   TextInput,
