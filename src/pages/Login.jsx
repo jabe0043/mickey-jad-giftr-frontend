@@ -29,6 +29,10 @@ export default function Login() {
 
       setAuthenticatedUserToken(token);
       navigate("/people");
+    } else {
+      if (authenticatedUserToken) {
+        navigate("/people");
+      }
     }
   }, []);
 
