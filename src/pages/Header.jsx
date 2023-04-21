@@ -67,7 +67,7 @@ export default function Header() {
         );
         break;
       default:
-        return null;
+        return <HeaderIconRight></HeaderIconRight>;
         break;
     }
   };
