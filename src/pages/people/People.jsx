@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useUser } from "../../context/userContext"; //user context for fetching.
 import { useNavigate } from "react-router-dom";
-import giftImg from "../../assets/pixeltrue-giveaway.png";
-import ListCard from "../ListCard";
-import { useTheme } from "styled-components";
-import { PageBanner, Title, CardsList, Subtitle } from "../../styled/components";
-import CheckAuth from "../../utils/CheckAuth";
-import { motion } from "framer-motion";
 
+import { useTheme } from "styled-components";
+import { motion } from "framer-motion";
+import { PageBanner, Title, CardsList, Subtitle } from "../../styled/components";
+
+import CheckAuth from "../../utils/CheckAuth";
+import { useUser } from "../../context/userContext";
+import PersonCard from "./PersonCard";
 
 export default function People() {
   const theme = useTheme();
@@ -15,12 +15,11 @@ export default function People() {
 
   const [userName, setUserName] = useState("");
   const [people, setPeople] = useState([]);
-  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
+  const [authenticatedUserToken, _setAuthenticatedUserToken] = useUser();
 
   const handleCardClick = (personId) => {
     navigate(`/gift/${personId}`);
   };
-
 
   useEffect(() => {
     const url = `https://gift-backend.onrender.com/api/people`;
@@ -45,14 +44,11 @@ export default function People() {
             _id: person._id,
             avatar: person.avatar,
             fullName: person.fullName,
-            dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "), 
+            dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),
           }))
         );
       })
       .catch(console.warn);
-
-
-
 
     const requestForUserName = new Request(`https://gift-backend.onrender.com/api/user/userName/`, {
       method: "GET",
@@ -75,38 +71,27 @@ export default function People() {
       .catch(console.warn);
   }, []);
 
-
-
   //sort dates calls itself on page render
   (function sortDates() {
     people.sort((a, b) => new Date(a.dob) - new Date(b.dob));
   })();
 
-
-
-
-
-
   return (
-    <motion.main
-    initial={{ x: "-100%" }}
-    animate={{ x: "0" }}
-    exit={{ x: "-100%" }}
-    transition={{ duration: 0.2, ease: "easeIn" }}
-    >
+    <motion.main initial={{ x: "-100%" }} animate={{ x: "0" }} exit={{ x: "-100%" }} transition={{ duration: 0.2, ease: "easeIn" }}>
       <CheckAuth />
       <PageBanner className="page-banner">
-        <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#1E1E1E'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
+        <Title>
+          Welcome, <br />{" "}
+          <strong style={{ fontSize: "2.5rem", color: "#1E1E1E" }}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong>
+        </Title>
       </PageBanner>
 
-      <Subtitle>
-        {people.length === 0  ? ('There are no people in the list') : ("Here's your list of giftees")}
-      </Subtitle>
+      <Subtitle>{people.length === 0 ? "There are no people in the list" : "Here's your list of giftees"}</Subtitle>
 
-      <div>      
-        <CardsList >
+      <div>
+        <CardsList>
           {people.map((person) => (
-            <ListCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the listCard comp.
+            <PersonCard key={person._id} person={person} onClick={() => handleCardClick(person._id)} /> //passing the cardClick handler to the PersonCard comp.
           ))}
         </CardsList>
       </div>

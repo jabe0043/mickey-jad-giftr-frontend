@@ -52,14 +52,15 @@ function Theme(props) {
 
   const handleWindowResize = () => {
     if (window.innerWidth < 400) {
-      // screen width < 400
+      // Screen width < 400
+
+      // Decrease font size by FontSizeIncreaseRateInPercentage
       let fontSizes = { ...themeState.default.fontSizes };
       Object.keys(fontSizes).forEach((key) => {
         const originalValue = Number(fontSizes[key].replace("rem", ""));
         fontSizes[key] = (originalValue * (1 - FontSizeIncreaseRateInPercentage / 100)).toString() + "rem";
       });
 
-      // console.log("newFontSizes", newFontSizes);
       setThemeState({
         ...themeState,
         default: {
@@ -72,7 +73,8 @@ function Theme(props) {
         },
       });
     } else if (window.innerWidth < 700) {
-      // 400px < screen width < 700px
+      // 400px < Screen width < 700px
+
       setThemeState({
         ...themeState,
         default: {
@@ -84,8 +86,9 @@ function Theme(props) {
         },
       });
     } else {
-      // 700px < screen width
+      // 700px < Screen width
 
+      // Increase font size by FontSizeIncreaseRateInPercentage
       let fontSizes = { ...themeState.default.fontSizes };
       Object.keys(fontSizes).forEach((key) => {
         const originalValue = Number(fontSizes[key].replace("rem", ""));
@@ -107,11 +110,9 @@ function Theme(props) {
   };
 
   useEffect(() => {
-    // console.log("Theme.jsx useEffect");
     window.addEventListener("resize", (ev) => handleWindowResize());
   }, []);
 
-  // import {useTheme} on any page that wants access to theme
   return <ThemeProvider theme={themeState} {...props} />;
 }
 

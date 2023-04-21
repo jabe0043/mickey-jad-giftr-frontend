@@ -1,14 +1,15 @@
-import React from "react";
-import GiftCard from "./GiftCard";
 import { useEffect, useState } from "react";
-import * as Styled from "../../styled/components";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { useUser } from "../../context/userContext";
+import GiftCard from "./GiftCard";
 import CheckAuth from "../../utils/CheckAuth";
+
 import { motion } from "framer-motion";
+import * as Styled from "../../styled/components";
 
 const Gifts = () => {
-  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
+  const [authenticatedUserToken, _setAuthenticatedUserToken] = useUser();
   const [person, setPerson] = useState({});
   const navigate = useNavigate();
   const { personId } = useParams();
@@ -43,42 +44,45 @@ const Gifts = () => {
       .catch(console.warn);
   }, [authenticatedUserToken, personId]);
 
-
   return (
-    <motion.main className="container"
-    initial={{ x: "-100%" }}
-    animate={{ x: "0" }}
-    exit={{ x: "-100%" }}
-    transition={{ duration: 0.2, ease: "easeIn" }}>
+    <motion.main
+      className="container"
+      initial={{ x: "-100%" }}
+      animate={{ x: "0" }}
+      exit={{ x: "-100%" }}
+      transition={{ duration: 0.2, ease: "easeIn" }}
+    >
       <CheckAuth />
+
       <Styled.GiftsBanner>
-        <div style={{ display: "flex", flexDirection:'column', width:'100%' }}>
-          <Styled.GiftsBannerEditButton onClick={() => { navigate(`/people/edit/${personId}`)}}>
-          <i className="bi-pencil-fill" style={({color:'#1E1E1E'})}></i>
+        <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <Styled.GiftsBannerEditButton
+            onClick={() => {
+              navigate(`/people/edit/${personId}`);
+            }}
+          >
+            <i className="bi-pencil-fill" style={{ color: "#1E1E1E" }}></i>
           </Styled.GiftsBannerEditButton>
-          <Styled.GiftsBannerAvatar>{person.avatar && (<img className="randomAvatar" src={person.avatar} alt={`avatar for${person.fullName}`}></img>)} </Styled.GiftsBannerAvatar>
+          <Styled.GiftsBannerAvatar>
+            {person.avatar && <img className="randomAvatar" src={person.avatar} alt={`avatar for${person.fullName}`}></img>}{" "}
+          </Styled.GiftsBannerAvatar>
         </div>
-        <div style={({textAlign:"center"})}>
+
+        <div style={{ textAlign: "center" }}>
           <Styled.GiftsBannerName>{person.fullName}</Styled.GiftsBannerName>
           <Styled.GiftsBannerDob>{person.dob}</Styled.GiftsBannerDob>
         </div>
       </Styled.GiftsBanner>
 
       <Styled.GiftTitle>
-        {person.gifts && person.gifts.length === 0 
-        ? ('There are currently no gifts for ') 
-        : ('Here are your gifts for ')}
+        {person.gifts && person.gifts.length === 0 ? "There are currently no gifts for " : "Here are your gifts for "}
         <Styled.GiftTitleName>{person.fullName}</Styled.GiftTitleName>
       </Styled.GiftTitle>
 
       {person && person.gifts && (
         <Styled.GiftCardContainer>
           {person.gifts.map((gift) => (
-            <GiftCard
-              key={gift._id}
-              gift={gift}
-              personId={personId}
-            />
+            <GiftCard key={gift._id} gift={gift} personId={personId} />
           ))}
         </Styled.GiftCardContainer>
       )}

@@ -1,23 +1,24 @@
-import CheckAuth from "../../utils/CheckAuth";
-import { useUser } from "../../context/userContext";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+import { useUser } from "../../context/userContext";
+import CheckAuth from "../../utils/CheckAuth";
+import useAccessDbHook from "../../hooks/useAccessDb";
+
 import * as Styled from "../../styled/components";
 import { motion } from "framer-motion";
-import useAccessDbHook from "../../hooks/useAccessDb";
 
 export default function AddEditPerson() {
   const offset = -4; // the time difference between EST & UTC
-  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
-  const navigate = useNavigate();
-  const { personId } = useParams();
-  const accessDb = useAccessDbHook();
+  
   const [updatedPerson, setUpdatedPerson] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const [formValid, setFormValid] = useState(false);
-
   const [avatarSeed, setAvatarSeed] = useState(crypto.randomUUID());
-
+  
+  const { personId } = useParams();
+  const [authenticatedUserToken, _setAuthenticatedUserToken] = useUser();
+  const accessDb = useAccessDbHook();
   const [person, setPerson] = useState({
     avatar: "",
     fullName: "",
@@ -27,7 +28,7 @@ export default function AddEditPerson() {
 
   useEffect(() => {
     if (personId) {
-      console.log("fetch person data with id: ", personId);
+      // console.log("fetch person data with id: ", personId);
       const url = `https://gift-backend.onrender.com/api/people/${personId}`;
       let request = new Request(url, {
         method: "GET",
@@ -128,6 +129,7 @@ export default function AddEditPerson() {
       transition={{ duration: 0.2, ease: "easeIn" }}
     >
       <CheckAuth />
+
       {person._id ? (
         <div>
           <Styled.PersonAddEditTitle>Edit Information for {person.fullName}</Styled.PersonAddEditTitle>

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { useTheme } from "styled-components";
-import Theme from "../context/Theme";
 import homeImg from "../assets/pastel_gradient_2.jpg";
-import addEditImg from "../assets/2084.jpg";
 
 function RandomBgColor() {
   const theme = useTheme();

@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { useUser } from "../../context/userContext";
 import CheckAuth from "../../utils/CheckAuth";
-import * as Styled from "../../styled/components";
-import { useParams, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import useAccessDbHook from "../../hooks/useAccessDb";
 
+import * as Styled from "../../styled/components";
+import { motion } from "framer-motion";
+
 const AddEditGift = () => {
-  const [authenticatedUserToken, _setAuthenticatedUserToken] = useUser();
-  const { personId, giftId } = useParams();
   const [gift, setGift] = useState(null);
   const [personName, setPersonName] = useState("");
-  const accessDb = useAccessDbHook();
-
-  const [formErrors, setFormErrors] = useState({});  
+  const [formErrors, setFormErrors] = useState({});
   const [formValid, setFormValid] = useState(false);
+
+  const { personId, giftId } = useParams();
+  const [authenticatedUserToken, _setAuthenticatedUserToken] = useUser();
+  const accessDb = useAccessDbHook();
 
   useEffect(() => {
     setGift(null);
@@ -47,13 +49,15 @@ const AddEditGift = () => {
     const giftIdea = formData.get("giftIdea");
     const store = formData.get("store");
     const link = formData.get("url");
+
     const giftData = {
       giftName: giftIdea,
       store: store,
       website: link.includes("http") ? link : "https://" + link,
     };
-    if(e.target.id==='save'){
-      console.log('yes')
+
+    if (e.target.id === "save") {
+      // console.log('yes')
       if (!validateForm(giftData)) {
         return;
       }
@@ -63,7 +67,8 @@ const AddEditGift = () => {
         return;
       }
     }
-    // Edit gift
+
+    // Edit/Delete gift
     if (giftId) {
       accessDb(
         giftData,
@@ -73,6 +78,7 @@ const AddEditGift = () => {
         -1
       );
     }
+
     // Add gift
     else {
       accessDb(giftData, `https://gift-backend.onrender.com/api/people/${personId}/gifts`, "POST", authenticatedUserToken, -1);
@@ -84,17 +90,17 @@ const AddEditGift = () => {
     let isValid = true;
     const pathname = location.pathname;
 
-    switch(pathname){
-      case `/gift/${pathname.split('/')[2]}/add`:
+    switch (pathname) {
+      case `/gift/${pathname.split("/")[2]}/add`:
         errors.postErr = "Please include the gifts name, store and website.";
         isValid = data.giftName && data.store && data.website ? true : false;
-        console.log(isValid);
-      break
-      case `/gift/${pathname.split('/')[2]}/edit/${pathname.split('/')[4]}`:
-        console.log(isValid);
+        // console.log(isValid);
+        break;
+      case `/gift/${pathname.split("/")[2]}/edit/${pathname.split("/")[4]}`:
+        // console.log(isValid);
         errors.patchErr = "Please add an update before saving.";
-        isValid = data.giftName !== gift.giftName || data.store !== gift.store|| data.website !== gift.website ? true : false;        
-    } 
+        isValid = data.giftName !== gift.giftName || data.store !== gift.store || data.website !== gift.website ? true : false;
+    }
     setFormErrors(errors);
     setFormValid(isValid);
     return isValid;
@@ -111,19 +117,21 @@ const AddEditGift = () => {
       <CheckAuth />
       <Styled.PageBanner>
         <Styled.GiftAddEditH1>
-          {giftId ? "Edit" : "Add"} {`a gift idea for`}<br /><strong>{`${personName}`}</strong> 
+          {giftId ? "Edit" : "Add"} {`a gift idea for`}
+          <br />
+          <strong>{`${personName}`}</strong>
         </Styled.GiftAddEditH1>
       </Styled.PageBanner>
 
       <Styled.FormForGifts>
-        {formErrors.postErr && <span className="error">{formErrors.postErr}</span>} 
-        {formErrors.patchErr && <span className="error">{formErrors.patchErr}</span>} 
+        {formErrors.postErr && <span className="error">{formErrors.postErr}</span>}
+        {formErrors.patchErr && <span className="error">{formErrors.patchErr}</span>}
         <label htmlFor="name">Gift Idea</label>
 
         <Styled.TextInput required type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}></Styled.TextInput>
 
         <label htmlFor="name">Store</label>
-        <Styled.TextInput required type="text" id="store" name="store" defaultValue={gift ? gift.store : "" }></Styled.TextInput>
+        <Styled.TextInput required type="text" id="store" name="store" defaultValue={gift ? gift.store : ""}></Styled.TextInput>
 
         <label htmlFor="name">Website URL</label>
         <Styled.TextInput required type="text" id="url" name="url" defaultValue={gift ? gift.website : ""}></Styled.TextInput>

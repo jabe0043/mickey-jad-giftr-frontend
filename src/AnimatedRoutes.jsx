@@ -1,13 +1,12 @@
 import React from 'react'
 import { Routes, Route, useLocation } from "react-router-dom";
-import Login from "./pages/Login";
+import {AnimatePresence} from "framer-motion";
+
+import Login from './pages/login/Login'
 import People from "./pages/people/People";
-// import PersonForm from './pages/people/PersonForm'       //this comp. will be called by the person page. This is the equiv. of ListCard comp for people page.
 import AddEditPerson from "./pages/people/AddEditPerson";
-import Header from "./pages/Header";
 import Gifts from "./pages/gifts/Gifts";
 import AddEditGift from "./pages/gifts/AddEditGift";
-import {AnimatePresence} from "framer-motion";
 import FourOFour from './pages/FourOFour/FourOFour';
 
 
