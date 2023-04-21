@@ -1,13 +1,17 @@
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-import { AppHeader, HeaderIconLeft, HeaderIconRight, Logo } from "../styled/components";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import { useUser } from "../context/userContext";
+
+import { AppHeader, HeaderIconLeft, HeaderIconRight, Logo } from "../styled/components";
 
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
+
   const pathname = location.pathname;
   const personId = pathname.split("/")[2]; //id of the current selected person
-  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
 
   const logOut = () => {
     sessionStorage.removeItem("UserToken");

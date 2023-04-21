@@ -21,5 +21,4 @@ function useUser() {
   return context;
 }
 
-//export the hook and the provider
 export { useUser, UserProvider };

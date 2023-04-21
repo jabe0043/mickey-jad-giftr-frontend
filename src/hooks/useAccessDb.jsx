@@ -4,7 +4,7 @@ export default function useAccessDbHook() {
   const navigate = useNavigate();
 
   function useAccessDb(updatedData, url, method, authenticatedUserToken, nextPath) {
-    console.log(`accessDb -- method: ${method}`);
+    // console.log(`accessDb -- method: ${method}`);
     const request = new Request(url, {
       method: method,
       headers: {
@@ -17,10 +17,10 @@ export default function useAccessDbHook() {
       .then((res) => {
         if (res.status === 401) throw new Error("Unauthorized access to API.");
         if (!res.ok) throw new Error("Failed to update person data in database");
-        console.log(`${method} was successful`);
+        // console.log(`${method} was successful`);
       })
       .then(() => {
-        console.log("navigating");
+        // console.log("navigating");
         navigate(nextPath);
       })
       .catch(console.warn);
