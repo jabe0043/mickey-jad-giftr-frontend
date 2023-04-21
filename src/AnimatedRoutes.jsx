@@ -8,6 +8,7 @@ import Header from "./pages/Header";
 import Gifts from "./pages/gifts/Gifts";
 import AddEditGift from "./pages/gifts/AddEditGift";
 import {AnimatePresence} from "framer-motion";
+import FourOFour from './pages/FourOFour/FourOFour';
 
 
 export default function AnimatedRoutes() {
@@ -23,6 +24,7 @@ export default function AnimatedRoutes() {
         <Route path="/gift/:personId" element={<Gifts />} />
         <Route path="/gift/:personId/edit/:giftId" element={<AddEditGift />} />
         <Route path="/gift/:personId/add" element={<AddEditGift />} />
+        <Route path="/*" element={<FourOFour />} />
       </Routes>
     </AnimatePresence>
   )
