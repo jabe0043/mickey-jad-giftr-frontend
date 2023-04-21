@@ -21,6 +21,7 @@ const AppHeader = styled.div`
   width: 100vw;
   height: 5rem;
   align-items: center;
+  margin-top: 1rem;
 `;
 
 const HeaderIconLeft = styled.div`
@@ -28,6 +29,9 @@ const HeaderIconLeft = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const HeaderIconRight = styled.div`
@@ -35,6 +39,9 @@ const HeaderIconRight = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Logo = styled.a`
