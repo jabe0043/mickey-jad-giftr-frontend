@@ -87,21 +87,22 @@ const AddEditGift = () => {
 
   function validateForm(data) {
     let errors = {};
-    let isValid = true;
+    let isValid = data.giftName && data.store && data.website ? true : false;
     const pathname = location.pathname;
 
-    switch (pathname) {
-      case `/gift/${pathname.split("/")[2]}/add`:
-        errors.postErr = "Please include the gifts name, store and website.";
-        isValid = data.giftName && data.store && data.website ? true : false;
-        // console.log(isValid);
-        break;
-      case `/gift/${pathname.split("/")[2]}/edit/${pathname.split("/")[4]}`:
-        // console.log(isValid);
-        errors.patchErr = "Please add an update before saving.";
-        isValid = data.giftName !== gift.giftName || data.store !== gift.store || data.website !== gift.website ? true : false;
+    if (!isValid) {
+      errors.postErr = "Please include the gifts name, store and website.";
+      errors.patchErr = "Please include the gifts name, store and website.";
+      // switch (pathname) {
+      //   case `/gift/${pathname.split("/")[2]}/add`:
+      //     errors.postErr = "Please include the gifts name, store and website.";
+      //     break;
+      //   case `/gift/${pathname.split("/")[2]}/edit/${pathname.split("/")[4]}`:
+      //     // console.log(isValid);
+      //     errors.patchErr = "Please add an update before saving.";
+      //     isValid = data.giftName !== gift.giftName || data.store !== gift.store || data.website !== gift.website ? true : false;
+      setFormErrors(errors);
     }
-    setFormErrors(errors);
     setFormValid(isValid);
     return isValid;
   }

@@ -102,16 +102,20 @@ export default function AddEditPerson() {
 
   function validateForm() {
     let errors = {};
-    let isValid = updatedPerson.fullName || updatedPerson.dob ? true : false;
+    let isValid = updatedPerson.fullName && updatedPerson.dob ? true : false;
     const pathname = location.pathname;
 
     if (!isValid) {
-      switch (pathname) {
-        case `/people/edit/${pathname.split("/")[3]}`:
-          errors.patchErr = "Please update this person's name or date of birth.";
-          break;
-        case "/people/add":
-          errors.postErr = "Full name and date of birth are required.";
+       errors.patchErr = "Full name and date of birth are required.";
+       errors.postErr = "Full name and date of birth are required.";
+      // switch (pathname) {
+      //   case `/people/edit/${pathname.split("/")[3]}`:
+      //     errors.patchErr = "Please update this person's name or date of birth.";
+      //     break;
+      //   case "/people/add":
+      //     errors.postErr = "Full name and date of birth are required.";
+      //   default:
+      //     break;
       }
       setFormErrors(errors);
     }
