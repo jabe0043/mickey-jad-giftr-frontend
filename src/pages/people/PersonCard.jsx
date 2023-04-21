@@ -1,4 +1,5 @@
 import { Card, CardAvatar, CardInfo, CardTitle, CardSubtitle } from "../../styled/components";
+import capitalizeFirstLetter from "../../utils/utils";
 
 export default function PersonCard(props) {
   const person = props.person;
@@ -10,8 +11,8 @@ export default function PersonCard(props) {
       </CardAvatar>
 
       <CardInfo>
-        <CardTitle className="person__fullname">{person.fullName} </CardTitle>
-        <CardSubtitle className="person__dob">{person.dob}</CardSubtitle>
+        <CardTitle className="person__fullname">{capitalizeFirstLetter(person.fullName)} </CardTitle>
+        <CardSubtitle className="person__dob">{capitalizeFirstLetter(person.dob)}</CardSubtitle>
       </CardInfo>
     </Card>
   );

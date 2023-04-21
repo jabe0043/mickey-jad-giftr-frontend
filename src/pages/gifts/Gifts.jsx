@@ -5,6 +5,7 @@ import { useUser } from "../../context/userContext";
 import GiftCard from "./GiftCard";
 import CheckAuth from "../../utils/CheckAuth";
 
+import capitalizeFirstLetter from "../../utils/utils";
 import { motion } from "framer-motion";
 import * as Styled from "../../styled/components";
 
@@ -36,7 +37,7 @@ const Gifts = () => {
           ownerID: personData.ownerID,
           _id: personData._id,
           avatar: personData.avatar,
-          fullName: personData.fullName,
+          fullName: capitalizeFirstLetter(personData.fullName),
           dob: new Date(personData.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),
           gifts: personData.gifts,
         });

@@ -14,7 +14,7 @@ const GiftCard = ({ gift, personId }) => {
     >
       <Styled.GiftName>{capitalizeFirstLetter(gift.giftName)}</Styled.GiftName>
       <Styled.GiftStore>{capitalizeFirstLetter(gift.store)}</Styled.GiftStore>
-      <Styled.GiftUrl>{capitalizeFirstLetter(gift.website)}</Styled.GiftUrl>
+      <Styled.GiftUrl>{gift.website}</Styled.GiftUrl>
     </Styled.GiftCard>
   );
 }
