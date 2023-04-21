@@ -171,4 +171,9 @@ i.bi-pencil-fill::before{
     border-radius: 10rem;
 }
 
+
+body.login{
+    background-color: ${({theme}) => theme.default.colors.secondary};
+}
+
 `;

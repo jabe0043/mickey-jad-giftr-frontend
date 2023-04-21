@@ -53,6 +53,7 @@ const Login = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  // background-color: ${({theme}) => theme.default.colors.secondary}
 `;
 
 export const LoginH1 = styled.h1`

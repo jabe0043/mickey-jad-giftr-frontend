@@ -70,7 +70,7 @@ const AddEditGift = () => {
         giftData,
         `https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`,
         // e.target.id === "save" ? "PATCH" : "DELETE",
-        "DELETE",
+        "PATCH",
         authenticatedUserToken,
         -1
       );
