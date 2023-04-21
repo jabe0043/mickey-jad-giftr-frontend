@@ -75,9 +75,17 @@ export default function AddEditPerson() {
   // Update stateObj with user input. If no input, leave default fetched person data.
   function handleSubmit(ev) {
     ev.preventDefault();
-    if (!validateForm()) {
-      return;
-    }
+    if(ev.target.id==='save'){
+      if (!validateForm()) {
+        return;
+      }
+    } else { 
+      if (confirm("Are you sure you want to delete this person?")) {
+        accessDb(updatedPerson,`https://gift-backend.onrender.com/api/people/${personId}`,"DELETE", -2)
+      } else {
+        return;
+      }
+    };
     // building request (updatedPerson, api-endpoint, method, authenticatedUserToken, navigationPath)
     if (personId) {
       accessDb(
@@ -85,8 +93,8 @@ export default function AddEditPerson() {
         `https://gift-backend.onrender.com/api/people/${personId}`,
         ev.target.id === "save" ? "PATCH" : "DELETE",
         authenticatedUserToken,
-        -1
-      );
+        ev.target.id ==="save" ? -1 : -2
+        );
     } else {
       accessDb(updatedPerson, `https://gift-backend.onrender.com/api/people/`, "POST", authenticatedUserToken, -1);
     }

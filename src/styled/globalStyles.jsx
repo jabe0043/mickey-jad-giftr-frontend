@@ -151,6 +151,10 @@ p{
 }
 
 
+.error{
+    color: ${({ theme }) => theme.default.colors.buttonSecondary};
+}
+
 i.bi-pencil-fill{
     height: 1rem;
     width: 1rem;
