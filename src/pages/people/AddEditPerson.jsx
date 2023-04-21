@@ -159,6 +159,7 @@ export default function AddEditPerson() {
                 onClick={(ev) => {
                   ev.target.showPicker();
                 }}
+                style={{ cursor: "pointer" }}
               />
             </Styled.FormField>
             <Styled.ButtonsDiv>
@@ -210,6 +211,7 @@ export default function AddEditPerson() {
                 onClick={(ev) => {
                   ev.target.showPicker();
                 }}
+                style={{ cursor: "pointer" }}
               />
             </Styled.FormField>
             <Styled.ButtonsDiv>
