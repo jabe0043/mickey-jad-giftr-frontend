@@ -10,14 +10,17 @@ const FourOFour = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: "1rem",
-        height: "100vh",
+        gap: "2rem",
+        height: "80vh",
         textAlign: "center",
       }}
     >
       <h1>404</h1>
       <p>Page not found</p>
       <Styled.Button
+        style={{
+          width: "50%",
+        }}
         onClick={() => {
           window.location = "/people";
         }}
