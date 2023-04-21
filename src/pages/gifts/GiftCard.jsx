@@ -1,6 +1,7 @@
 import React from "react";
 import * as Styled from "../../styled/components";
 import { useNavigate } from "react-router-dom";
+import capitalizeFirstLetter from "../../utils/utils";
 
 const GiftCard = ({ gift, personId }) => {
   const navigate = useNavigate();
@@ -12,14 +13,11 @@ const GiftCard = ({ gift, personId }) => {
         navigate(`/gift/${personId}/edit/${gift._id}`);
       }}
     >
-      {/* <Styled.GiftCloseButton>
-        <i className="bi bi-pencil" style={{fontSize:'1rem'}}></i>
-      </Styled.GiftCloseButton> */}
-      <Styled.GiftName>{gift.giftName}</Styled.GiftName>
-      <Styled.GiftStore>{gift.store}</Styled.GiftStore>
-      <Styled.GiftUrl>{gift.website}</Styled.GiftUrl>
+      <Styled.GiftName>{capitalizeFirstLetter(gift.giftName)}</Styled.GiftName>
+      <Styled.GiftStore>{capitalizeFirstLetter(gift.store)}</Styled.GiftStore>
+      <Styled.GiftUrl>{capitalizeFirstLetter(gift.website)}</Styled.GiftUrl>
     </Styled.GiftCard>
   );
-};
+}
 
 export default GiftCard;
