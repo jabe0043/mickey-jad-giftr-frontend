@@ -142,7 +142,12 @@ p{
     font-size: 1.5rem;
     color: ${({ theme }) => theme.default.colors.text};
     line-height: 0;
+       
 
+}
+
+.bi:hover {
+    cursor: pointer;
 }
 
 
@@ -161,6 +166,10 @@ i.bi-pencil-fill::before{
 .bi-plus{
     font-size: 2rem;
     font-weight: 600;
+}
+
+.bi-shuffle{
+
 }
 
 .randomAvatar{
