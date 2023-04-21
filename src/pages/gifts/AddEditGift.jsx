@@ -48,12 +48,15 @@ const AddEditGift = () => {
     const formData = new FormData(form);
     const giftIdea = formData.get("giftIdea");
     const store = formData.get("store");
-    const link = formData.get("url");
+    let link = formData.get("url");
+    if (link.length != 0){
+      link = link.includes("http") ? link : "https://" + link;
+    }
 
     const giftData = {
       giftName: giftIdea,
       store: store,
-      website: link.includes("http") ? link : "https://" + link,
+      website: link,
     };
 
     if (e.target.id === "save") {
@@ -91,16 +94,18 @@ const AddEditGift = () => {
     const pathname = location.pathname;
 
     if (!isValid) {
-      errors.postErr = "Please include the gifts name, store and website.";
-      errors.patchErr = "Please include the gifts name, store and website.";
-      // switch (pathname) {
-      //   case `/gift/${pathname.split("/")[2]}/add`:
-      //     errors.postErr = "Please include the gifts name, store and website.";
-      //     break;
-      //   case `/gift/${pathname.split("/")[2]}/edit/${pathname.split("/")[4]}`:
-      //     // console.log(isValid);
-      //     errors.patchErr = "Please add an update before saving.";
-      //     isValid = data.giftName !== gift.giftName || data.store !== gift.store || data.website !== gift.website ? true : false;
+      // errors.postErr = "Please include the gifts name, store and website.";
+      // errors.patchErr = "Please include the gifts name, store and website.";
+      switch (pathname) {
+        case `/gift/${pathname.split("/")[2]}/add`:
+          console.log("ed");
+          errors.postErr = "Please include the gifts name, store and website.";
+          break;
+        case `/gift/${pathname.split("/")[2]}/edit/${pathname.split("/")[4]}`:
+          // console.log(isValid);
+          errors.patchErr = "You didn't make any changes. Please make changes to save.";
+          isValid = data.giftName !== gift.giftName || data.store !== gift.store || data.website !== gift.website ? true : false;
+      }
       setFormErrors(errors);
     }
     setFormValid(isValid);

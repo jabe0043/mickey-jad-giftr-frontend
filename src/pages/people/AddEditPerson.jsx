@@ -28,7 +28,7 @@ export default function AddEditPerson() {
 
   useEffect(() => {
     if (personId) {
-      // console.log("fetch person data with id: ", personId);
+      // console.log("fetch updatedPerson data with id: ", personId);
       const url = `https://gift-backend.onrender.com/api/people/${personId}`;
       let request = new Request(url, {
         method: "GET",
@@ -45,8 +45,8 @@ export default function AddEditPerson() {
         })
         .then((data) => {
           let personData = data.data;
-          setPerson({
-            //setting fetched data person in state
+          setUpdatedPerson({
+            //setting fetched data updatedPerson in state
             ownerID: personData.ownerID,
             _id: personData._id,
             avatar: personData.avatar,
@@ -71,9 +71,10 @@ export default function AddEditPerson() {
   function updatePerson(ev) {
     const { name, value } = ev.target;
     setUpdatedPerson((prevPerson) => ({ ...prevPerson, [name]: value }));
+    console.log("ss");
   }
 
-  // Update stateObj with user input. If no input, leave default fetched person data.
+  // Update stateObj with user input. If no input, leave default fetched updatedPerson data.
   function handleSubmit(ev) {
     ev.preventDefault();
     if (ev.target.id === "save") {
@@ -81,7 +82,7 @@ export default function AddEditPerson() {
         return;
       }
     } else {
-      if (confirm("Are you sure you want to delete this person?")) {
+      if (confirm("Are you sure you want to delete this updatedPerson?")) {
       } else {
         return;
       }
@@ -106,17 +107,18 @@ export default function AddEditPerson() {
     const pathname = location.pathname;
 
     if (!isValid) {
-       errors.patchErr = "Full name and date of birth are required.";
-       errors.postErr = "Full name and date of birth are required.";
+      errors.patchErr = "Full name and date of birth are required.";
+      errors.postErr = "Full name and date of birth are required.";
       // switch (pathname) {
       //   case `/people/edit/${pathname.split("/")[3]}`:
-      //     errors.patchErr = "Please update this person's name or date of birth.";
+      //     errors.patchErr = "You didn't make any changes. Please make changes to save.";
       //     break;
       //   case "/people/add":
       //     errors.postErr = "Full name and date of birth are required.";
       //   default:
       //     break;
-      }
+      // }
+
       setFormErrors(errors);
     }
     setFormValid(isValid);
@@ -134,9 +136,9 @@ export default function AddEditPerson() {
     >
       <CheckAuth />
 
-      {person._id ? (
+      {updatedPerson._id ? (
         <div>
-          <Styled.PersonAddEditTitle>Edit Information for {person.fullName}</Styled.PersonAddEditTitle>
+          <Styled.PersonAddEditTitle>Edit Information for {updatedPerson.fullName}</Styled.PersonAddEditTitle>
           <Styled.PeopleBanner>
             <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
               <Styled.GiftsBannerAvatar>
@@ -158,7 +160,7 @@ export default function AddEditPerson() {
             {formErrors.patchErr && <span className="error">{formErrors.patchErr}</span>}
             <Styled.FormField>
               <Styled.Label For="name">Full Name</Styled.Label>
-              <Styled.TextInput required type="text" id="fullName" name="fullName" defaultValue={person.fullName} onChange={updatePerson} />
+              <Styled.TextInput required type="text" id="fullName" name="fullName" defaultValue={updatedPerson.fullName} onChange={updatePerson} />
             </Styled.FormField>
             <Styled.FormField>
               <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
@@ -167,7 +169,7 @@ export default function AddEditPerson() {
                 type="date"
                 id="dob"
                 name="dob"
-                defaultValue={person.dob}
+                defaultValue={updatedPerson.dob}
                 onChange={updatePerson}
                 onClick={(ev) => {
                   ev.target.showPicker();
@@ -187,7 +189,7 @@ export default function AddEditPerson() {
         </div>
       ) : (
         <div>
-          <Styled.GiftAddEditH1>Add a new person to the list</Styled.GiftAddEditH1>
+          <Styled.GiftAddEditH1>Add a new updatedPerson to the list</Styled.GiftAddEditH1>
           <Styled.PeopleBanner>
             <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
               <Styled.GiftsBannerAvatar>
@@ -210,7 +212,7 @@ export default function AddEditPerson() {
             {formErrors.postErr && <span className="error">{formErrors.postErr}</span>}
             <Styled.FormField>
               <Styled.Label htmlFor="name">Full Name</Styled.Label>
-              <Styled.TextInput required type="text" id="fullName" name="fullName" onChange={updatePerson} />
+              <Styled.TextInput required type="text" id="fullName" name="fullName" onChange={updatePerson} onClick={updatePerson}/>
             </Styled.FormField>
             <Styled.FormField>
               <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
@@ -219,7 +221,7 @@ export default function AddEditPerson() {
                 type="date"
                 id="dob"
                 name="dob"
-                defaultValue={person.dob}
+                defaultValue={updatedPerson.dob}
                 onChange={updatePerson}
                 onClick={(ev) => {
                   ev.target.showPicker();
