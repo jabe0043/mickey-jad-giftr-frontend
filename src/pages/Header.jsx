@@ -1,6 +1,6 @@
 import { useNavigate, useLocation, useParams } from "react-router-dom";
-import { AppHeader, Logo } from "../styled/components";
-import { useUser } from '../context/userContext';
+import { AppHeader, HeaderIconLeft, HeaderIconRight, Logo } from "../styled/components";
+import { useUser } from "../context/userContext";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -15,8 +15,6 @@ export default function Header() {
     setAuthenticatedUserToken(null); //instead make it re-render homepage
   };
 
-
-
   const handleAddButton = () => {
     if (pathname.includes("/people")) {
       navigate(`/people/add`);
@@ -29,18 +27,22 @@ export default function Header() {
     switch (pathname) {
       case "/people":
         return (
-          <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>
+          <HeaderIconLeft>
+            <i onClick={() => logOut()} className="bi bi-door-open-fill"></i>
+          </HeaderIconLeft>
         );
         break;
       case "/people/add":
-      case `/people/edit/${pathname.split('/')[3]}`:
+      case `/people/edit/${pathname.split("/")[3]}`:
       case pathname.match(/^\/gift/)?.input: // Check if the pathname starts with "/gift"
         return (
-          <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
+          <HeaderIconLeft>
+            <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
+          </HeaderIconLeft>
         );
         break;
       default:
-        return null;
+        return <HeaderIconLeft></HeaderIconLeft>;
         break;
     }
   };
@@ -48,13 +50,21 @@ export default function Header() {
   const renderRightIcon = () => {
     switch (pathname) {
       case "/people":
-        return <i className="bi bi-plus" onClick={() => handleAddButton()}></i>;
+        return (
+          <HeaderIconRight>
+            <i className="bi bi-plus" onClick={() => handleAddButton()} />
+          </HeaderIconRight>
+        );
         break;
       case "/people/add":
-        return null;
+        return <HeaderIconRight></HeaderIconRight>;
         break;
       case `/gift/${personId}`:
-        return <i className="bi bi-plus" onClick={() => handleAddButton()}></i>;
+        return (
+          <HeaderIconRight>
+            <i className="bi bi-plus" onClick={() => handleAddButton()} />
+          </HeaderIconRight>
+        );
         break;
       default:
         return null;
@@ -63,12 +73,10 @@ export default function Header() {
   };
 
   return (
-    <header className="container" >
+    <header className="container">
       <AppHeader>
         {renderLeftIcon()}
-        <div style={{ display: "flex", justifyContent: "center", flexGrow: 1 }}>
-          <Logo onClick={() => authenticatedUserToken && navigate("/people")}>GIFT'R</Logo>
-        </div>
+        <Logo onClick={() => authenticatedUserToken && navigate("/people")}>GIFT'R</Logo>
         {renderRightIcon()}
       </AppHeader>
     </header>

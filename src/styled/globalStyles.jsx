@@ -141,6 +141,8 @@ p{
 .bi{
     font-size: 1.5rem;
     color: ${({ theme }) => theme.default.colors.text};
+    line-height: 0;
+
 }
 
 
@@ -157,12 +159,6 @@ i.bi-pencil-fill::before{
 
 // + icon in header
 .bi-plus{
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-// back Arrow icon in header
-.bi-backArrow{
     font-size: 2rem;
     font-weight: 600;
 }
