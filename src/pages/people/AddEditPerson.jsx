@@ -126,11 +126,12 @@ export default function AddEditPerson() {
 
   //TODO: can make way shorter
   return (
-    <motion.main className="container" 
-    initial={{ x: "100%" }}
-    animate={{ x: "0" }}
-    exit={{ x: "100%" }}
-    transition={{ duration: 0.2, ease: "easeIn" }}
+    <motion.main
+      className="container"
+      initial={{ x: "100%" }}
+      animate={{ x: "0" }}
+      exit={{ x: "100%" }}
+      transition={{ duration: 0.2, ease: "easeIn" }}
     >
         <CheckAuth />
         {person._id ? (
@@ -191,7 +192,34 @@ export default function AddEditPerson() {
                     </Styled.ButtonsDiv>
                 </form>
             </div>
-        )}
+          </Styled.PeopleBanner>
+          <form onSubmit={handleSubmit}>
+            <Styled.FormField>
+              <Styled.Label htmlFor="name">Full Name</Styled.Label>
+              <Styled.TextInput type="text" id="fullName" name="fullName" onChange={updatePerson} required />
+            </Styled.FormField>
+            <Styled.FormField>
+              <Styled.Label htmlFor="dob">Date of Birth</Styled.Label>
+              <Styled.TextInput
+                Required
+                type="date"
+                id="dob"
+                name="dob"
+                defaultValue={person.dob}
+                onChange={updatePerson}
+                onClick={(ev) => {
+                  ev.target.showPicker();
+                }}
+              />
+            </Styled.FormField>
+            <Styled.ButtonsDiv>
+              <Styled.Button required type="submit" id="save" className="btn save" onClick={handleSubmit}>
+                Save
+              </Styled.Button>
+            </Styled.ButtonsDiv>
+          </form>
+        </div>
+      )}
     </motion.main>
   );
 }

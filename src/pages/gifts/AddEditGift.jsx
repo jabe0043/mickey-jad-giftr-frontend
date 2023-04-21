@@ -12,6 +12,7 @@ const AddEditGift = () => {
   const [gift, setGift] = useState(null);
   const [personName, setPersonName] = useState("");
   const accessDb = useAccessDbHook();
+
   const [formErrors, setFormErrors] = useState({});  
   const [formValid, setFormValid] = useState(false);
 
@@ -108,6 +109,7 @@ const AddEditGift = () => {
         {formErrors.postErr && <span className="error">{formErrors.postErr}</span>} 
         {formErrors.patchErr && <span className="error">{formErrors.patchErr}</span>} 
         <label htmlFor="name">Gift Idea</label>
+
         <Styled.TextInput required type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}></Styled.TextInput>
 
         <label htmlFor="name">Store</label>
