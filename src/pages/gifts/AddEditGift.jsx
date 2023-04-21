@@ -50,7 +50,7 @@ const AddEditGift = () => {
     const giftData = {
       giftName: giftIdea,
       store: store,
-      website: link,
+      website: link.includes("http") ? link : "https://" + link,
     };
     if(e.target.id==='save'){
       console.log('yes')
