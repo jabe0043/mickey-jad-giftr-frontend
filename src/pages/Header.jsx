@@ -73,7 +73,21 @@ export default function Header() {
   };
 
   return (
-    <header className="container">
+    <header
+      className="container"
+      style={{
+        position: "fixed",
+        top: "0",
+        left: "0",
+        right: "0",
+        marginRight: "auto",
+        marginLeft: "auto",
+        zIndex: "1000",
+        backgroundColor: "#F5F5F5",
+        opacity: "0.98",
+
+      }}
+    >
       <AppHeader>
         {renderLeftIcon()}
         <Logo onClick={() => authenticatedUserToken && navigate("/people")}>GIFT'R</Logo>

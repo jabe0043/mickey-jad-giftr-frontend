@@ -51,7 +51,7 @@ function Theme(props) {
   const [themeState, setThemeState] = useState(theme);
 
   const handleWindowResize = () => {
-    console.log("Theme.jsx handleWindowResize", window.innerWidth);
+    // console.log("Theme.jsx handleWindowResize", window.innerWidth);
     if (window.innerWidth < 400) {
       // screen width < 400
       let fontSizes = { ...themeState.default.fontSizes };
@@ -108,7 +108,7 @@ function Theme(props) {
   };
 
   useEffect(() => {
-    console.log("Theme.jsx useEffect");
+    // console.log("Theme.jsx useEffect");
     window.addEventListener("resize", (ev) => handleWindowResize());
   }, []);
 
