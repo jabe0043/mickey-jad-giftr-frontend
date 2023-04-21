@@ -90,7 +90,7 @@ export default function Header() {
     >
       <AppHeader>
         {renderLeftIcon()}
-        <Logo onClick={() => authenticatedUserToken && navigate("/people")}>GIFT'R</Logo>
+        {location.pathname !== "/" && <Logo onClick={() => authenticatedUserToken && navigate("/people")}>GIFT'R</Logo>}
         {renderRightIcon()}
       </AppHeader>
     </header>

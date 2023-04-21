@@ -41,6 +41,7 @@ const AddEditGift = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const form = document.querySelector("form");
     const formData = new FormData(form);
     const giftIdea = formData.get("giftIdea");
@@ -51,15 +52,25 @@ const AddEditGift = () => {
       store: store,
       website: link,
     };
-    if (!validateForm(giftData)) {
-      return;
+    if(e.target.id==='save'){
+      console.log('yes')
+      if (!validateForm(giftData)) {
+        return;
+      }
+    } else {
+      if (confirm("Are you sure you want to delete this gift?")) {
+        accessDb(giftData,`https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`, "DELETE", authenticatedUserToken,-1)
+      } else {
+        return;
+      }
     }
     // Edit gift
     if (giftId) {
       accessDb(
         giftData,
         `https://gift-backend.onrender.com/api/people/${personId}/gifts/${giftId}`,
-        e.target.id === "save" ? "PATCH" : "DELETE",
+        // e.target.id === "save" ? "PATCH" : "DELETE",
+        "DELETE",
         authenticatedUserToken,
         -1
       );
@@ -74,14 +85,15 @@ const AddEditGift = () => {
     let errors = {};
     let isValid = true;
     const pathname = location.pathname;
-    console.log(gift);
 
     switch(pathname){
       case `/gift/${pathname.split('/')[2]}/add`:
         errors.postErr = "Please include the gifts name, store and website.";
         isValid = data.giftName && data.store && data.website ? true : false;
+        console.log(isValid);
       break
       case `/gift/${pathname.split('/')[2]}/edit/${pathname.split('/')[4]}`:
+        console.log(isValid);
         errors.patchErr = "Please add an update before saving.";
         isValid = data.giftName !== gift.giftName || data.store !== gift.store|| data.website !== gift.website ? true : false;        
     } 
@@ -129,7 +141,7 @@ const AddEditGift = () => {
             </Styled.Button>
           </>
         ) : (
-          <Styled.Button type="submit" style={{ marginTop: "2rem" }} onClick={handleSubmit}>
+          <Styled.Button id="save" type="submit" style={{ marginTop: "2rem" }} onClick={handleSubmit}>
             Add Gift
           </Styled.Button>
         )}

@@ -68,6 +68,7 @@ const Login = styled.main`
 export const LoginH1 = styled.h1`
   font-size: ${({ theme }) => theme.default.fontSizes.xxl};
   font-weight: ${({ theme }) => theme.default.fontWeights.medium};
+  align-self: flex-start;
 `;
 
 export const LoginH2 = styled.h2`
