@@ -14,10 +14,10 @@ export default function Login() {
   const baseURL = `https://gift-backend.onrender.com`
 
   //Client localhost URL
-  // const clientURL = `http://localhost:5173`;
+  const clientURL = `http://localhost:5173`;
 
   //Client Netlify URL
-  const clientURL = `https://giftr-mj-jj.netlify.app`;
+  // const clientURL = `https://giftr-mj-jj.netlify.app`;
 
   const [params, setParams] = useSearchParams();
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();

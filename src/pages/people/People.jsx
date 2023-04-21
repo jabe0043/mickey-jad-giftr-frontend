@@ -10,12 +10,17 @@ import { motion } from "framer-motion";
 
 
 export default function People() {
-  const [userName, setUserName] = useState("");
-  const [people, setPeople] = useState([]);
-
-  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const theme = useTheme();
   const navigate = useNavigate();
+
+  const [userName, setUserName] = useState("");
+  const [people, setPeople] = useState([]);
+  const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
+
+  const handleCardClick = (personId) => {
+    navigate(`/gift/${personId}`);
+  };
+
 
   useEffect(() => {
     const url = `https://gift-backend.onrender.com/api/people`;
@@ -34,21 +39,20 @@ export default function People() {
       })
       .then((data) => {
         let peopleArr = data.data;
-        console.log("fetched peopleArr: ", peopleArr);
         setPeople(
           peopleArr.map((person) => ({
             ownerID: person.ownerID,
             _id: person._id,
             avatar: person.avatar,
             fullName: person.fullName,
-            dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "),
+            dob: new Date(person.dob).toUTCString().slice(4, 11).split(" ").reverse().join(" "), 
           }))
         );
-        console.log("setPeople to: ", people);
       })
       .catch(console.warn);
 
-      console.log(people);
+
+
 
     const requestForUserName = new Request(`https://gift-backend.onrender.com/api/user/userName/`, {
       method: "GET",
@@ -69,17 +73,15 @@ export default function People() {
         setUserName(userName.name);
       })
       .catch(console.warn);
-
   }, []);
 
-  //sort dates calls itself on people page render
+
+
+  //sort dates calls itself on page render
   (function sortDates() {
     people.sort((a, b) => new Date(a.dob) - new Date(b.dob));
   })();
 
-  const handleCardClick = (personId) => {
-    navigate(`/gift/${personId}`);
-  };
 
 
 
@@ -94,16 +96,13 @@ export default function People() {
     >
       <CheckAuth />
       <PageBanner className="page-banner">
-
         <Title>Welcome, <br/> <strong style={{fontSize:"2.5rem", color:'#1E1E1E'}}> {`${userName.charAt(0).toUpperCase()}${userName.split(" ")[0].slice(1)}`}</strong></Title>
-        {/* <Subtitle>
-          {people.length === 0  ? (<h2>There are no people in the list</h2>) : (<h2>Here's your list of giftees</h2>)}
-        </Subtitle> */}
-
       </PageBanner>
-        <Subtitle>
-          {people.length === 0  ? ('There are no people in the list') : ("Here's your list of giftees")}
-        </Subtitle>
+
+      <Subtitle>
+        {people.length === 0  ? ('There are no people in the list') : ("Here's your list of giftees")}
+      </Subtitle>
+
       <div>      
         <CardsList >
           {people.map((person) => (
@@ -111,7 +110,6 @@ export default function People() {
           ))}
         </CardsList>
       </div>
-
     </motion.main>
   );
 }

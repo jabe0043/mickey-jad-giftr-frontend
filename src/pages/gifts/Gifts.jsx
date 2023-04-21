@@ -8,15 +8,12 @@ import CheckAuth from "../../utils/CheckAuth";
 import { motion } from "framer-motion";
 
 const Gifts = () => {
-  console.log("Gifts rendered");
-
   const [authenticatedUserToken, setAuthenticatedUserToken] = useUser();
   const [person, setPerson] = useState({});
   const navigate = useNavigate();
   const { personId } = useParams();
 
   useEffect(() => {
-    console.log("Gifts useEffect rendered");
     const url = `https://gift-backend.onrender.com/api/people/${personId}`;
     let request = new Request(url, {
       method: "GET",
@@ -46,8 +43,6 @@ const Gifts = () => {
       .catch(console.warn);
   }, [authenticatedUserToken, personId]);
 
-  console.log(person);
-  // console.log(person.gifts.length);
 
   return (
     <motion.main className="container"

@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../context/userContext";
 import CheckAuth from "../../utils/CheckAuth";
 import * as Styled from "../../styled/components";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAccessDbHook from "../../hooks/useAccessDb";
 
 const AddEditGift = () => {
-  console.log("AddEditGift rendered");
   const [authenticatedUserToken, _setAuthenticatedUserToken] = useUser();
   const { personId, giftId } = useParams();
   const [gift, setGift] = useState(null);
   const [personName, setPersonName] = useState("");
   const accessDb = useAccessDbHook();
- 
+
+  const [formErrors, setFormErrors] = useState({});  
+  const [formValid, setFormValid] = useState(false);
+
   useEffect(() => {
     setGift(null);
     let request = new Request(`https://gift-backend.onrender.com/api/people/${personId}`, {
@@ -44,13 +46,14 @@ const AddEditGift = () => {
     const giftIdea = formData.get("giftIdea");
     const store = formData.get("store");
     const link = formData.get("url");
-    
     const giftData = {
       giftName: giftIdea,
       store: store,
       website: link,
     };
-
+    if (!validateForm(giftData)) {
+      return;
+    }
     // Edit gift
     if (giftId) {
       accessDb(
@@ -66,6 +69,26 @@ const AddEditGift = () => {
       accessDb(giftData, `https://gift-backend.onrender.com/api/people/${personId}/gifts`, "POST", authenticatedUserToken, -1);
     }
   };
+
+  function validateForm(data) {
+    let errors = {};
+    let isValid = true;
+    const pathname = location.pathname;
+    console.log(gift);
+
+    switch(pathname){
+      case `/gift/${pathname.split('/')[2]}/add`:
+        errors.postErr = "Please include the gifts name, store and website.";
+        isValid = data.giftName && data.store && data.website ? true : false;
+      break
+      case `/gift/${pathname.split('/')[2]}/edit/${pathname.split('/')[4]}`:
+        errors.patchErr = "Please add an update before saving.";
+        isValid = data.giftName !== gift.giftName || data.store !== gift.store|| data.website !== gift.website ? true : false;        
+    } 
+    setFormErrors(errors);
+    setFormValid(isValid);
+    return isValid;
+  }
 
   return (
     <motion.main
@@ -83,14 +106,17 @@ const AddEditGift = () => {
       </Styled.PageBanner>
 
       <Styled.FormForGifts>
+        {formErrors.postErr && <span className="error">{formErrors.postErr}</span>} 
+        {formErrors.patchErr && <span className="error">{formErrors.patchErr}</span>} 
         <label htmlFor="name">Gift Idea</label>
-        <Styled.TextInput type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""} required></Styled.TextInput>
+
+        <Styled.TextInput required type="text" id="giftIdea" name="giftIdea" defaultValue={gift ? gift.giftName : ""}></Styled.TextInput>
 
         <label htmlFor="name">Store</label>
-        <Styled.TextInput type="text" id="store" name="store" defaultValue={gift ? gift.store : "" } required></Styled.TextInput>
+        <Styled.TextInput required type="text" id="store" name="store" defaultValue={gift ? gift.store : "" }></Styled.TextInput>
 
         <label htmlFor="name">Website URL</label>
-        <Styled.TextInput type="text" id="url" name="url" defaultValue={gift ? gift.website : ""} required></Styled.TextInput>
+        <Styled.TextInput required type="text" id="url" name="url" defaultValue={gift ? gift.website : ""}></Styled.TextInput>
 
         {giftId ? (
           <>
