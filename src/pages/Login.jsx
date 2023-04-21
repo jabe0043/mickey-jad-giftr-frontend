@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser } from "../context/userContext";
 import * as Styled from "../styled/components";
-import WelcomeIllustration from "../assets/welcomeIllustration.png";
+import WelcomeIllustration from "../assets/pixeltrue-special-deals-1.png";
 
 export default function Login() {
   const navigate = useNavigate(); //in app navigation only;
