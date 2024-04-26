@@ -3,7 +3,15 @@
 ### Application Summary
 Gift'r app is responsive, web-based React application designed to facilitate the organization and tracking of gift ideas for friends and loved ones. The front end of the application is hosted on Netlify. https://giftr-mj-jj.netlify.app/ 
 
-The back end of the Gift'r app is built using Node.js, Express, Mongoose, and MongoDB; a REST API for managing user accounts, people, and gift ideas.
+The back end for Gift'r manages user accounts, people, and gift ideas. The REST API for the app is built using Node.js, Express, Mongoose, and MongoDB, and is hosted on Render.
+
+<table>
+  <tr>
+    <td><img src="./src/assets/giftr-login.png" alt="Gift'r Login Page preview" width="300" /></td>
+    <td><img src="./src/assets/giftr-home.png" alt="Gift'r Home Page preview" width="300" /></td>
+    <td><img src="./src/assets/giftr-ideas.png" alt="Gift'r Ideas Page preview" width="300" /></td>
+  </tr>
+</table>
 
 ## Front End
 
